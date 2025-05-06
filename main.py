@@ -159,11 +159,12 @@ class ImageAnalyzer:
 
             current_box = (data["left"][i], data["top"][i], data["left"][i] + data["width"][i], data["top"][i] + data["height"][i])
 
-            is_close = self.is_near_existing_boxes(current_box, boxes)
+            is_close = self.is_near_existing_boxes_and_not_left(current_box, boxes)
 
             if abs(data["height"][zutaten_index] - data["height"][i]) < 3 and is_close:
                 x, y, h, w = data["left"][i], data["top"][i], data["height"][i], data["width"][i]
                 boxes.append((x, y, x + w, y + h)) # Füge BBox des Wortes zur BBox Liste hinzu
+                print(boxes)
         
 
         # Entpacke x1, y1, x2, y2 aus allen Boxen
@@ -185,13 +186,15 @@ class ImageAnalyzer:
         return roi
 
                 
-    def is_near_existing_boxes(self, current_box, existing_boxes):
+    def is_near_existing_boxes_and_not_left(self, current_box, existing_boxes):
         new_x, new_y, new_x2, new_y2 = current_box
+
+        zutaten_x, zutaten_y, zutaten_x2, zutaten_y2 = existing_boxes[0] # Die erste Box ist die Zutatenbox
 
         for box in existing_boxes:
             x, y, x2, y2 = box
 
-            if abs(y2 - new_y) < 15 or abs(x2 - new_x) < 15: # Prüfe ob die neue Box in der Nähe einer schon hinzugefügten Box ist
+            if (abs(y2 - new_y) < 15 or abs(x2 - new_x) < 15) and new_x > zutaten_x - 5: # Prüfe ob die neue Box in der Nähe einer schon hinzugefügten Box ist und nicht links von der Zutatenbox (mit kleinem Toleranzabstand)
                 return True
         
         return False       
