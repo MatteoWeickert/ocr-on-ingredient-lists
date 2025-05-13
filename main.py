@@ -8,6 +8,9 @@ import numpy as np
 from tkinter import ttk
 import re
 import math
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_distances
+from sklearn.cluster import DBSCAN
 
 class ImageAnalyzer:
 
@@ -91,6 +94,7 @@ class ImageAnalyzer:
     def process_cv2_picture(self, img):
 
         gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY) # RGB zu GRAY, weil PIL das Bild in RGB speichert
+        #blurred = cv2.GaussianBlur(gray, (3, 3), 0) # Bild wird unscharf gemacht, um Rauschen zu entfernen
         inverted = cv2.bitwise_not(gray) # Bildinvertierung: helle Pixel werden dunkel und umgekehrt -> Schrift hell, Background dunkel
         _, binary = cv2.threshold(inverted, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU) # OTSU berechnet optimalen Schwellenwert für das gesamte Bild -> alle darunter werden schwarz, darüber (also der Text) weiß
         #binary = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 51, 2)
@@ -118,7 +122,7 @@ class ImageAnalyzer:
         
         processed = self.process_cv2_picture(img)
 
-        cuttedImage = self.findIngredients(processed)
+        cuttedImage = self.findIngredientsClusterAnalysis(processed)
 
         self.create_picture_preview(cuttedImage, self.processed_image)
         
@@ -129,6 +133,82 @@ class ImageAnalyzer:
         self.text_output.config(text=text.strip()) # in GUI anzeigen lassen
 
         return text.strip() 
+    
+    def findIngredientsClusterAnalysis(self, preProcessedImg):
+
+        data = pytesseract.image_to_data(preProcessedImg, output_type=Output.DICT, lang="deu", config='--oem 3 --psm 6')
+
+        boxes = [] # Liste aller Boxen
+
+        for i in range(len(data["text"])):
+            if data["text"][i].strip() == "":
+                continue
+
+            # Koordinaten der Boxen
+            x1 = data["left"][i]
+            y1 = data["top"][i]
+            x2 = data["left"][i] + data["width"][i]
+            y2 = data["top"][i] + data["height"][i]
+
+            boxes.append((x1, y1, x2, y2))
+
+        mittelpunkte_bboxes = [[(x1 + 0.5*(abs(x2-x1))), (y1 + 0.5*(abs(y2-y1)))] for x1,y1,x2,y2 in boxes] # Liste der Mittelpunkte der Boxen
+
+        coords = np.array(mittelpunkte_bboxes) # Konvertiere die Liste in ein NumPy-Array
+        db = DBSCAN(eps=75, min_samples=5).fit(coords) # eps: maximaler Abstand zwischen zwei Punkten, um sie als Nachbarn zu betrachten; min_samples: minimale Anzahl von Punkten, um einen Cluster zu bilden
+        labels = db.labels_ # jede Box hat ein Label, das angibt, zu welchem Cluster sie gehört (oder -1, wenn sie kein Cluster hat)
+
+        clusters = {} # Dictionary, das die Cluster speichert
+        for box, label in zip(boxes, labels): # Jeder Box wird ihr Label zugewiesen
+            if label == -1:
+                continue # -1 bedeutet, dass die Box kein Cluster hat
+
+            if label not in clusters:
+                clusters[label] = []  # Liste initialisieren, wenn Label noch nicht vorhanden
+
+            clusters[label].append(box)
+
+            # 2. Umschließende Bounding Box für jeden Cluster berechnen
+
+        cluster_bboxes = {}
+        for label, cluster_boxes in clusters.items():
+            x1_vals = [box[0] for box in cluster_boxes]
+            y1_vals = [box[1] for box in cluster_boxes]
+            x2_vals = [box[2] for box in cluster_boxes]
+            y2_vals = [box[3] for box in cluster_boxes]
+
+            x_min = min(x1_vals)
+            y_min = min(y1_vals)
+            x_max = max(x2_vals)
+            y_max = max(y2_vals)
+
+            if label not in cluster_bboxes:
+                cluster_bboxes[label] = []  # Liste initialisieren, wenn Label noch nicht vorhanden
+
+            cluster_bboxes[label] = (x_min, y_min, x_max, y_max)
+
+        # Finde BBox mit dem Label "Zutaten"
+        zutaten_label = None
+        pattern = r"z[uva2]t[aiuä]t[aeä]n[:\s]?" # die []- Ausdrücke können eintreten und [:\s] bedeutet ein optionaler Doppelpunkt    
+
+        for label, min_max_box in cluster_bboxes.items():
+            x1, y1, x2, y2 = min_max_box
+            text = pytesseract.image_to_string(preProcessedImg[y1:y2, x1:x2], lang='deu', config='--oem 3 --psm 6')
+            print(f"[Cluster {label}] erkannter Text:\n{text.strip()}\n")  # Debug-Ausgabe
+            if re.search(pattern, text.lower()):
+                zutaten_label = label
+                break
+            if zutaten_label is not None:
+                break
+
+        if zutaten_label is None:
+            print("Zutatenliste nicht gefunden")
+            raise ValueError("Zutatenliste nicht gefunden") 
+
+        x_min, y_min, x_max, y_max = cluster_bboxes[zutaten_label]  # Hole die Bounding-Box für die Zutatenliste, wenn sie gefunden wurde
+
+        return preProcessedImg[y_min:y_max, x_min:x_max] if zutaten_label is not None else None # Rückgabe der Bounding-Box für die Zutatenliste oder None, wenn keine gefunden wurde
+
 
     
     def findIngredients(self, preProcessedImg):
@@ -136,7 +216,6 @@ class ImageAnalyzer:
         
         print(data)
 
-        # 1. Robuste "Zutaten"-Erkennung mit erweiterten Patterns
         zutaten_index = None
 
         # Regex-Erkennung von "Zutaten"
@@ -155,23 +234,47 @@ class ImageAnalyzer:
         boxes.append((data["left"][zutaten_index], data["top"][zutaten_index], data["left"][zutaten_index] + data["width"][zutaten_index], data["top"][zutaten_index] + data["height"][zutaten_index]))
         n_boxes = len(data["text"])
 
-        for i in range(n_boxes):
+        zutaten_y = data["top"][zutaten_index] # y-Koordinate der Zutatenbox
+        zutaten_x = data["left"][zutaten_index] # x-Koordinate der Zutatenbox
 
-            current_box = (data["left"][i], data["top"][i], data["left"][i] + data["width"][i], data["top"][i] + data["height"][i])
+        ingredient_indizes = [zutaten_index] # Liste für die Indizes der Zutaten
 
-            is_close = self.is_near_existing_boxes_and_not_left(current_box, boxes)
+        # Sammmle alle Wörter, die in der Nähe der Zutatenbox sind 
+        for i in range(zutaten_index + 1, n_boxes):
 
-            if abs(data["height"][zutaten_index] - data["height"][i]) < 3 and is_close:
-                x, y, h, w = data["left"][i], data["top"][i], data["height"][i], data["width"][i]
-                boxes.append((x, y, x + w, y + h)) # Füge BBox des Wortes zur BBox Liste hinzu
-                print(boxes)
-        
+            if data["text"][i].strip() == "":
+                continue
 
+            if data["left"][i] >= data["left"][zutaten_index] - 7 and data["top"][i] >= data["top"][zutaten_index] - 7: # Wenn die Box rechts von der Zutatenbox ist, dann ist sie relevant
+                ingredient_indizes.append(i) # Füge den Index der Zutatenbox zur Liste hinzu
+
+        # Sortiere die Indizes nach der erst nach y-Koordinate, dann nach x-Koordinate
+        ingredient_indizes.sort(key=lambda i: (data["top"][i], data["left"][i])) # Damit sind die der Zutaten-Box am nächsten liegenden Wörter zuerst in der Liste
+
+        # Speichere die y-Werte der Zutaten, um den cutoff point zu bestimmen, ab wann eine Box nicht mehr zur Zutatenliste gehört
+        y_vals = [data["top"][i] for i in ingredient_indizes]
+
+        # Berechne Differenzen zwischen benachbarten y-Werten
+        y_diffs = [y2-y1 for y1,y2 in zip(y_vals[:-1], y_vals[1:])] # zip(y_vals[:-1]) gibt alle y-Werte bis auf den letzten zurück, zip(y_vals[1:]) gibt alle y-Werte ab dem zweiten zurück
+
+        # Berechne den Mittelwert der Differenzen
+        mean_y_diff = sum(y_diffs) / len(y_diffs) if y_diffs else 0
+
+        # Berechne den cutoff point, ab wann eine Box nicht mehr zur Zutatenliste gehört (Abstand zu groß)
+        cutoff = len(ingredient_indizes)
+        for idx, diff in enumerate(y_diffs):
+            if diff > mean_y_diff * 2:
+                cutoff = idx + 1
+                break
+
+        relevant_boxes_indizes = ingredient_indizes[:cutoff] # Liste der relevanten Boxen
+
+        # Berechne die Bounding-Box für alle relevanten Boxen
         # Entpacke x1, y1, x2, y2 aus allen Boxen
-        x1_vals = [box[0] for box in boxes]
-        y1_vals = [box[1] for box in boxes]
-        x2_vals = [box[2] for box in boxes]
-        y2_vals = [box[3] for box in boxes]
+        x1_vals = [data["left"][i] for i in relevant_boxes_indizes]
+        y1_vals = [data["top"][i] for i in relevant_boxes_indizes]
+        x2_vals = [data["left"][i] + data["width"][i] for i in relevant_boxes_indizes]
+        y2_vals = [data["top"][i] + data["height"][i] for i in relevant_boxes_indizes]
         
         # Ermittle den kleinsten/größten Wert
         x_min = min(x1_vals)
@@ -183,21 +286,7 @@ class ImageAnalyzer:
         roi = preProcessedImg[y_min:y_max, x_min:x_max]
 
         # Rückgabe als Gesamt-Bounding-Box
-        return roi
-
-                
-    def is_near_existing_boxes_and_not_left(self, current_box, existing_boxes):
-        new_x, new_y, new_x2, new_y2 = current_box
-
-        zutaten_x, zutaten_y, zutaten_x2, zutaten_y2 = existing_boxes[0] # Die erste Box ist die Zutatenbox
-
-        for box in existing_boxes:
-            x, y, x2, y2 = box
-
-            if (abs(y2 - new_y) < 15 or abs(x2 - new_x) < 15) and new_x > zutaten_x - 5: # Prüfe ob die neue Box in der Nähe einer schon hinzugefügten Box ist und nicht links von der Zutatenbox (mit kleinem Toleranzabstand)
-                return True
-        
-        return False       
+        return roi      
 
 
 
@@ -218,7 +307,7 @@ class ImageAnalyzer:
 
         processed = self.process_cv2_picture(img)
 
-        cutted_image = self.findIngredients(processed)
+        cutted_image = self.findIngredientsClusterAnalysis(processed)
 
         # Extract data
         config = r'--oem 3 --psm 6'
