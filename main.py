@@ -122,7 +122,7 @@ class ImageAnalyzer:
         
         processed = self.process_cv2_picture(img)
 
-        cuttedImage = self.findIngredientsClusterAnalysis(processed)
+        cuttedImage = self.findIngredients(processed)
 
         self.create_picture_preview(cuttedImage, self.processed_image)
         
@@ -245,9 +245,11 @@ class ImageAnalyzer:
             if data["text"][i].strip() == "":
                 continue
 
-            if data["left"][i] >= data["left"][zutaten_index] - 7 and data["top"][i] >= data["top"][zutaten_index] - 7: # Wenn die Box rechts von der Zutatenbox ist, dann ist sie relevant
+            if data["left"][i] >= zutaten_x - 10 and data["top"][i] >= zutaten_y - 30: # Wenn die Box rechts von der Zutatenbox ist, dann ist sie relevant
                 ingredient_indizes.append(i) # Füge den Index der Zutatenbox zur Liste hinzu
 
+        # VERTIKALER CUTOFF
+        # ---------------------------------
         # Sortiere die Indizes nach der erst nach y-Koordinate, dann nach x-Koordinate
         ingredient_indizes.sort(key=lambda i: (data["top"][i], data["left"][i])) # Damit sind die der Zutaten-Box am nächsten liegenden Wörter zuerst in der Liste
 
@@ -261,20 +263,50 @@ class ImageAnalyzer:
         mean_y_diff = sum(y_diffs) / len(y_diffs) if y_diffs else 0
 
         # Berechne den cutoff point, ab wann eine Box nicht mehr zur Zutatenliste gehört (Abstand zu groß)
-        cutoff = len(ingredient_indizes)
+        cutoff_unten = len(ingredient_indizes)
         for idx, diff in enumerate(y_diffs):
-            if diff > mean_y_diff * 2:
-                cutoff = idx + 1
+            if diff > mean_y_diff * 4:
+                cutoff_unten = idx + 1
                 break
 
-        relevant_boxes_indizes = ingredient_indizes[:cutoff] # Liste der relevanten Boxen
+        # ZEILENWEISE GRUPPIERUNG (für rechten Cutoff)
+        # ----------------------------------------------
+        # Gruppiere Boxen in Zeilen (basierend auf y-Koordinate mit Toleranz)
+        y_tolerance = 5  # Toleranz für die y-Koordinate
+        zeilen = []
+        aktuelle_zeile = []
+        for i in sorted(ingredient_indizes, key=lambda j: (data["top"][j], data["left"][j])):
+            if not aktuelle_zeile:
+                aktuelle_zeile.append(i)
+            else:
+                if abs(data["top"][i] - data["top"][aktuelle_zeile[-1]]) <= y_tolerance:
+                    aktuelle_zeile.append(i)
+                else:
+                    zeilen.append(aktuelle_zeile)
+                    aktuelle_zeile = [i]
+        if aktuelle_zeile:
+            zeilen.append(aktuelle_zeile)
+
+        # RECHTER CUTOFF (maximale x-Position pro Zeile)
+        # ------------------------------------------------
+        # Berechne den Median der maximalen x-Positionen pro Zeile
+        max_x_pro_zeile = [max(data["left"][i] + data["width"][i] for i in zeile) for zeile in zeilen]
+        rechts_cutoff_x = sorted(max_x_pro_zeile)[len(max_x_pro_zeile) // 2]  # Median (wir greifen auf das mittlere Element der sortierten List zu)
+
+        # KOMBINIERTE FILTERUNG
+        # -------------------------
+        relevant_indices = []
+        for i in ingredient_indizes[:cutoff_unten]:
+            # Box muss links vom rechten Cutoff liegen
+            if (data["left"][i] + data["width"][i]) <= rechts_cutoff_x + 10:  # Kleine Toleranz
+                relevant_indices.append(i)
 
         # Berechne die Bounding-Box für alle relevanten Boxen
         # Entpacke x1, y1, x2, y2 aus allen Boxen
-        x1_vals = [data["left"][i] for i in relevant_boxes_indizes]
-        y1_vals = [data["top"][i] for i in relevant_boxes_indizes]
-        x2_vals = [data["left"][i] + data["width"][i] for i in relevant_boxes_indizes]
-        y2_vals = [data["top"][i] + data["height"][i] for i in relevant_boxes_indizes]
+        x1_vals = [data["left"][i] for i in relevant_indices]
+        y1_vals = [data["top"][i] for i in relevant_indices]
+        x2_vals = [data["left"][i] + data["width"][i] for i in relevant_indices]
+        y2_vals = [data["top"][i] + data["height"][i] for i in relevant_indices]
         
         # Ermittle den kleinsten/größten Wert
         x_min = min(x1_vals)
@@ -307,7 +339,7 @@ class ImageAnalyzer:
 
         processed = self.process_cv2_picture(img)
 
-        cutted_image = self.findIngredientsClusterAnalysis(processed)
+        cutted_image = self.findIngredients(processed)
 
         # Extract data
         config = r'--oem 3 --psm 6'
