@@ -156,7 +156,7 @@ class ImageAnalyzer:
         content = [
             {
             "type": "input_text",
-            "text": "Was ist der Text auf dem Bild?"
+            "text": "Die Bilder zeigen die Verpackung eines Produkts aus verschiedenen Perspektiven. Bitte extrahiere die Zutatenliste und die Nährwerttabelle des Produkts. Wenn du keine Zutatenliste oder Nährwerttabelle findest, gib bitte an, dass diese nicht vorhanden sind."
             }
         ]
 
@@ -169,7 +169,7 @@ class ImageAnalyzer:
 
         # Erstellen der Anfrage an die API
         response = client.responses.create(
-            model="gpt-4o",
+            model="gpt-4.1-mini",
             input=[
                 {
                     "role": "user",
