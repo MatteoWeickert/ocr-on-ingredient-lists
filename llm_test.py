@@ -10,6 +10,7 @@ import numpy as np
 import base64
 import cv2
 from io import BytesIO
+from collections import defaultdict
 
 
 class ImageAnalyzer:
@@ -22,6 +23,9 @@ class ImageAnalyzer:
 
         self.uploadButton = tk.Button(root, text="Bilder auswählen", command=self.upload_image)
         self.uploadButton.pack(pady=10) # 10 Pixel Abstand nach unten
+
+        self.uploadFolderButton = tk.Button(root, text="Ordner auswählen", command=self.upload_folder)
+        self.uploadFolderButton.pack(pady=10) # 10 Pixel Abstand nach unten
 
         self.analyzeButton = tk.Button(root, text="Bild analysieren", command=self.analyze_image)
         self.analyzeButton.pack(pady=10)
@@ -43,6 +47,39 @@ class ImageAnalyzer:
         paths = filedialog.askopenfilenames(
             filetypes=[("Image files", "*.png;*.jpg;*.jpeg;*.tif;*.bmp")]
         )
+        if not paths:
+            return
+
+        self.image_paths = paths
+        print("Bilder geladen:", self.image_paths)
+
+        for label in self.image_labels:
+            label.destroy()
+
+        self.image_labels.clear()
+        self.image_photos.clear()
+
+        for i, path in enumerate(paths):
+            img = Image.open(path)
+            img.thumbnail((300, 300))
+            image_label = tk.Label(self.image_frame)
+            image_label.grid(row=0, column=i, padx=10, pady=10)
+            self.create_picture_preview(img, image_label)
+            self.image_labels.append(image_label)
+
+    def upload_folder(self):
+        folder_path = filedialog.askdirectory()
+        if not folder_path:
+            return
+
+        # Suche nach Bilddateien im ausgewählten Ordner
+        valid_extensions = (".png", ".jpg", ".jpeg", ".tif", ".bmp")
+        paths = [
+            os.path.join(folder_path, f) # Kombiniert Ordnerpfad mit Bilddatei
+            for f in os.listdir(folder_path) # Listet alle Elemente des Ordners auf
+            if f.lower().endswith(valid_extensions) # Prüft, ob Element ein Bild
+        ]
+
         if not paths:
             return
 
@@ -147,7 +184,7 @@ class ImageAnalyzer:
             processed_img = self.process_cv2_picture(img)
             
             encoded_img = self.encode_image(processed_img)
-            encoded_images.append(encoded_img)
+            encoded_images.append((encoded_img, image_path))
 
 
         self.configure()
@@ -160,25 +197,56 @@ class ImageAnalyzer:
             }
         ]
 
-        # Hinzufügen der Bilder zur API Anfrage
-        for encoded_img in encoded_images:
-            content.append({
-            "type": "input_image",
-            "image_url": encoded_img
-            })
 
-        # Erstellen der Anfrage an die API
-        response = client.responses.create(
+        # Gruppiere die Bilder nach Produkt-ID (alles vor dem Unterstrich)
+        product_images = defaultdict(list)
+        for encoded_img, image_path in encoded_images:
+            basename = os.path.basename(image_path) # Extrahiert den Dateinamen
+            product_id = basename.split('_')[0] # Speichert Produktnummer
+            product_images[product_id].append((encoded_img, image_path))
+
+        # Vorbereitung API Abfrage
+        for product_id, images in product_images.items():
+            # Baue den Content für dieses Produkt
+            product_content = [
+            {
+                "type": "input_text",
+                "text": "Die Bilder zeigen die Verpackung eines Produkts aus verschiedenen Perspektiven. Bitte extrahiere die Zutatenliste und die Nährwerttabelle des Produkts. Wenn du keine Zutatenliste oder Nährwerttabelle findest, gib bitte an, dass diese nicht vorhanden sind."
+            }
+            ]
+
+            for encoded_img, image_path in images:
+                product_content.append({
+                    "type": "input_image",
+                    "image_url": encoded_img
+                })
+
+            # Erstellen der Anfrage an die API für dieses Produkt
+            response = client.responses.create(
             model="gpt-4.1-mini",
             input=[
                 {
-                    "role": "user",
-                    "content": content
-                } 
+                "role": "user",
+                "content": product_content
+                }
             ]
-        )
+            )
 
-        print(response.output_text)
+            print(f"Produkt {product_id}:")
+            print(response.output_text)
+
+        # # Erstellen der Anfrage an die API
+        # response = client.responses.create(
+        #     model="gpt-4.1-mini",
+        #     input=[
+        #         {
+        #             "role": "user",
+        #             "content": content
+        #         } 
+        #     ]
+        # )
+
+        # print(response.output_text)
 
 # Teste den Code
 if __name__ == "__main__":
