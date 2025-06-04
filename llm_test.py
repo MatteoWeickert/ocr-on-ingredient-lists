@@ -11,6 +11,7 @@ import base64
 import cv2
 from io import BytesIO
 from collections import defaultdict
+import csv
 
 
 class ImageAnalyzer:
@@ -84,7 +85,7 @@ class ImageAnalyzer:
             return
 
         self.image_paths = paths
-        print("Bilder geladen:", self.image_paths)
+        print(f"{len(self.image_paths)} Bilder geladen:", self.image_paths)
 
         for label in self.image_labels:
             label.destroy()
@@ -190,13 +191,6 @@ class ImageAnalyzer:
         self.configure()
         client = OpenAI(api_key=os.getenv('api_key')) # Zugriff auf den API-Key
 
-        content = [
-            {
-            "type": "input_text",
-            "text": "Die Bilder zeigen die Verpackung eines Produkts aus verschiedenen Perspektiven. Bitte extrahiere die Zutatenliste und die Nährwerttabelle des Produkts. Wenn du keine Zutatenliste oder Nährwerttabelle findest, gib bitte an, dass diese nicht vorhanden sind."
-            }
-        ]
-
 
         # Gruppiere die Bilder nach Produkt-ID (alles vor dem Unterstrich)
         product_images = defaultdict(list)
@@ -205,13 +199,16 @@ class ImageAnalyzer:
             product_id = basename.split('_')[0] # Speichert Produktnummer
             product_images[product_id].append((encoded_img, image_path))
 
+        all_outputs = [] # Liste für alle Outputs
+
         # Vorbereitung API Abfrage
         for product_id, images in product_images.items():
             # Baue den Content für dieses Produkt
             product_content = [
             {
                 "type": "input_text",
-                "text": "Die Bilder zeigen die Verpackung eines Produkts aus verschiedenen Perspektiven. Bitte extrahiere die Zutatenliste und die Nährwerttabelle des Produkts. Wenn du keine Zutatenliste oder Nährwerttabelle findest, gib bitte an, dass diese nicht vorhanden sind."
+                # "text": "Die Bilder zeigen die Verpackung eines Produkts aus verschiedenen Perspektiven. Bitte extrahiere die Zutatenliste und die Nährwerttabelle des Produkts. Wenn du keine Zutatenliste oder Nährwerttabelle findest, gib bitte an, dass diese nicht vorhanden sind."
+                "text": f"Die Bilder zeigen die Verpackung eines Produkts (Produktnummer: ${product_id}) aus verschiedenen Perspektiven. Bitte überprüfe die Bilder auf das Vorhandensein folgender Angaben: Bezeichnung des Produkts, Zutatenverzeichnis, Allgerenkennzeichnung (Hervorhebung von Allergenen), Nettofüllmenge, Mindesthaltbarkeitsdatum, Firmenanschrift, Nährwerttabelle. Gib die Resultate in der folgenden Form zurück: \n\nProduktnummer: [Produktnummer]\nBezeichnung des Produkts: [vorhanden / nicht vorhanden]\nZutatenverzeichnis: [vorhanden / nicht vorhanden]\nAllergenkennzeichnung: [vorhanden / nicht vorhanden]\nNettofüllmenge: [vorhanden / nicht vorhanden]\nMindesthaltbarkeitsdatum: [vorhanden / nicht vorhanden]\nFirmenanschrift: [vorhanden / nicht vorhanden]\nNährwerttabelle: [vorhanden / nicht vorhanden]"
             }
             ]
 
@@ -232,8 +229,24 @@ class ImageAnalyzer:
             ]
             )
 
-            print(f"Produkt {product_id}:")
+            all_outputs.append(response.output_text)
             print(response.output_text)
+
+        print("Alle Outputs:", all_outputs)
+
+        # Speicherung der Ergebnisse in einer CSV-Datei
+        with open('product_overview.csv', 'w', newline='', encoding='utf-8') as csvfile: # Öffnen der CSV-Datei zum Schreiben (w)
+            fieldnames = ['Produktnummer', 'Bezeichnung des Produkts', 'Zutatenverzeichnis', 
+                          'Allergenkennzeichnung', 'Nettofüllmenge', 
+                          'Mindesthaltbarkeitsdatum', 'Firmenanschrift', 'Nährwerttabelle']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames) # DictWriter-Objekt zum Schreiben von Dictionaries in die CSV-Datei
+            writer.writeheader()
+
+            for output in all_outputs:
+                # Ausgabe muss im Format "Schlüssel: Wert" sein, z.B. "Produktnummer: 12345"
+                lines = output.split('\n') # Zerlegt Textblock in Zeilen
+                data = {line.split(': ')[0]: line.split(': ')[1] for line in lines if ': ' in line} # Wandelt jede Zeile in ein Dictionary um, wobei der Text vor dem Doppelpunkt der Schlüssel und der Text nach dem Doppelpunkt der Wert ist, z.B. "Produktnummer: 12345" wird zu {"Produktnummer": "12345"}
+                writer.writerow(data)
 
         # # Erstellen der Anfrage an die API
         # response = client.responses.create(
