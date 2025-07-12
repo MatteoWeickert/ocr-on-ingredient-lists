@@ -7,6 +7,6 @@ YOLO/images/*
 YOLO/labels/*
 YOLO/runs
 YOLO/weights
-!YOLO/images/train/.gitkeep
-!YOLO/labels/train/.gitkeep
+!YOLO/images/.gitkeep
+!YOLO/labels/.gitkeep
 *.pt
