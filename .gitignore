@@ -3,3 +3,10 @@ __pycache__/
 *.pyc
 .env
 product_overview.csv
+YOLO/images/*
+YOLO/labels/*
+YOLO/runs
+YOLO/weights
+!YOLO/images/train/.gitkeep
+!YOLO/labels/train/.gitkeep
+*.pt
