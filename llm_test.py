@@ -208,7 +208,13 @@ class ImageAnalyzer:
             {
                 "type": "input_text",
                 # "text": "Die Bilder zeigen die Verpackung eines Produkts aus verschiedenen Perspektiven. Bitte extrahiere die Zutatenliste und die Nährwerttabelle des Produkts. Wenn du keine Zutatenliste oder Nährwerttabelle findest, gib bitte an, dass diese nicht vorhanden sind."
-                "text": f"Die Bilder zeigen die Verpackung eines Produkts (Produktnummer: ${product_id}) aus verschiedenen Perspektiven. Bitte überprüfe die Bilder auf das Vorhandensein folgender Angaben: Bezeichnung des Produkts, Zutatenverzeichnis, Allgerenkennzeichnung (Hervorhebung von Allergenen), Nettofüllmenge, Mindesthaltbarkeitsdatum, Firmenanschrift, Nährwerttabelle. Gib die Resultate in der folgenden Form zurück: \n\nProduktnummer: [Produktnummer]\nBezeichnung des Produkts: [vorhanden / nicht vorhanden]\nZutatenverzeichnis: [vorhanden / nicht vorhanden]\nAllergenkennzeichnung: [vorhanden / nicht vorhanden]\nNettofüllmenge: [vorhanden / nicht vorhanden]\nMindesthaltbarkeitsdatum: [vorhanden / nicht vorhanden]\nFirmenanschrift: [vorhanden / nicht vorhanden]\nNährwerttabelle: [vorhanden / nicht vorhanden]"
+                #"text": f"Die Bilder zeigen die Verpackung eines Produkts (Produktnummer: ${product_id}) aus verschiedenen Perspektiven. Extrahiere den Text der Zutatenliste und die Nährwerttabelle des Produkts. Wenn du keine Zutatenliste oder Nährwerttabelle findest, gib bitte an, dass diese nicht vorhanden sind. Rückgabeformat: 'Produktnummer: [Produktnummer]', \n'Zutatenliste: [Text Zutatenliste]', \n'Nährwerttabelle: [Text Nährwerttabelle]'."
+                "text": f"Die Bilder zeigen die Verpackung eines Produkts (Produktnummer: {product_id}) aus verschiedenen Perspektiven. "
+                            "Extrahiere die komplette Nährwerttabelle als JSON. Wenn du keine Nährwerttabelle findest, gib an, dass diese nicht vorhanden ist. "
+                            "Rückgabeformat:\n"
+                            f"'Produktnummer: {product_id}',\n"
+                            "'[{{\"title\": \"[title]\", \"columns\": [\"[column1]\", \"[column2]\", ...], \"rows\": [{{\"label\": \"[label1]\", \"values\": [\"...\"]}}, "
+                            "{{\"label\": \"[label2]\", \"values\": [\"...\"]}}], \"footnote\": \"[optional footnote]\"}}]'"
             }
             ]
 
@@ -235,18 +241,18 @@ class ImageAnalyzer:
         print("Alle Outputs:", all_outputs)
 
         # Speicherung der Ergebnisse in einer CSV-Datei
-        with open('product_overview.csv', 'w', newline='', encoding='utf-8') as csvfile: # Öffnen der CSV-Datei zum Schreiben (w)
-            fieldnames = ['Produktnummer', 'Bezeichnung des Produkts', 'Zutatenverzeichnis', 
-                          'Allergenkennzeichnung', 'Nettofüllmenge', 
-                          'Mindesthaltbarkeitsdatum', 'Firmenanschrift', 'Nährwerttabelle']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames) # DictWriter-Objekt zum Schreiben von Dictionaries in die CSV-Datei
-            writer.writeheader()
+        # with open('product_overview.csv', 'w', newline='', encoding='utf-8') as csvfile: # Öffnen der CSV-Datei zum Schreiben (w)
+        #     fieldnames = ['Produktnummer', 'Bezeichnung des Produkts', 'Zutatenverzeichnis', 
+        #                   'Allergenkennzeichnung', 'Nettofüllmenge',  
+        #                   'Mindesthaltbarkeitsdatum', 'Firmenanschrift', 'Nährwerttabelle']
+        #     writer = csv.DictWriter(csvfile, fieldnames=fieldnames) # DictWriter-Objekt zum Schreiben von Dictionaries in die CSV-Datei
+        #     writer.writeheader()
 
-            for output in all_outputs:
-                # Ausgabe muss im Format "Schlüssel: Wert" sein, z.B. "Produktnummer: 12345"
-                lines = output.split('\n') # Zerlegt Textblock in Zeilen
-                data = {line.split(': ')[0]: line.split(': ')[1] for line in lines if ': ' in line} # Wandelt jede Zeile in ein Dictionary um, wobei der Text vor dem Doppelpunkt der Schlüssel und der Text nach dem Doppelpunkt der Wert ist, z.B. "Produktnummer: 12345" wird zu {"Produktnummer": "12345"}
-                writer.writerow(data)
+        #     for output in all_outputs:
+        #         # Ausgabe muss im Format "Schlüssel: Wert" sein, z.B. "Produktnummer: 12345"
+        #         lines = output.split('\n') # Zerlegt Textblock in Zeilen
+        #         data = {line.split(': ')[0]: line.split(': ')[1] for line in lines if ': ' in line} # Wandelt jede Zeile in ein Dictionary um, wobei der Text vor dem Doppelpunkt der Schlüssel und der Text nach dem Doppelpunkt der Wert ist, z.B. "Produktnummer: 12345" wird zu {"Produktnummer": "12345"}
+        #         writer.writerow(data)
 
         # # Erstellen der Anfrage an die API
         # response = client.responses.create(

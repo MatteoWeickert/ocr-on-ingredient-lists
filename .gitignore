@@ -10,3 +10,4 @@ YOLO/weights
 !YOLO/images/.gitkeep
 !YOLO/labels/.gitkeep
 *.pt
+YOLO.zip
