@@ -1,4 +1,4 @@
-path: YOLO
+path: .
 
 train: images/train
 val: images/val

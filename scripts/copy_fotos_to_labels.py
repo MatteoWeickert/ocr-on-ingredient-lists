@@ -19,4 +19,4 @@ for label_file in os.listdir(labels_dir):
         shutil.copy2(source_image_path, destination_image_path)
         print(f"Kopiert: {image_file}")
     else:
-        print(f"❌ Bild nicht gefunden: {image_file}")
+        print(f"Bild nicht gefunden: {image_file}")

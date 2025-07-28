@@ -1,0 +1,10 @@
+{
+  "img_dir": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\ingredients\\img",
+  "gt_json": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\ingredients\\GT_Ingredients.json",
+  "model": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\yolo_results\\model_yolov8s\\weights\\best.pt",
+  "class_filter": "ingredients",
+  "out_csv": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\eval_results.csv",
+  "out_dir": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\eval_outputs",
+  "llm_script": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\llm_eval.py",
+  "ocr_script": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\ocr_eval.py"
+}

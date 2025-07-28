@@ -122,12 +122,12 @@ class ImageAnalyzer:
         
         processed = self.process_cv2_picture(img)
 
-        cuttedImage = self.findIngredients(processed)
+        # cuttedImage = self.findIngredients(processed)
 
-        self.create_picture_preview(cuttedImage, self.processed_image)
+        self.create_picture_preview(processed, self.processed_image)
         
         config = r'--oem 3 --psm 6'  # OCR Engine Mode + Page Segmentation Mode  ----- oem 3: Verwende die beste verfügbare OCR-Engine (LSTM oder Legacy) -----  psm 6: Erwartet einen einheitlichen Textblock (z. B. Absatz oder mehrere Zeilen).
-        text = pytesseract.image_to_string(cuttedImage, lang='deu', config=config)
+        text = pytesseract.image_to_string(processed, lang='deu', config=config)
         print(text)
 
         self.text_output.config(text=text.strip()) # in GUI anzeigen lassen

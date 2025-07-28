@@ -8,8 +8,8 @@ from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
 import numpy as np
 import base64
-import cv2
 from io import BytesIO
+import cv2
 from collections import defaultdict
 import csv
 
