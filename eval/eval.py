@@ -18,6 +18,8 @@ from PIL import Image
 import numpy as np
 import shutil
 from datetime import datetime
+from jiwer import wer, cer
+from sklearn.metrics import precision_score, recall_score, f1_score
 
 def load_config():
     cfg_path = Path(__file__).with_name("config.json")
@@ -224,6 +226,25 @@ def encode_image(img):
         base64_str = base64.b64encode(img_bytes).decode('utf-8') # Bilddaten werden in einen Base64-String umgewandelt, sodass sie als Text gespeichert werden können
         return f"data:image/png;base64,{base64_str}" # Erzeugug der Data-URL für das Bild
 
+def calculate_metrics(gt_text, ocr_res, llm_res):
+
+    # Calculate Character Error Rate (CER) and Word Error Rate (WER)
+    cer_ocr = cer(gt_text, ocr_res)
+    cer_llm = cer(gt_text, llm_res)
+    wer_ocr = wer(gt_text, ocr_res)
+    wer_llm = wer(gt_text, llm_res)
+
+    # Calculate Precision, Recall, and F1-Score
+
+    
+
+    return {
+        "cer_ocr": cer_ocr,
+        "cer_llm": cer_llm,
+        "wer_ocr": wer_ocr,
+        "wer_llm": wer_llm
+    }
+
 def main():
 
 
@@ -327,24 +348,31 @@ def main():
         cv2.imwrite(str(out_crop_path), processed)
 
         # run OCR on the cropped image
-        ocr_text = run_ocr_script(processed)
-        print(f"OCR Text for {product_id}: {ocr_text}")
+        ocr_res = run_ocr_script(processed)
+        print(f"OCR Text for {product_id}: {ocr_res}")
 
         # run LLM script
         llm_res = run_llm_script(paths, class_filter)
         print(f"LLM Result for {product_id}: {llm_res}")
 
-        # Calculate metrics
-            ### add metrics ###
+        # CALCULATE METRICS
+        
+        # Character Error Rate (CER) and Word Error Rate (WER)
+
+        metrics = calculate_metrics(gt_text, ocr_res, llm_res)
 
         rows.append({
             "product_id": product_id,
             "class_requested": class_filter,
             "yolo_confidence": best["confidence"],
             "bbox_xyxy": best["box"],
-            "ocr_text": ocr_text,
-            "llm_result": llm_res,
             "gt_text": gt_text,
+            "ocr_text": ocr_res,
+            "cer_ocr": cer_ocr,
+            "wer_ocr": wer_ocr,
+            "llm_result": llm_res,
+            "cer_llm": cer_llm,
+            "wer_llm": wer_llm,
             "error_notes": ""
         })
 
@@ -355,7 +383,7 @@ def main():
 
     if not out_csv.suffix:
         out_csv = out_csv.with_suffix('.csv')
-        
+
     out_csv = out_csv.with_name(f"{out_csv.stem}_{date_str}{out_csv.suffix}")
 
     df.to_csv(out_csv, index=False, encoding='utf-8')
