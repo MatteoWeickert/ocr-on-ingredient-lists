@@ -5,6 +5,7 @@
   "class_filter": "ingredients",
   "out_csv": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\eval_results.csv",
   "out_dir": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\eval_outputs",
-  "llm_script": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\llm_eval.py",
-  "ocr_script": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\ocr_eval.py"
+  "traditional_script": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\traditional_pipeline.py",
+  "llm_script": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\llm_pipeline.py"
 }
+  
