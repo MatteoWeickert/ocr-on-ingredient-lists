@@ -142,8 +142,7 @@
                     {
                         "label": "Energie",
                         "values": [
-                            "211 kJ",
-                            "50 kcal"
+                            "211 kJ 50 kcal"
                         ]
                     },
                     {
@@ -707,7 +706,61 @@
     },
     {
         "ProduktNR": "2024-5702463",
-        "Text": "[{\"title\": \"\", \"columns\": [\"Nährwertangabe\", \"per 100 g\"], \"rows\": [{\"label\": \"Energie\", \"values\": [\"1.137 kJ \"275 kcal\"]}, {\"label\": \"Fett\", \"values\": [\"25,0 g\"]}, {\"label\": \"davon gesättigte Fettsäuren\", \"values\": [\"10,0 g\"]}, {\"label\": \"Kohlenhydrate\", \"values\": [\"0,5 g\"]}, {\"label\": \"davon Zucker\", \"values\": [\"0,5 g\"]}, {\"label\": \"Eiweiß\", \"values\": [\"12,0 g\"]}, {\"label\": \"Salz\", \"values\": [\"2,70 g\"]}], \"footnote\": \"\"}]"
+        "Text": [
+            {
+                "title": "",
+                "columns": [
+                    "Nährwertangabe",
+                    "per 100g"
+                ],
+                "rows": [
+                    {
+                        "label": "Energie",
+                        "values": [
+                            "1.137kJ",
+                            "275kcal"
+                        ]
+                    },
+                    {
+                        "label": "Fett",
+                        "values": [
+                            "25,0g"
+                        ]
+                    },
+                    {
+                        "label": "davon gesättigte Fettsäuren",
+                        "values": [
+                            "10,0g"
+                        ]
+                    },
+                    {
+                        "label": "Kohlenhydrate",
+                        "values": [
+                            "0,5g"
+                        ]
+                    },
+                    {
+                        "label": "davon Zucker",
+                        "values": [
+                            "0,5g"
+                        ]
+                    },
+                    {
+                        "label": "Eiweiß",
+                        "values": [
+                            "12,0g"
+                        ]
+                    },
+                    {
+                        "label": "Salz",
+                        "values": [
+                            "2,70g"
+                        ]
+                    }
+                ],
+                "footnote": ""
+            }
+        ]
     },
     {
         "ProduktNR": "2024-5702466",
@@ -1189,7 +1242,84 @@
     },
     {
         "ProduktNR": "2024-5702508",
-        "Text": "[{\"title\": \"\", \"columns\": [\"Durchschnittliche Nährwerte\", \"pro 100 g\", \"%-RM** pro 100 g\", \"pro Portion (30 g)*\", \"%-RM** pro Portion (30 g)*\"], \"rows\":  [{\"label\": \"Energie\", \"values\": [\"1668 kJ 404 kcal\", \"20 %, \"500 kJ 121 kcal\", \"6 %\"]}, {\"label\": \"Fett\", \"values\": [\"38,0 g\", \"54 %\", \"11,4 g\", \"16 %\"]}, {\"label\": \"davon gesättigte Fettsäuren\", \"values\": [\"26,8 g\", \"134 %\", \"8,0 g\", \"40 %\"]}, {\"label\": \"Kohlenhydrate\", \"values\": [\"0,1 g\", \"< 1 %\", \"< 1 g\", \"< 1 %\"]}, {\"label\": \"davon Zucker\", \"values\": [\"0,1 g\", \"< 1 %\", \"< 1 g\", \"< 1 %\"]}, {\"label\": \"Eiweiß\", \"values\": [\"14,9 g\", \"30 %\", \"4,5 g\", \"9 %\"]}, {\"label\": \"Salz\", \"values\": [\"1,65 g\", \"28 %\", \"0,50 g\", \"8 %\"]}], \"footnote\": \"* Portion = 30 g. Packung enthält 6,7 Portionen. ** RM: Referenzmenge für einen durchschnittlichen Erwachsenen (8400 kJ / 2000 kcal).\"}]"
+        "Text": [
+            {
+                "title": "",
+                "columns": [
+                    "Durchschnittliche Nährwerte",
+                    "pro 100g",
+                    "%-RM** pro 100g",
+                    "pro Portion (30g)*",
+                    "%-RM** pro Portion (30g)*"
+                ],
+                "rows": [
+                    {
+                        "label": "Energie",
+                        "values": [
+                            "1668kJ 404kcal",
+                            "20%",
+                            "500kJ 121kcal",
+                            "6 %"
+                        ]
+                    },
+                    {
+                        "label": "Fett",
+                        "values": [
+                            "38,0g",
+                            "54%",
+                            "11,4g",
+                            "16%"
+                        ]
+                    },
+                    {
+                        "label": "davon gesättigte Fettsäuren",
+                        "values": [
+                            "26,8g",
+                            "134%",
+                            "8,0g",
+                            "40%"
+                        ]
+                    },
+                    {
+                        "label": "Kohlenhydrate",
+                        "values": [
+                            "0,1g",
+                            "< 1%",
+                            "< 1g",
+                            "< 1%"
+                        ]
+                    },
+                    {
+                        "label": "davon Zucker",
+                        "values": [
+                            "0,1g",
+                            "< 1%",
+                            "< 1g",
+                            "< 1%"
+                        ]
+                    },
+                    {
+                        "label": "Eiweiß",
+                        "values": [
+                            "14,9g",
+                            "30%",
+                            "4,5g",
+                            "9%"
+                        ]
+                    },
+                    {
+                        "label": "Salz",
+                        "values": [
+                            "1,65g",
+                            "28%",
+                            "0,50g",
+                            "8%"
+                        ]
+                    }
+                ],
+                "footnote": "* Portion = 30g. Packung enthält 6,7 Portionen. ** RM: Referenzmenge für einen durchschnittlichen Erwachsenen (8400kJ / 2000kcal)."
+            }
+        ]
     },
     {
         "ProduktNR": "2024-5702515",

@@ -1,6 +1,5 @@
 # Einbindung der OpenAI API 
 
-from dotenv import load_dotenv
 import os
 import tkinter as tk # TK Interface 
 from tkinter import filedialog, messagebox 

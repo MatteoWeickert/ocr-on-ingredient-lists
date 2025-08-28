@@ -1,9 +1,8 @@
 {
-  "img_dir": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\ingredients\\img",
-  "gt_json": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\ingredients\\GT_Ingredients.json",
+  "img_dir": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\nutrition\\test_img",
+  "gt_json": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\nutrition\\GT_Nutrition_bbox.json",
   "model": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\yolo_results\\model_yolov8s\\weights\\best.pt",
-  "class_filter": "ingredients",
-  "out_csv": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\eval_results.csv",
+  "class_filter": "nutrition",
   "out_dir": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\eval_outputs",
   "traditional_script": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\traditional_pipeline.py",
   "llm_script": "C:\\Users\\maweo\\OneDrive - Universit\u00e4t M\u00fcnster\\Dokumente\\Studium\\Semester 6\\Bachelorarbeit\\ocr_test\\eval\\llm_pipeline.py"

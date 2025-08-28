@@ -3,8 +3,9 @@ __pycache__/
 *.pyc
 .env
 product_overview.csv
-eval/ingredients/img/*
-eval/nutrition/img/*
+eval/ingredients/
+eval/nutrition/
+eval/eval_outputs/*
 !eval/ingredients/img/.gitkeep
 !eval/nutrition/img/.gitkeep
 *.pt
@@ -22,3 +23,4 @@ yolo_training/labels/val.cache
 !yolo_training/labels/val/.gitkeep
 !yolo_training/images/train/.gitkeep
 !yolo_training/images/val/.gitkeep
+
