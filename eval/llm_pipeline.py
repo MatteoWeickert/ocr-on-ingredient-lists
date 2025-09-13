@@ -10,7 +10,7 @@ from PIL import Image
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from eval import timer
+from eval_helpers import timer
 
 times = {} # Dict zum Speichern einiger Zwischenzeiten
 
@@ -138,8 +138,8 @@ def _create_prompt(class_filter: str) -> str:
             STRICT JSON FORMAT - NO EXCEPTIONS:
             - THE OUTPUT MUST BE A SINGLE, VALID AND COMPACT JSON OBJECT. NO MARKDOWN, NO PARAGRAPHS BETWEEN THE LINES. 
             - NO MARKDOWN, NO EXPLANATIONS, NO HEADERS, NO APOLOGIES, NO TEXT BEFORE OR AFTER THE JSON.
-            - THE JSON MUST START WITH `{` AND END WITH `}`.
-            - IF YOU CAN'T FIND A NUTRITION TABLE ON THE PRODUCT, RETURN AN EMPTY JSON OBJECT: `{}`.
+            - THE JSON MUST START WITH { AND END WITH }.
+            - IF YOU CAN'T FIND A NUTRITION TABLE ON THE PRODUCT, RETURN AN EMPTY JSON OBJECT: {}.
 
             JSON STRUCTURE (STRICTLY NOTHING ELSE):
             {
@@ -157,13 +157,13 @@ def _create_prompt(class_filter: str) -> str:
             NON-NEGOTIABLE PARSING RULES:
             1.  **EXTRACT EXACTLY AS WRITTEN. NO MODERNIZATION. NO INTERPRETATION.** 
             2.  **STRUCTURE MAPPING:**
-                - **"title":** The main heading of the table (e.g., "Nährwertinformationen", "Nährwerte"). It is only a title if it is clearly above the table and not part of the header OR if it is not possible to match the words in the header row to specific columns (e.g. "Durchschnittliche Nährwerte pro 100g" can also be a title if it is written coherently without bigger spaces in-between). If no title is present, this field MUST be an empty string ''.
-                - **"columns":** The column headers that are clearly matched to a column (e.g., "Durchschnittliche Nährwerte", "pro 100g", "pro Portion", "% RM*"). If a column has no header, it MUST be represented as an empty string ''.
+                - **"title":** The main heading of the table (e.g., "Nährwertinformationen", "Nährwerte", "Durchschnittliche Nährwerte"). Everything that comes before the column headers and is clearly part of the table MUST be in title. If the label column has a header, it MUST be included in the title. If no title exists, this field MUST be "".
+                - **"columns":** The column headers of the table: The column headers array ALWAYS start with with an empty string ("") for the label column, followed by the actual headers (e.g., ["", "je 100g", "pro Portion 30g"]). If no headers exist, this field MUST be [""]. The items in columns MUST only contain quantities, numbers and prepositions like "je", "pro", "pro", "per". For example: "pro 100ml", "per 100g", "pro Portion". Any other text that is not quantity related MUST be included in the title.
                 - **"rows":** An array of objects, where each object represents a row in the table.
-                    - **"label":** The nutrient name (e.g., "Energie", "Fett", "davon gesättigte Fettsäuren").
-                    - **"values":** An array of strings containing the corresponding values for that row, in the same order as the "columns". 
-                    - The number of items in "values" + 1 (for the label) MUST EXACTLY MATCH the number of items in "columns". It always has to be the exact number. So the label column must always be represented in the "columns" key.
-                - **"footnote":** Any text below the main table, often marked with an asterisk (e.g., "*Referenzmenge für einen durchschnittlichen Erwachsenen..."). If no footnote exists, this field MUST be ''.
+                    - **"label":** The nutrient name (e.g., "Energie", "Fett", "davon gesättigte Fettsäuren"). This matches the first column of the table ("").
+                    - **"values":** An array of strings containing the corresponding values for that row, in the same order as the "columns" starting from the second column. If a value is missing for a column, it MUST be represented as an empty string ("").
+                    - The number of items in "values" + 1 (for the label) MUST EXACTLY MATCH the number of items in "columns". It always has to be the exact number. So the label column must always be represented as ("") in the "columns" key.
+                - **"footnote":** Any text below the main table, often marked with an asterisk (e.g., "*Referenzmenge für einen durchschnittlichen Erwachsenen..."). If no footnote exists, this field MUST be "".
             3.  **VALUE NORMALIZATION:**
                 - Decimal commas (`,`) MUST be converted to decimal points (`.`).
                 - All text must be written in lowercase.
@@ -181,7 +181,7 @@ def _create_prompt(class_filter: str) -> str:
             "columns": [
                 "",
                 "je 100g",
-                "pro portion (30g)"
+                "pro portion 30g"
             ],
             "rows": [
                 {
@@ -234,7 +234,7 @@ def _create_prompt(class_filter: str) -> str:
                 ]
                 }
             ],
-            "footnote": "* rm = referenzmenge für einen durchschnittlichen erwachsenen 8400kJ 2000kcal"
+            "footnote": "*rm = referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
             }
 
             FINAL COMMANDS - FAILURE IS CATASTROPHIC:

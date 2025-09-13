@@ -16,7 +16,8 @@ from sklearn.cluster import AgglomerativeClustering
 from ultralytics import YOLO
 from pytesseract import Output
 
-from eval import timer
+
+from eval_helpers import timer
 
 ABORT_PHRASES = [
     r"unter schutzatmosph[aä]re",
@@ -34,10 +35,15 @@ ABORT_PHRASES = [
 ]
 
 GOLDEN_KEYS = [
-    "energie", "brennwert", "durchschnittliche", "durchschnittlich", "nährwerte", "pro", "fett", "gesättigte", "fettsäuren", "nährwertinformationen",
+    "energie", "brennwert", "durchschnittliche", "durchschnittlich", "nährwerte", "pro", "fett", "gesättigte", "fettsäuren", "nährwertinformationen", "nährwertangabe",
     "kohlenhydrate", "davon", "zucker", "eiweiß", "salz", "g", "kcal", "kj",
     "%", "mg", "ml", "cal", "kj/kcal", r"%rm", r"%rm*", "rm", "je", "ri", "portion", r"%ri", r"%ri*"
 ]
+
+SEMANTIC_PAIRS = {"davon": {"gesättigte fettsäuren", "gesättigte", "zucker", "einfach", "mehrfach"}, "gesättigte": "fettsäuren", "einfach": "gesättigte", "mehrfach": "gesättigte", "brennwert": "kj kcal", "energie": "kj kcal", "kj": "kcal"}  # Semantische Paare, die migriert werden können
+# Einheiten, die eine Zahl vor sich benötigen
+VALUE_UNITS = {"g", "mg", "ml", "%", "kj", "kcal"} 
+
 
 # -----------------------------------------------------------
 # Mapping: regex-Varianten  ➔  kanonischer Key
@@ -76,7 +82,7 @@ KEY_CORRECTIONS = [
     (re.compile(r'z[uuv][ck]{1,2}[e3]r', re.I), "zucker"),
 
     # eiweiß (eiweis, eiw3is, eiweiB, eiwe1ß)
-    (re.compile(r'e[i1l][wvv][eo3][i1lr][sß]', re.I | re.U), "eiweiß"),
+    (re.compile(r'e[i1l][wvvmn][eo3][i1lr][sßb]', re.I | re.U), "eiweiß"),
 
     # salz (sa1z, sa|z, sa!z)
     (re.compile(r's[aä@][l1|!][z2]', re.I), "salz"),
@@ -179,7 +185,7 @@ def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class
     yolo_result = {"box": best_box.xyxy[0].tolist(), "confidence": best_conf}
 
     # 2. Bild zuschneiden und vorverarbeiten
-    with timer(times, "crop-preprocess"):
+    with timer(times, "crop_preprocess"):
         best_image = cv2.imread(str(best_image_path))
         x1, y1, x2, y2 = map(int, yolo_result["box"])
         cropped = best_image[y1:y2, x1:x2]
@@ -190,6 +196,7 @@ def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class
         cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
 
         preprocessed = _process_cv2_picture(cropped)
+
     # cv2.imwrite(str(out_dir / f"{product_id}_crop_processed.jpg"), preprocessed)
     # preprocessed = cropped
     
@@ -270,15 +277,16 @@ def _process_nutrition_table(ocr_data: Dict) -> Dict:
     print(f"\nErgebnis vor finalem Line - Postprocessing:")
     for i, row in enumerate(rows, 1):
         # Extrahiere nur den Text für die Anzeige
-        line_text = " ".join(box[4] for box in row)
+        line_text = " ".join(box[4] for box in sorted(row, key=lambda b: b[0]))
         print(f"{i:02d}: {line_text}")
 
     ### Processing der Zeilen basierend auf Kontextinformationen
     final_processed_rows = []
 
     for i, row in enumerate(rows): # row ist ein List[Box]
-        row.sort(key=lambda b: b[0])  # Sortiere Boxen in der Zeile nach x1 (linke Kante)
+        row = sorted(row, key=lambda b: (0.5 * (b[0] + b[2]), b[1]))  # Sortiere Boxen in der Zeile nach Boxmittelpunkt x, dann y
         row = _merge_num_unit_in_row(row)  # Mergen von Einheiten in der Zeile
+        print(row)
         words = [box[4].strip() for box in row if box[4].strip()]
         prev_words = [box[4].strip() for box in rows[i-1]] if i > 0 else []
 
@@ -290,12 +298,12 @@ def _process_nutrition_table(ocr_data: Dict) -> Dict:
         is_salt_line = "salz" in words
 
         # Prüfe zuerst die aktuelle Zeile
-        is_nutrition_line = any(w in {"nährwerte", "nährwertinformationen", "pro", "je"} for w in words)
+        is_nutrition_line = any(w in {"nährwerte", "nährwertinformationen", "nährwertangabe", "pro", "je", "nährwertinformation"} for w in words)
         
         # Wenn nicht in der aktuellen Zeile gefunden, prüfe die vorherige
         if not is_nutrition_line and not is_energy_line:
-            try:                  
-                if any(w in {"nährwerte", "nährwertinformationen", "pro", "je"} for w in prev_words):
+            try:
+                if any(w in {"nährwerte", "nährwertinformationen", "nährwertangabe", "pro", "je", "nährwertinformation"} for w in prev_words):
                     is_nutrition_line = True
             except ValueError:
                 pass
@@ -384,7 +392,7 @@ def _process_nutrition_table(ocr_data: Dict) -> Dict:
                 print(f"Kontext-Korrektur (Heuristik 7): '{word}' -> '{corrected_word}'")
                 new_box = (box[0], box[1], box[2], box[3], corrected_word)  # Ersetze das Wort in der Box
                 corrected_boxes.append(new_box)
-                continue
+                continue 
 
             # Wenn keine kontextsensitive Regel gegriffen hat, behalte das Wort bei.
             corrected_boxes.append(box)
@@ -442,10 +450,6 @@ def _process_nutrition_table(ocr_data: Dict) -> Dict:
             cid = int(np.argmin([abs((box[0] + box[2]) / 2 - center) for center in centers]))
             words_per_center[cid].append(box)  # Füge die Box in die entsprechende Cluster-ID ein
 
-        SEMANTIC_PAIRS = {"davon": {"gesättigte fettsäuren", "gesättigte", "zucker", "einfach", "mehrfach"}, "gesättigte": "fettsäuren", "einfach": "gesättigte", "mehrfach": "gesättigte", "brennwert": "kj kcal", "energie": "kj kcal"}  # Semantische Paare, die migriert werden können
-        # Einheiten, die eine Zahl vor sich benötigen
-        VALUE_UNITS = {"g", "mg", "ml", "%", "kj", "kcal"} 
-
         # Iteriere durch die Spaltenpaare von links nach rechts
         words_per_center = perform_migration(words_per_center, centers, SEMANTIC_PAIRS, VALUE_UNITS)
 
@@ -487,6 +491,8 @@ def _process_nutrition_table(ocr_data: Dict) -> Dict:
 
         # Merge zweizeilige Energie-Zeilen
         rows_compact_text, rows_compact_boxes = _merge_multiline_energy_rows(rows_compact_text, rows_compact_boxes, label_cluster, centers_filtered)
+
+        print(f"Header Rows: {header_rows}")
 
         # Ermittle Titel, Spaltennamen und Fußnote
         title, column_names = _derive_title_and_column_names(header_rows, centers_filtered, label_cluster)
@@ -556,7 +562,7 @@ def _normalize_ingredients(raw_text: str) -> str:
     text = _cut_to_ingredients(text)
 
     number_pattern = re.compile(
-        r'^\(?\s*<?\s*'             # optional: Klammer, <
+        r'^(?\s*<?\s*'             # optional: Klammer, <
         
         # Optionaler Block für beschreibende Präfixe
         r'(?:ca\.?|approx\.?|~)?\s*' # Erkennt "ca.", "ca", "approx.", "approx", "~"
@@ -640,15 +646,17 @@ def _normalize_nutrition(word: str) -> str:
     sub_rules = {
         r'[/:;]': ' ',
         # 1. Sonderzeichen-Bereinigung (kombiniert)
-        r'[\"\'„"‚\'`´❝❞°=()]': '',  # Alle Anführungszeichen und Klammern entfernen
+        r'[\"\'„"‚\'`´❝❞°=()|]‘=': '',  # Alle Anführungszeichen und Klammern entfernen
         
         # 2. Dezimaltrennzeichen normalisieren
         r',': '.',  # Kommas durch Punkte ersetzen
         
         # 3. OCR-Korrekturen für Ziffern
-        r'<[olsB]': lambda m: '<' + {'o': '0', 'l': '1', 's': '5', 'B': '8'}[m.group()[-1]],
-        r'\b[olsB],': lambda m: {'o': '0', 'l': '1', 's': '5', 'B': '8'}[m.group()[0]] + '.',
-        
+        r'<[olsB]': lambda m: '<' + {'o': '0', '©': '0', 'l': '1', 's': '5', 'B': '8'}[m.group()[-1]],
+        r'\b[olsB],': lambda m: {'o': '0', '©': '0', 'l': '1', 's': '5', 'B': '8'}[m.group()[0]] + '.',
+
+
+        r'\u00A0': ' ',  # geschütztes Leerzeichen durch normales ersetzen
         # 4. Einheiten-Korrekturen
         r'k[731!l\]Ww\})]': 'kj',  # kj Korrekturen
         r'k[ceaiou]a[t\]1Il]': 'kcal',  # kcal Korrekturen
@@ -668,6 +676,13 @@ def _normalize_nutrition(word: str) -> str:
 
     for pattern, replace in sub_rules.items():
         word = re.sub(pattern, replace, word)
+
+    # Entferne alle Elemente, die keine Zahlen, Buchstaben, Spaces oder erlaubte Sonderzeichen sind
+    allowed = {'.', '%', '*', 'µ'}  # Erlaube Punkte, Prozentzeichen, Kommas, Sterne und Mikro-Zeichen
+    word = ''.join(
+        ch for ch in word
+        if ch.isalpha() or ch.isdigit() or ch.isspace() or ch in allowed
+    )
 
     # Zahl + Einheit im selben Token: Leerzeichen entfernen (z.B. "< 0.5 g" -> "<0.5g")
     word = re.sub(
@@ -691,8 +706,8 @@ def _normalize_nutrition(word: str) -> str:
     # Regex für Zahlenangaben
     number_pattern = re.compile(
         r'^\s*'                      # Optionale Leerzeichen am Anfang
-        r'[\(\<]?\s*'               # Optional: öffnende Klammer oder <
-        r'(?:ca\.?|approx\.?|etwa|~|≈|±)?\s*'  # Erweiterte Präfixe
+        r'[<>]?\s*'               # Optional: öffnende Klammer oder <
+        r'(?:ca|approx|etwa)?\s*'  # Erweiterte Präfixe
         r'(?:'
             # Hauptzahl-Gruppen:
             
@@ -740,7 +755,11 @@ def _normalize_nutrition(word: str) -> str:
             r')'
         r')*'
         
-        r'\s*[\)\>]?\s*$'           # Optional: schließende Klammer oder >
+        r'\s*?\s*$'           # Optional: >
+
+        r'|'
+        r'(?:[a-zA-ZäöüÄÖÜß%°]+\*+)'   # erlaubt "g*", "g**", "%*", etc.
+
     )
 
     for word in words:
@@ -792,7 +811,15 @@ def _process_cv2_picture(img_bgr):
     gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
     inverted = cv2.bitwise_not(gray) # canny needs white lines on black background to detect edges
     edges = cv2.Canny(inverted, 50, 150, apertureSize=3) # detect edges in the image
-    lines = cv2.HoughLinesP(edges, 1, np.pi / 180, 100, minLineLength=100, maxLineGap=10) # # detect lines in the image
+    kernel = np.ones((3, 3), np.uint8)
+    edges = cv2.dilate(edges, kernel, iterations=1)
+    
+    # 2. LINIENERKENNUNG
+    (h, w) = img_bgr.shape[:2]
+    lines = cv2.HoughLinesP(edges, 1, np.pi / 180, 
+                        threshold=80, 
+                        minLineLength=w // 15, 
+                        maxLineGap=15)
     
     angles = []
     if lines is not None:
@@ -812,19 +839,17 @@ def _process_cv2_picture(img_bgr):
             elif angle > 45:
                 angle -= 90
 
-            if -15 < angle < 15:
+            if -30 < angle < 30:
                 angles.append(angle)
 
     if angles:
         median_angle = np.median(angles)
-        (h, w) = img_bgr.shape[:2]
         center = (w // 2, h // 2)
             
         M = cv2.getRotationMatrix2D(center, median_angle, 1.0)
 
-        img_bgr = cv2.warpAffine(img_bgr, M, (w, h), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE) # drehe Bild, BorderReplicate füllt Ecken mit Randpixeln
+        img_bgr = cv2.warpAffine(img_bgr, M, (w, h), cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE) # drehe Bild, BorderReplicate füllt Ecken mit Randpixeln
 
-    
     # # 3. Graustufen und Beleuchtungskorrektur
     gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
 
@@ -1006,14 +1031,7 @@ def _merge_clusters_semantically(centers, processed_rows):
     
     """
     if not centers:
-        return []
-    
-    SEMANTIC_PAIRS = {
-        "gesättigte": "fettsäuren",
-        "davon": "zucker",
-        "kj": "kcal"
-    }
-
+        return []   
     merged_centers = sorted(centers) 
 
     for row in processed_rows:
@@ -1091,8 +1109,11 @@ def _compute_clusters_by_agglomerative_clustering(processed_rows, all_boxes, min
     """
 
     all_boxes = [box for row in processed_rows for box in row]
+    distance_threshold_eff = 1.7 * float(distance_threshold)
+
     if len(all_boxes) < 2:
-        return []
+        return [], distance_threshold_eff
+    
     
     # 1. Extrahiere alle mittleren x-Werte
     x_coords = np.array([(box[0] + box[2]) / 2 for box in all_boxes])
@@ -1132,12 +1153,12 @@ def _compute_clusters_by_agglomerative_clustering(processed_rows, all_boxes, min
     for center in column_centers:
         coverage = _calculate_column_coverage(center, processed_rows, 1.7 * distance_threshold/2)
         if coverage >= min_coverage_ratio:
-            validated_centers.append(center)
+            validated_centers.append(float(center))
             print(f"  ✓ Spalte X={center:.1f} akzeptiert (Coverage: {coverage:.2f})")
         else:
             print(f"  ✗ Spalte X={center:.1f} abgelehnt (Coverage: {coverage:.2f})")
     
-    return sorted(validated_centers), 1.7 * distance_threshold
+    return sorted(validated_centers), distance_threshold_eff
 
 def _calculate_column_coverage(center_x, processed_rows, tolerance):
     """Berechnet Coverage einer Spalte (wie viele Zeilen haben ein Element in dieser Spalte)."""
@@ -1166,7 +1187,10 @@ def _compute_columns_agglomerative_advanced(processed_rows, all_boxes, min_row_c
     word_widths = [box[2] - box[0] for box in all_boxes if (box[2] - box[0]) > 0]
     
     if not word_widths:
-        return []
+        # sinnvollen Default setzen und leere Centers zurückgeben
+        distance_threshold = 25.0
+        print("Auto-Parameter: keine Wortbreiten; fallback distance_threshold=25.0, min_cluster_size=2")
+        return [], 1.7 * distance_threshold 
     
     # Heuristik: distance_threshold = mittlere Wortbreite
     # Grund: Wörter in derselben Spalte sollten näher als eine Wortbreite sein
@@ -1174,7 +1198,7 @@ def _compute_columns_agglomerative_advanced(processed_rows, all_boxes, min_row_c
     distance_threshold = median_word_width
     
     # 2. Schätze min_cluster_size basierend auf Anzahl Zeilen
-    min_cluster_size = max(2, len(processed_rows) // 1.4)  # Mindestens 70% der Zeilen
+    min_cluster_size = max(2, int(np.floor(len(processed_rows) * 0.7)) or 2)  # Mindestens 70% der Zeilen
 
     print(f"Auto-Parameter: distance_threshold={distance_threshold:.2f}, min_cluster_size={min_cluster_size}")
     
@@ -1190,6 +1214,9 @@ def _process_calculated_clusters(processed_rows):
     """
     Funktion nimmt von allen Wörtern die x-Werte, führt basierend darauf ein Clustering durch und entfernt bzw. mergt zu schwache Cluster, die am Ende die vorhandenen Spalten darstellen
     """
+
+    if not processed_rows:
+        return []
 
     x_values = []
     all_boxes = []
@@ -1210,13 +1237,16 @@ def _process_calculated_clusters(processed_rows):
         print("Weniger als 2 Spalten gefunden, versuche mit niedrigeren Parametern...")
         
         # Fallback mit niedrigeren Anforderungen
-        centers = _compute_clusters_by_agglomerative_clustering(
+        centers, distance_threshold = _compute_clusters_by_agglomerative_clustering(
             processed_rows, 
             all_boxes,
             min_coverage_ratio=0.1,  # Niedrigere Coverage-Anforderung
             distance_threshold=2 * distance_threshold,     # Größerer Threshold
             min_cluster_size=1           # Kleinere Cluster erlauben
         )
+
+    if centers is None:
+        return []
 
     return centers
 
@@ -1396,11 +1426,47 @@ def _row_metrics(row, centers):
 
 def _derive_title_and_column_names(header_rows, centers, label_cluster):
     """
-    Leitet die Spaltennamen aus den Header-Zeilen ab, basierend auf den Cluster-Mittelpunkten und ermittelt einen eventuellen Titel. Die Label-Spaltenüberschrift ist immer leer. Die restlichen Spaltenüberschriften dürfen nur aus Mengenangaben bestehen (z.B. "pro 100g", "je Portion", "per 100ml", ...). 
+    Spaltennamen aus Header-Zeilen ableiten und ggf. Titel bestimmen.
+    Label-Spalte bleibt leer; Spalten-Header bestehen nur aus Mengenangaben.
     """
 
-    centers = sorted(centers)
+    # Zentren sortieren und label_cluster korrekt remappen ---
+    pairs = list(enumerate(centers))
+    pairs_sorted = sorted(pairs, key=lambda p: p[1])
+    centers = [x for _, x in pairs_sorted]
+    label_cluster = next(i for i, (old_i, _) in enumerate(pairs_sorted) if old_i == label_cluster)
     centers_arr = np.asarray(centers, dtype=float)
+
+    ALLOWED_WORDS = {
+        "je","pro","per","por","par","à","a",
+        "portion","portionen","serving","servings","porción","porciones","porzione","porzioni","porcja",
+        "verzehreinheit","vd","gda","drv","ri","rm","nrv","rda", "schittchen","scheibe","scheiben","slice","slices",
+        "stück", "stücke", "piece", "pieces", "pezzo", "pezzi", "pieza", "piezas", "porção", "porções", "mettende",
+        "dose","dosen","can","cans","löffel","löffel(s)","spoon","spoons",
+        "glas","gläser","glass","glasses","tasse","tassen","cup","cups",
+        "becher","becher(s)","pot","pots","flasche","flaschen","bottle","bottles",
+        "unzubereitet","zubereitet","prepared","unprepared","as","sold","ø"
+    }
+    UNITS = {"g","kg","mg","µg","mcg","l","ml","cal","kcal","kj","%","%ri","%rm","%nrv","%drv","%gda","ri%","rm%","nrv%"}
+
+    RX_NUM          = re.compile(r'^[+-]?\d+(?:[.,]\d+)?\*?$')
+    RX_NUM_UNIT     = re.compile(r'^[+-]?\d+(?:[.,]\d+)?\s*(g|kg|mg|µg|mcg|ml|l|k?cal|kj)(?:\*+)?$', re.I)
+    RX_NUM_UNIT_TOK = re.compile(r'^[+-]?\d+(?:[.,]\d+)?(g|kg|mg|µg|mcg|ml|l|k?cal|kj)(?:\*+)?$', re.I)
+    RX_PERCENT      = re.compile(r'^(?:[+-]?\d+(?:[.,]\d+)?\s*%|%(?:\s*(?:ri|rm|nrv|drv|gda))|(?:ri|rm|nrv)%)\*?$', re.I)
+
+    # "100g**" vor "100g" vor "100" etc.
+    TOK_SPLIT = re.compile(
+        r'(?:[+-]?\d+(?:[.,]\d+)?\s*(?:g|kg|mg|µg|mcg|ml|l|k?cal|kj)(?:\*+)?)'  # "100 g", "1189kj", "100 g**"
+        r'|(?:[+-]?\d+(?:[.,]\d+)?(?:g|kg|mg|µg|mcg|ml|l|k?cal|kj)(?:\*+)?)'     # "100g", "287kcal", "100g**"
+        r'|(?:[+-]?\d+(?:[.,]\d+)?\s*%)'                                        # "9%", "10.5%"
+        r'|(?:%(?:ri|rm|nrv|drv|gda)|(?:ri|rm|nrv)%)'                           # "%ri", "ri%"
+        r'|(?:(?:g|kg|mg|µg|mcg|ml|l|cal|kcal|kj)(?:\*+)?)'                     # "g", "g*", "g**", "%*"
+        r'|(?:[+-]?\d+(?:[.,]\d+)?)'                                            # "100", "0.2"
+        r'|(?:[A-Za-zÄÖÜäöüß]+)'                                                # Wörter
+    )
+
+    def _split_tokens(text: str):
+        return TOK_SPLIT.findall(text)
 
     def _is_column_token(token: str) -> bool:
         return (
@@ -1411,78 +1477,59 @@ def _derive_title_and_column_names(header_rows, centers, label_cluster):
             RX_NUM_UNIT_TOK.match(token) or
             RX_PERCENT.match(token)
         )
-    
+
     def match_token_with_column(x_mitte, is_column):
-        """
-        Weist den nächsten Spaltenmittelpunkt zu.
-        Falls das Ergebnis das Label-Cluster ist und das Token wie ein Spaltenheader aussieht wird die nächste Nicht-Label-Spalte gewählt (nächstgelegene Alternative).
-        """
-        
         diffs = np.abs(centers_arr - x_mitte)
-        order = np.argsort(diffs)  # aufsteigend nach Distanz
+        order = np.argsort(diffs)
         for idx in order:
             if idx == label_cluster and is_column:
-                continue  # Label vermeiden, wenn Spaltenheader-Token
+                continue
             return int(idx)
-        # falls alles Label (nur 1 Spalte): zurück auf Label
         return int(order[0])
 
-    ALLOWED_WORDS = {
-        "je","pro","per","por","par","à","a",
-        "portion","portionen","serving","servings","porción","porciones","porzione","porzioni","porcja",
-        "verzehreinheit","vd","gda","drv","ri","rm","nrv","rda",
-        "unzubereitet","zubereitet","prepared","unprepared","as","sold","ø"
-    }
-    UNITS = {"g","kg","mg","µg","mcg","l","ml","cal","kcal","kj","%","%ri","%rm","%nrv","%drv","%gda","ri%","rm%","nrv%"}
-    RX_NUM          = re.compile(r'^[+-]?\d+(?:\.\d+)?\*?\**?$')
-    RX_NUM_UNIT     = re.compile(r'^[+-]?\d+(?:\.\d+)?\s*(g|kg|mg|µg|mcg|ml|l|k?cal|kj)\*?\**?$', re.I)
-    RX_NUM_UNIT_TOK = re.compile(r'^[+-]?\d+(?:\.\d+)?(g|kg|mg|µg|mcg|ml|l|k?cal|kj)\*?\**?$', re.I)
-    RX_PERCENT      = re.compile(r'^(?:%(?:\s*(?:ri|rm|nrv|drv|gda))?|(?:ri|rm|nrv)%)\*?\**?$', re.I)
-
+    # --- Tokenisierung der Header-Zeilen ---
     rows_tokens = []
     for row in header_rows:
         tokens = []
-        for box in sorted(row, key=lambda b: b[0]):
-            text = box[4].strip()
-            if not text:
+        for box in sorted(row, key=lambda b: b[0]):  # nach x1
+            raw = (box[4] or "").strip()
+            if not raw:
                 continue
             x_mitte = 0.5 * (box[0] + box[2])
-            is_column = _is_column_token(text)
-            cid = match_token_with_column(x_mitte, is_column)
-            tokens.append({"text": text, "x": x_mitte, "column": cid, "is_col": is_column})
+            for sub in _split_tokens(raw):
+                is_col = _is_column_token(sub)
+                cid = match_token_with_column(x_mitte, is_col)
+                tokens.append({"text": sub, "x": x_mitte, "column": cid, "is_col": is_col})
         rows_tokens.append(tokens)
 
+    # --- Spalten-Texte sammeln ---
     column_texts = {i: [] for i in range(len(centers))}
-    used_tokens = set() # Sammle alle Token die Spaltenüberschriften sind
-
+    used_tokens = set()
     for i, tokens in enumerate(rows_tokens):
-        for j, token in enumerate(tokens):
-            if token["is_col"] == True and token["column"] != label_cluster:
-                column_texts[token["column"]].append(token["text"])
-                used_tokens.add((i,j))
+        for j, t in enumerate(tokens):
+            if t["is_col"] and (t["column"] != label_cluster or len(centers) == 1):
+                column_texts[t["column"]].append(t["text"])
+                used_tokens.add((i, j))
 
-    # Baue Spaltenüberschriften
+    # Spaltenüberschriften bauen
     columns = []
-
     for c in range(len(centers)):
         if c == label_cluster:
             columns.append("")
-        else:
-            col = " ".join(column_texts.get(c, [])).strip()
-            col = re.sub(r"\s+", " ", col)
-            col = re.sub(r'%\s+(?=[a-z])', '%', col) # Entferne Leerzeichen nach %
-            columns.append(col)
-        
-    # Baue Titel
+            continue
+        col = " ".join(column_texts.get(c, [])).strip()
+        col = re.sub(r"\s+", " ", col)
+        # kosmetik: "9 %" -> "9%"
+        col = re.sub(r'(\d)\s+%', r'\1%', col)
+        columns.append(col)
+
+    # Titel: nur Nicht-Spalten-Token; danach nur Buchstaben erlauben
     title_parts = []
     for i, toks in enumerate(rows_tokens):
         leftovers = []
         for j, t in enumerate(toks):
-            # alles, was nicht als Spalten-Token verwendet wurde oder im Label-Cluster liegt
-            if (i, j) not in used_tokens or t["column"] == label_cluster:
-                # einzelne Symbole/Einheiten nur in Titel, wenn sie in der Label-Spalte waren
-                if t["column"] == label_cluster or not t["is_col"]:
-                    leftovers.append(t["text"])
+            if (i, j) not in used_tokens and (t["column"] == label_cluster or not t["is_col"]):
+                leftovers.append(t["text"])
         if leftovers:
             title_parts.append(" ".join(leftovers).strip())
 
@@ -1509,6 +1556,11 @@ def _merge_davon_rows(rows_text, rows_boxes, label_cluster):
     if label_cluster is None:
         return rows_text, rows_boxes
 
+    # Hauptlabels – über diese darf nicht hinweg gemerged werden
+    TOP_LEVEL = {
+        "energie","brennwert", "fett","kohlenhydrate","eiweiss", "eiweiß", "protein","salz", "ballaststoffe", "davon"
+    }
+
     output_text = []
     output_boxes = []
     i = 0
@@ -1525,26 +1577,28 @@ def _merge_davon_rows(rows_text, rows_boxes, label_cluster):
             merged_label_boxes = current_row_boxes.get(label_cluster, []) or []
 
             j = i + 1
-            # Solange nächste Zeile NUR Label hat (keine Werte), anhängen
+            merged_with_values = False
+
             while j < len(rows_text):
                 next_row_text = rows_text[j]
                 next_row_boxes = rows_boxes[j]
 
                 label_next_row = next_row_text.get(label_cluster, "").strip()
-                next_row_has_values = any(
-                    cid != label_cluster and next_row_text.get(cid, "").strip()
+
+                next_has_values = any(
+                    (cid != label_cluster) and (next_row_text.get(cid) or "").strip()
                     for cid in next_row_text.keys()
                 )
 
                 # Wenn Label leer -> abbrechen
-                if not label_next_row:
+                if not label_next_row or label_next_row in TOP_LEVEL:
                     break
 
                 # Label anhängen
                 merged_label_text = re.sub(r"\s+", " ", f"{merged_label_text} {label_next_row}".strip())
                 merged_label_boxes += next_row_boxes.get(label_cluster, []) or []
 
-                if next_row_has_values:
+                if next_has_values:
                     # merge Werte
                     new_row_t = dict(next_row_text)
                     new_row_b = dict(next_row_boxes)
@@ -1555,16 +1609,27 @@ def _merge_davon_rows(rows_text, rows_boxes, label_cluster):
                     output_boxes.append(new_row_b)
 
                     i = j + 1
+                    merged_with_values = True
                     break
 
                 j += 1
             else:
-                # Falls Ende erreicht ohne Werte -> "davon..." bleibt alleine
-                output_text.append(current_row_text)
-                output_boxes.append(current_row_boxes)
-                i += 1
+                pass
 
-            continue
+            if not merged_with_values:
+                # Keine Werte gefunden bis zum Stopp (Top-Level/leer/Ende):
+                # gemergte "davon..."-Zeile als eigene Zeile OHNE Werte ausgeben.
+                # Für Werte-Spalten leere Strings setzen; Keys von current_row_text übernehmen.
+                new_row_t = {k: ("" if k != label_cluster else merged_label_text) for k in current_row_text.keys()}
+                new_row_b = dict(current_row_boxes)  # Boxen der Startzeile als Basis
+                new_row_b[label_cluster] = merged_label_boxes
+
+                output_text.append(new_row_t)
+                output_boxes.append(new_row_b)
+
+                i = j if j > i else i + 1
+
+            continue  # nächste äußere Iteration
 
         # Default: Zeile unverändert übernehmen
         output_text.append(current_row_text)
@@ -1752,31 +1817,51 @@ def _add_lost_commata(text: str) -> str:
 
 def _merge_num_unit_in_row(row):
     """
-    row: List[box]; box = (x1,y1,x2,y2,text). Merged Tokens behalten die erste Box, text wird zusammengezogen.
+    Fügt numerische Tokens mit nachfolgenden Einheiten-Tokens zusammen.
+    NORMALISIERT zuerst die Eingabe, um sicherzustellen, dass jeder Token
+    nur ein Wort enthält. Dies löst Probleme mit zusammengesetzten Tokens
+    wie '498kj 118kcal'.
     """
 
-    unit_set = {"g","mg","µg","ug","ml","l","kj","kcal","%"}
+    # ---Normalisierungs-Schleife für saubere Liste ---
+    normalized_row = []
+    for box in row:
+        # Teile den Text eines jeden Tokens am Leerzeichen
+        parts = box[4].strip().split()
+        # Erstelle für jeden Teil einen neuen, eigenen Token
+        for part in parts:
+            if part: # Stelle sicher, dass keine leeren Tokens erzeugt werden
+                normalized_row.append((box[0], box[1], box[2], box[3], part))
+    
+    unitish = re.compile(r'^(?:kcal|kj|g|kg|mg|µg|ug|ml|l|%)\*{0,3}$')
     numish = re.compile(r'^(?:<\s*)?(?:ca\.?|approx\.?|~\s*)?\d+(?:[.,]\d+)*(?:/\d+(?:[.,]\d+)*)?$')
 
     merged = []
     i = 0
-    while i < len(row):
-        current_word = row[i]
+    # --- Merge-Logik auf der sauberen Liste ---
+    while i < len(normalized_row):
+        current_word_box = normalized_row[i]
+        current_text = current_word_box[4]
 
-        if i + 1 < len(row):
-            next_word = row[i + 1]
+        if i + 1 < len(normalized_row):
+            next_word_box = normalized_row[i + 1]
+            next_text = next_word_box[4]
 
-            current_core = current_word[4].strip().strip("()[]{}").lower()
-            next_core = next_word[4].strip().strip("()[]{}").lower()
+            if numish.match(current_text) and unitish.match(next_text):
+                new_text = current_text + next_text
+                merged.append((current_word_box[0], current_word_box[1], current_word_box[2], current_word_box[3], new_text))
+                i += 2  # Beide Tokens überspringen
+                continue
 
-            if numish.match(current_core) and next_core in unit_set:
-                new_text = re.sub(r'\s+$', '', current_word[4]) + re.sub(r'^\s+', '', next_word[4])
-                merged.append((current_word[0], current_word[1], current_word[2], current_word[3], new_text))
+            if numish.match(current_text) and next_text == "9":
+                new_text = current_text + "g"
+                merged.append((current_word_box[0], current_word_box[1], current_word_box[2], current_word_box[3], new_text))
                 i += 2
                 continue
         
-        merged.append(current_word)
+        merged.append(current_word_box)
         i += 1
+        
     return merged
 
 def _visualize_ocr_boxes(image: np.ndarray, ocr_data: Dict, output_path: Path):
@@ -1831,7 +1916,7 @@ def perform_migration(words_per_center, centers, SEMANTIC_PAIRS, VALUE_UNITS):
 
 
         # --- Regel 1: Energie-Paar-Zusammenführung ---
-        # Sucht nach Mustern wie "... 289 kj" | "273 kcal ..."
+        # Sucht nach Mustern wie "... 289kj" | "273kcal ..."
         
         source_content = " ".join(b[4] for b in source_boxes)
         target_content = " ".join(b[4] for b in target_boxes)
@@ -1840,7 +1925,7 @@ def perform_migration(words_per_center, centers, SEMANTIC_PAIRS, VALUE_UNITS):
         match_kj = re.search(r'(\d+([.,]\d+)?\s*kj)$', source_content)
         
         # Regex, um einen numerischen Wert mit kcal zu finden
-        match_kcal = re.search(r'^(\d+([.,]\d+)?\s*kcal)', target_content)
+        match_kcal = re.search(r'^(\d+(?:[.,]\d+)?\s*)?kcal', target_content)
 
         if match_kj and match_kcal:
             print(f"Energie-Paar-Migration: Füge '{match_kj.group(1)}' und '{match_kcal.group(1)}' zusammen.")
@@ -1887,7 +1972,7 @@ def perform_migration(words_per_center, centers, SEMANTIC_PAIRS, VALUE_UNITS):
 
             # Prüfe Sonderfall, dass wenn "gesättigte" rübergezogen wurde, auf "fettsäuren" in derselben Spalte geprüft werden soll und im Fall auch mit rübergezogen werden soll
             if any(box[4].strip() == "gesättigte" or box[4].strip() == "ungesättigte" for box in words_per_center[source_cid]) and any(box[4].strip() == "fettsäuren" for box in words_per_center[target_cid]):
-                print(f"Sonderfall: Ziehe 'fettsäuren' mit {box[4]} nach links.")
+                print(f"Sonderfall: Ziehe 'fettsäuren' mit nach links.")
                 
                 for box in target_boxes[:]: # Kopie der Liste um alle Indizes richtig zu durchlaufen
                     if box[4].strip() == "fettsäuren":
@@ -1944,7 +2029,7 @@ def delete_empty_columns(centers, used_centers, rows_raw_text, rows_raw_boxes):
         for row in rows_raw_boxes:
             rows_compact_boxes.append({index_map[old]: row.get(old, []) for old in non_empty_indices})
 
-    return sorted(centers_filtered, key=lambda c: c[0]), rows_compact_text, rows_compact_boxes
+    return sorted(centers_filtered), rows_compact_text, rows_compact_boxes
 
 def _is_energy_line(words, prev_words, ENERGY_RE):
 
