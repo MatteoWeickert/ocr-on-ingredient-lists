@@ -2,6 +2,7 @@ import os
 import numpy as np
 import re
 import json
+import sys
 import time
 import difflib
 from pathlib import Path
@@ -9,7 +10,15 @@ from collections import defaultdict, Counter
 from contextlib import contextmanager
 from typing import List, Dict, Tuple, Any, Set
 from jiwer import wer, cer
+from memory_profiler import memory_usage
 
+
+######## Importe für GRITS-Metrik ########
+BASE = Path(__file__).resolve().parent 
+GRITS_SRC = BASE / "table-transformer" / "src"  
+if str(GRITS_SRC) not in sys.path:
+    sys.path.insert(0, str(GRITS_SRC))
+from grits import grits_con, grits_top, grits_loc
 ################################
 # Timing-Helper
 ################################
@@ -44,6 +53,139 @@ def extract_json_from_llm_output(llm_str):
     
     # Fallback: Wenn keine Code-Blöcke gefunden werden, den Original-String zurückgeben
     return llm_str.strip()
+
+def calculate_grits_metric(gt_json: Dict, pred_json: Dict):
+    """
+    Berechnet die GRITS-Metriken (Struktur, Inhalt) zwischen Ground-Truth und Vorhersage.
+    """
+
+    gt = json_to_matrix(gt_json)
+    pred = json_to_matrix(pred_json)
+
+    # Content Berechnungen
+    f1_con_overall, precision_con_overall, recall_con_overall, _ = safe_grits(grits_con, gt, pred)
+    f1_con_header, precision_con_header, recall_con_header, _ = safe_grits(grits_con, slice_header(gt), slice_header(pred))
+    f1_con_labels, precision_con_labels, recall_con_labels, _ = safe_grits(grits_con, slice_labels(gt), slice_labels(pred))
+    f1_con_values, precision_con_values, recall_con_values, _ = safe_grits(grits_con, slice_values(gt), slice_values(pred))
+
+    # Topology Berechnungen
+    gt_grid = compute_relative_bbox_grid(*gt.shape) # zerlege tupel in zwei argumente
+    pred_grid = compute_relative_bbox_grid(*pred.shape)
+    f1_top, precision_top, recall_top, _ = safe_grits(grits_top, gt_grid, pred_grid)
+
+    cell_accuracy = strict_cell_accuracy(slice_values(gt), slice_values(pred))
+
+    structure_metrics = {
+        "gt_shape": gt.shape,
+        "pred_shape": pred.shape,
+        "same_n_rows": gt.shape[0] == pred.shape[0],
+        "same_n_cols": gt.shape[1] == pred.shape[1],
+    }
+
+    overall_table_score = 0.5 * f1_con_overall + 0.5 * f1_top
+
+    all_metrics = {
+        "grits_content_overall_f1": f1_con_overall,
+        "grits_content_overall_precision": precision_con_overall,
+        "grits_content_overall_recall": recall_con_overall,
+        "grits_content_header_f1": f1_con_header,
+        "grits_content_header_precision": precision_con_header,
+        "grits_content_header_recall": recall_con_header,
+        "grits_content_labels_f1": f1_con_labels,
+        "grits_content_labels_precision": precision_con_labels,
+        "grits_content_labels_recall": recall_con_labels,
+        "grits_content_values_f1": f1_con_values,
+        "grits_content_values_precision": precision_con_values,
+        "grits_content_values_recall": recall_con_values,
+        "grits_topology_f1": f1_top,
+        "grits_topology_precision": precision_top,
+        "grits_topology_recall": recall_top,
+        "cell_accuracy": cell_accuracy,
+        "shape_metrics": structure_metrics,
+        "overall_table_score": overall_table_score
+    }
+
+    return all_metrics
+
+def json_to_matrix(json_obj: Dict) -> np.ndarray:
+    """
+    Konvertiert eine Nährwerttabelle im JSON-Format in eine 2D-Matrix: erste Zeile Spaltenheader, erste Spalte Nährwertspalte, Rest Werte.
+    """
+    
+    columns = json_obj.get("columns", [])
+    if not columns or columns[0] != "":
+        columns = [""] + columns # Erste Spalte leer lassen für Labels
+    header = [col for col in columns]
+
+    rows = []
+    n_cols = len(header)
+    for row in json_obj.get("rows", []):
+        label = row.get("label", "")
+        values = [v for v in row.get("values", [])]
+        row_content = [label] + values
+        # Fülle fehlende Werte mit leeren Strings auf
+        if len(row_content) < n_cols:
+            row_content += [""] * (n_cols - len(row_content))
+        else:
+            row_content = row_content[:n_cols] # Truncate, falls zu lang
+        rows.append(row_content)
+    
+    return np.array([header] + rows, dtype=object)
+
+def safe_grits(metric_fn, A: np.ndarray, B: np.ndarray) -> Tuple[float, float, float]:
+    """
+    Führt eine GRITS-Metrikfunktion sicher aus und fängt mögliche Fehler ab.
+    Gibt (F1, Precision, Recall) zurück oder (0.0, 0.0, 0.0) bei Fehlern.
+    """
+    if A.size == 0 or B.size == 0:
+        return 1.0, 1.0, 1.0 
+    if A.size == 0 or B.size == 0:
+        return 0.0, 0.0, 0.0
+
+    return metric_fn(A, B)
+
+def slice_header(matrix: np.ndarray) -> np.ndarray:
+    """Extrahiert nur die Header-Zeile aus der Matrix."""
+    return matrix[0:1, :] # erste Zeile, alle Spalten
+
+def slice_labels(matrix: np.ndarray) -> np.ndarray:
+    """Extrahiert nur die erste Spalte (Labels) aus der Matrix."""
+    if matrix.shape[1] < 1:
+        return np.array([[]], dtype=object)
+    return matrix[1:, 0:1] # alle Zeilen außer der ersten, erste Spalte
+
+def slice_values(matrix: np.ndarray) -> np.ndarray:
+    """Extrahiert nur die Werte (ohne Header und Labels) aus der Matrix."""
+    return matrix[1:, 1:] if matrix.shape[0] > 1 and matrix.shape[1] > 1 else np.empty((0, 0), dtype=object)
+
+def strict_cell_accuracy(gt_vals: np.ndarray, pr_vals: np.ndarray) -> float:
+    """Einfache, strikte Genauigkeit auf dem Werteblock (Positions-genau).
+    Erwartet gleiches Shape, sonst wird auf kleinste gemeinsame Fläche zugeschnitten."""
+    if gt_vals.size == 0 and pr_vals.size == 0:
+        return 1.0
+    if gt_vals.size == 0 or pr_vals.size == 0:
+        return 0.0
+    r = min(gt_vals.shape[0], pr_vals.shape[0])
+    c = min(gt_vals.shape[1], pr_vals.shape[1])
+    gt_c = gt_vals[:r, :c]
+    pr_c = pr_vals[:r, :c]
+    total = r * c
+    correct = int(np.sum(gt_c == pr_c))
+    return correct / total if total else 1.0
+
+def compute_relative_bbox_grid(n_rows: int, n_cols: int) -> np.ndarray:
+    """
+    Erzeugt ein n_rows x n_cols Grid mit Bounding-Boxen im [0,1]-Koordinatensystem.
+    Jede Zelle i,j bekommt (x0,y0,x1,y1) als floats.
+    """
+    grid = np.empty((n_rows, n_cols), dtype=object)
+    for i in range(n_rows):
+        y0, y1 = i / n_rows, (i + 1) / n_rows
+        for j in range(n_cols):
+            x0, x1 = j / n_cols, (j + 1) / n_cols
+            grid[i, j] = (x0, y0, x1, y1)
+    return grid
+
 
 def compact_json_str(json_str):
     """
@@ -187,7 +329,7 @@ def evaluate_nutrition_table_structure(gt_table: Dict, ocr_table: Dict, method_n
     # TITEL
     gt_title = gt.get("title", "")
     ocr_title = ocr.get("title", "")
-    metrics[f"title_similarity_{method_name}"] = 1- cer(gt_title, ocr_title)
+    metrics[f"title_similarity_{method_name}"] = 1 - cer(gt_title, ocr_title)
 
 
     # FUßNOTE
@@ -201,7 +343,7 @@ def evaluate_nutrition_table_structure(gt_table: Dict, ocr_table: Dict, method_n
     metrics[f"column_counts_{method_name}"] = {"gt": len(gt_columns), f"{method_name}": len(ocr_columns)}
     metrics[f"column_count_match_{method_name}"] = (len(gt_columns) == len(ocr_columns))
 
-    column_wer = wer(gt_columns, ocr_columns) if gt_columns and ocr_columns else 1.0 if gt_columns or ocr_columns else 0.0
+    column_wer = wer(" ".join(gt_columns), " ".join(ocr_columns)) if gt_columns and ocr_columns else 1.0 if gt_columns or ocr_columns else 0.0
     column_cer = cer(" ".join(gt_columns), " ".join(ocr_columns)) if gt_columns and ocr_columns else 1.0 if gt_columns or ocr_columns else 0.0
     metrics[f"column_structural_similarity_cer_{method_name}"] = 1 - column_cer
     metrics[f"column_structural_similarity_wer_{method_name}"] = 1 - column_wer
@@ -256,37 +398,6 @@ def evaluate_nutrition_table_structure(gt_table: Dict, ocr_table: Dict, method_n
             overall_errors.append(error)
 
     metrics[f"avg_content_similarity_matched_rows_{method_name}"] = 1 - (np.mean(overall_errors) if overall_errors else 0.0)
-
-    # Benutze CER zur Berechnung des Zeileninhaltscores
-    gt_rows_text = ""
-    ocr_rows_text = ""
-
-    for row in gt_rows:
-        row_text = row.get("label", "") + " " + " ".join(row.get("values", []))
-        gt_rows_text += row_text + " "
-
-    for row in ocr_rows:
-        row_text = row.get("label", "") + " " + " ".join(row.get("values", []))
-        ocr_rows_text += row_text + " "
-
-    row_content_error = cer(gt_rows_text.strip(), ocr_rows_text.strip())
-    metrics[f"row_structural_similarity_{method_name}"] = 1 - row_content_error
-
-    # 4. Gesamtergebnis berechnen
-    weights = {
-        "title": 0.10,
-        "columns": 0.40,
-        "rows": 0.40,
-        "footnote": 0.10
-    }
-
-    overall_score = (
-        metrics[f"title_similarity_{method_name}"] * weights["title"] +
-        metrics[f"column_structural_similarity_{method_name}"] * weights["columns"] +
-        metrics[f"row_structural_similarity_{method_name}"] * weights["rows"] +
-        metrics[f"footnote_structural_similarity_{method_name}"] * weights["footnote"]
-    )
-    metrics[f"overall_structural_score_{method_name}"] = overall_score
 
     return metrics
 
@@ -469,3 +580,19 @@ def _element_column_value_triplets(table: Dict) -> Set[Tuple[str, str, str]]:
             if vals[i]:
                 trips.add((label, cols[i], vals[i]))
     return trips
+
+def calculate_composite_indicator_ingredients(end_to_end_time, mem_peak, wer, cer, f1_score, api_cost) -> float:
+    """Berechnet einen zusammengesetzten Indikator basierend auf den Metriken."""
+    return None
+    
+
+def calculate_composite_indicator_nutrition(end_to_end_time, mem_peak, grits_metrics, api_cost) -> float:
+    """Berechnet einen zusammengesetzten Indikator basierend auf den Metriken."""
+    return None
+
+def measure_ram_peak(function, *args, **kwargs):
+    """Misst den RAM-Peak während der Ausführung einer Funktion."""
+    mem_usage, result = memory_usage((function, args, kwargs), interval=0.05, retval=True, timeout=None, max_iterations=1, include_children=True, multiprocess=True)
+    # Berechne 99%-Perzentil als Peak, um Ausreißer zu vermeiden
+    mem_usage = float(np.percentile(mem_usage, 99))
+    return result, mem_usage

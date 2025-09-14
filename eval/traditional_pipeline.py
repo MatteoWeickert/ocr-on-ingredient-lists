@@ -562,20 +562,18 @@ def _normalize_ingredients(raw_text: str) -> str:
     text = _cut_to_ingredients(text)
 
     number_pattern = re.compile(
-        r'^(?\s*<?\s*'             # optional: Klammer, <
-        
-        # Optionaler Block für beschreibende Präfixe
-        r'(?:ca\.?|approx\.?|~)?\s*' # Erkennt "ca.", "ca", "approx.", "approx", "~"
-        
-        r'('
-            r'\d+(?:[.,/]\d+)*'     # Zahl mit optionalen Dezimaltrennzeichen
-            r'(?:\s*[a-zA-Z%]+)?'    # optional Einheit
+        r'^\s*\(?\s*<?\s*'           # optional "(" und optional "<"
+        r'(?:ca\.?|approx\.?|~)?\s*' # optionale Präfixe
+        r'(?:'
+            r'(?:\d+(?:[.,]\d+)?(?:/\d+(?:[.,]\d+)?)?)'   # Zahl oder Bruch
+            r'(?:\s*[A-Za-z%]+(?:\*+)?)?'                 # optionale Einheit (+ * / **)
         r'|'
-            r'[a-zA-Z]+/\d+(?:[.,/]\d+)*'
+            r'(?:[A-Za-z]+/\d+(?:[.,]\d+)?)'              # Wort/Zahl (protein/100, mg/100)
         r')'
-        r'(?:\s*/\s*'
-            r'\d+(?:[.,/]\d+)*(?:\s*[a-zA-Z%]+)?)*'
-        r'\s*\)?$'
+        r'(?:\s*/\s*'                                      # optionale weitere /-Teile
+            r'\d+(?:[.,]\d+)?(?:\s*[A-Za-z%]+(?:\*+)?)?'
+        r')*'
+        r'\s*\)?$'                                         # optionales ")"
     )
 
     filtered_words = []

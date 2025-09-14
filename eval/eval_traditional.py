@@ -12,7 +12,7 @@ import os
 from eval_helpers import (
     load_ground_truth, load_images, group_images_by_product, compact_json_str,
     transform_dict_to_string, calculate_iou, evaluate_nutrition_table_structure,
-    calculate_word_level_metrics
+    calculate_word_level_metrics, calculate_grits_metric, measure_ram_peak, calculate_composite_indicator_nutrition, calculate_composite_indicator_ingredients
 )
 from traditional_pipeline import run_traditional_pipeline
 
@@ -49,6 +49,7 @@ def run_traditional(cfg: dict):
     target_id = class_name_to_id.get(class_filter)
 
     results = []
+    ram_usage_list = []
 
     for product_id, paths in grouped_images.items():
         print(f"\n--- Verarbeite Produkt: {product_id} ---")
@@ -59,6 +60,7 @@ def run_traditional(cfg: dict):
         gt_bbox = []
         gt_object = {}
         structure_score_ocr = {}
+        grits_metrics = {}
         ocr_string = ""
 
         if gt_item:
@@ -76,7 +78,7 @@ def run_traditional(cfg: dict):
         cpu_start = process.cpu_times()
         time_start_trad = time.perf_counter()
 
-        trad_result = run_traditional_pipeline(model, paths, target_id, new_out_dir, product_id)
+        trad_result, mem_peak = measure_ram_peak(run_traditional_pipeline, model, paths, target_id, new_out_dir, product_id)
         
         time_end_trad = time.perf_counter()
         cpu_end = process.cpu_times()
@@ -84,19 +86,7 @@ def run_traditional(cfg: dict):
         # Metriken sammeln
         end_to_end_time_trad = time_end_trad - time_start_trad
         cpu_trad_time = (cpu_end.user - cpu_start.user) + (cpu_end.system - cpu_start.system) # tatsächliche CPU-Zeit
-        # Peak-RAM (Windows): peak working set
-        mi_full = process.memory_full_info()
-        peak_mb = getattr(mi_full, "peak_wset", 0) / (1024*1024)
-
-        # Text auslesen
-        if trad_result.get("structured_data"):
-            ocr_string = transform_dict_to_string(trad_result.get("structured_data", {}), class_filter)
-        trad_result_compact = ""
-        if trad_result.get("structured_data", {}).get("nutrition_table"):
-            structure_score_ocr = evaluate_nutrition_table_structure(gt_object, trad_result.get("structured_data", {}).get("nutrition_table", {}), "ocr")
-            trad_result_compact = compact_json_str(trad_result.get("structured_data", {}).get("nutrition_table", {}))
-
-        ocr_raw = trad_result.get("structured_data", {}).get("raw_text", "") or ""
+       
         if trad_result.get("yolo_result"):
             yolo_res = trad_result.get("yolo_result")
         trad_times = trad_result.get("times", {})
@@ -110,7 +100,23 @@ def run_traditional(cfg: dict):
         pred_bbox = yolo_res["box"] if yolo_res else []
         iou = calculate_iou(gt_bbox, pred_bbox)
 
-        metrics_ocr = calculate_word_level_metrics(gt_text, ocr_string, gt_object, trad_result.get("structured_data", {}).get("nutrition_table", {}), class_filter, method = "ocr")
+        trad_result_compact = ""
+        if trad_result.get("structured_data"):
+            ocr_string = transform_dict_to_string(trad_result.get("structured_data", {}), class_filter)
+            ocr_raw = trad_result.get("structured_data", {}).get("raw_text", "") or ""
+
+        if class_filter == "nutrition" and trad_result.get("structured_data", {}).get("nutrition_table"):
+            structure_score_ocr = evaluate_nutrition_table_structure(gt_object, trad_result.get("structured_data", {}).get("nutrition_table", {}), "ocr")
+            trad_result_compact = compact_json_str(trad_result.get("structured_data", {}).get("nutrition_table", {}))
+            metrics_ocr = calculate_word_level_metrics(gt_text, ocr_string, gt_object, trad_result.get("structured_data", {}).get("nutrition_table", {}), class_filter, method = "ocr")
+            grits_metrics = calculate_grits_metric(gt_object, trad_result.get("structured_data", {}).get("nutrition_table", {}))
+            if end_to_end_time_trad and grits_metrics and metrics_ocr and mem_peak:
+                composite_score = calculate_composite_indicator_nutrition(end_to_end_time_trad, mem_peak, grits_metrics.get("overall_table_score"), api_cost=0.0)
+
+        if class_filter == "ingredients" and trad_result.get("structured_data", {}).get("ingredients_text"):
+            metrics_ocr = calculate_word_level_metrics(gt_text, ocr_string, gt_object, trad_result.get("structured_data", {}).get("ingredients_text", {}), class_filter, method = "ocr")
+            if end_to_end_time_trad and metrics_ocr and mem_peak:
+                composite_score = calculate_composite_indicator_ingredients(end_to_end_time_trad, mem_peak, wer(gt_text, ocr_string), cer(gt_text, ocr_string), metrics_ocr.get("f1_overall_ocr"), api_cost=0.0)
 
         row = {
             "product_id": product_id,
@@ -124,15 +130,15 @@ def run_traditional(cfg: dict):
             "iou": iou,
             "time_trad_s": end_to_end_time_trad,
             "cpu_trad_s": cpu_trad_time,
-            "mem_trad_peak": peak_mb,
+            "mem_trad_peak": mem_peak,
             "time_yolo_s": time_yolo,
             "time_ocr_s": time_ocr,
             "time_preproc_s": time_preproc,
             "time_postproc_s": time_postproc,
             "wer_ocr": wer(gt_text, ocr_string),
             "cer_ocr": cer(gt_text, ocr_string),
-            
-            "error_notes": "" if yolo_res else "yolo_no_box_found"
+            "error_notes": "" if yolo_res else "yolo_no_box_found",
+            "composite_indicator": composite_score
         }
         
         if class_filter == "nutrition":
@@ -143,7 +149,9 @@ def run_traditional(cfg: dict):
             row.update(structure_score_ocr)
         if metrics_ocr:
             row.update(metrics_ocr)
-
+        if grits_metrics:
+            row.update(grits_metrics)
+        
 
         results.append(row)
 
