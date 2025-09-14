@@ -1,3 +1,3 @@
 [submodule "eval/table-transformer"]
 	path = eval/table-transformer
-	url = https://github.com/MatteoWeickert/ocr-on-ingredient-lists.git
+	url = https://github.com/microsoft/table-transformer.git
