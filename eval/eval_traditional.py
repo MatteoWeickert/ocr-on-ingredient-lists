@@ -49,7 +49,6 @@ def run_traditional(cfg: dict):
     target_id = class_name_to_id.get(class_filter)
 
     results = []
-    ram_usage_list = []
 
     for product_id, paths in grouped_images.items():
         print(f"\n--- Verarbeite Produkt: {product_id} ---")
@@ -105,7 +104,7 @@ def run_traditional(cfg: dict):
             ocr_string = transform_dict_to_string(trad_result.get("structured_data", {}), class_filter)
             ocr_raw = trad_result.get("structured_data", {}).get("raw_text", "") or ""
 
-        if class_filter == "nutrition" and trad_result.get("structured_data", {}).get("nutrition_table"):
+        if class_filter == "nutrition" and trad_result.get("structured_data", {}).get("nutrition_table") is not None:
             structure_score_ocr = evaluate_nutrition_table_structure(gt_object, trad_result.get("structured_data", {}).get("nutrition_table", {}), "ocr")
             trad_result_compact = compact_json_str(trad_result.get("structured_data", {}).get("nutrition_table", {}))
             metrics_ocr = calculate_word_level_metrics(gt_text, ocr_string, gt_object, trad_result.get("structured_data", {}).get("nutrition_table", {}), class_filter, method = "ocr")
@@ -113,7 +112,7 @@ def run_traditional(cfg: dict):
             if end_to_end_time_trad and grits_metrics and metrics_ocr and mem_peak:
                 composite_score = calculate_composite_indicator_nutrition(end_to_end_time_trad, mem_peak, grits_metrics.get("overall_table_score"), api_cost=0.0)
 
-        if class_filter == "ingredients" and trad_result.get("structured_data", {}).get("ingredients_text"):
+        if class_filter == "ingredients" and trad_result.get("structured_data", {}).get("ingredients_text") is not None:
             metrics_ocr = calculate_word_level_metrics(gt_text, ocr_string, gt_object, trad_result.get("structured_data", {}).get("ingredients_text", {}), class_filter, method = "ocr")
             if end_to_end_time_trad and metrics_ocr and mem_peak:
                 composite_score = calculate_composite_indicator_ingredients(end_to_end_time_trad, mem_peak, wer(gt_text, ocr_string), cer(gt_text, ocr_string), metrics_ocr.get("f1_overall_ocr"), api_cost=0.0)
@@ -135,8 +134,8 @@ def run_traditional(cfg: dict):
             "time_ocr_s": time_ocr,
             "time_preproc_s": time_preproc,
             "time_postproc_s": time_postproc,
-            "wer_ocr": wer(gt_text, ocr_string),
-            "cer_ocr": cer(gt_text, ocr_string),
+            "wer_ocr": wer(gt_text, ocr_string) if wer(gt_text, ocr_string) <= 1.0 else 1.0,
+            "cer_ocr": cer(gt_text, ocr_string) if cer(gt_text, ocr_string) <= 1.0 else 1.0,
             "error_notes": "" if yolo_res else "yolo_no_box_found",
             "composite_indicator": composite_score
         }
