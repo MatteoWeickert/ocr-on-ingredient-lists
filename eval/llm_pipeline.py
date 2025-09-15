@@ -9,6 +9,8 @@ import numpy as np
 from PIL import Image
 from openai import OpenAI
 from dotenv import load_dotenv
+from ultralytics import YOLO
+from pathlib import Path
 
 from eval_helpers import timer
 
@@ -27,7 +29,7 @@ MODEL_PRICING = {
 # HAUPTFUNKTION
 # ==============================================================================
 
-def run_llm_pipeline(image_paths: List[str], class_filter: str) -> str:
+def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_dir: Path, product_id: str) -> str:
     """
     Öffentliche Hauptfunktion, die die LLM-Pipeline für eine Gruppe von Bildern ausführt.
     Diese Funktion wird vom Evaluationsskript aufgerufen.
@@ -39,6 +41,17 @@ def run_llm_pipeline(image_paths: List[str], class_filter: str) -> str:
     Returns:
         Ein Dictionary mit dem extrahierten Text, Token-Verbrauch und geschätzten Kosten.
     """
+
+    className_to_id = {"ingredients": 0, "nutrition": 1}
+    id_to_className = {v: k for k, v in className_to_id.items()}
+    
+    target_class = id_to_className.get(target_id)
+
+    if not target_class:
+        raise ValueError(f"Ungültige Target-ID: {target_id}")
+
+    images = [cv2.imread(str(path)) for path in image_paths]
+
     with timer(times, "preprocessing"):
         # 1. API-Key laden
         _load_llm_api_key()
@@ -47,36 +60,53 @@ def run_llm_pipeline(image_paths: List[str], class_filter: str) -> str:
         except Exception as e:
             print(f"Fehler bei der Initialisierung des OpenAI-Clients: {e}")
             return {"text": "API_CLIENT_INIT_ERROR", "total_tokens": 0, "cost_usd": 0.0}
+        
+        results = model(images)
 
-        encoded_images = []
-        for image_path in image_paths:
-            try:
-                # Lade Bild mit cv2 für die Vorverarbeitung
-                img = cv2.imread(image_path)
-                if img is None:
-                    print(f"Warnung: Bild konnte nicht geladen werden: {image_path}")
-                    continue
-                
-                # Bild für die API enkodieren
-                encoded_images.append(_encode_image(img))
-            except Exception as e:
-                print(f"Fehler bei der Bildverarbeitung für {image_path}: {e}")
+        best_box, best_conf, best_image_path = None, -1, None
+        for img_path, result in zip(image_paths, results):
+            for box in result.boxes:
+                if int(box.cls[0]) == target_id and float(box.conf[0]) > best_conf:
+                    best_conf = float(box.conf[0])
+                    best_box = box
+                    best_image_path = img_path
+        
+        if best_box is None:
+            return {"structured_data": {}, "yolo_result": None}
+        
+    yolo_result = {"box": best_box.xyxy[0].tolist(), "confidence": best_conf}
+    if cropped.size == 0:
+        return {"structured_data": {"error": "Leere Bounding Box"}, "yolo_result": yolo_result}
+    
+    cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
+    
+    best_image = cv2.imread(str(best_image_path))
+    x1, y1, x2, y2 = map(int, yolo_result["box"])
+    cropped = best_image[y1:y2, x1:x2]
 
-        if not encoded_images:
-            return {"text": {}, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost_usd": 0.0}
 
-        # 3. Prompt basierend auf dem Filter erstellen
-        prompt_text = _create_prompt(class_filter)
+    encoded_images = []
+    try:      
+        # Bild für die API enkodieren
+        encoded_images.append(_encode_image(cropped))
+    except Exception as e:
+        print(f"Fehler bei der Bildverarbeitung: {e}")
 
-        # 4. API-Anfrage zusammenbauen und senden
-        api_request_content = [{"type": "input_text", "text": prompt_text}]
-        for encoded_img in encoded_images:
-            api_request_content.append({
-                "type": "input_image",
-                "image_url": encoded_img
-            })
+    if not encoded_images:
+        return {"text": {}, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost_usd": 0.0}
 
-        model_to_use = "gpt-4o"  # Empfohlen für komplexe Bildanalyse und JSON-Ausgaben
+    # 3. Prompt basierend auf dem Filter erstellen
+    prompt_text = _create_prompt(target_class)
+
+    # 4. API-Anfrage zusammenbauen und senden
+    api_request_content = [{"type": "input_text", "text": prompt_text}]
+    for encoded_img in encoded_images:
+        api_request_content.append({
+            "type": "input_image",
+            "image_url": encoded_img
+        })
+
+    model_to_use = "gpt-4o"  # Empfohlen für komplexe Bildanalyse und JSON-Ausgaben
 
     try:
         with timer(times, "api_roundtrip"):

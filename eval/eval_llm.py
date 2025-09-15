@@ -78,7 +78,7 @@ def run_llm(cfg: dict):
         cpu_start_llm = process.cpu_times()
         time_start_llm = time.perf_counter()
 
-        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, [str(p) for p in paths], class_filter)
+        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, model, paths, target_id, new_out_dir, product_id, class_filter)
 
         time_end_llm = time.perf_counter()
         cpu_end_llm = process.cpu_times()
