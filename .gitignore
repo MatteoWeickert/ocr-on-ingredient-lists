@@ -25,4 +25,4 @@ yolo_training/labels/val.cache
 !yolo_training/labels/val/.gitkeep
 !yolo_training/images/train/.gitkeep
 !yolo_training/images/val/.gitkeep
-
+eval/config_local.json
