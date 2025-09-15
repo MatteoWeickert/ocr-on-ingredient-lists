@@ -193,22 +193,22 @@ def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class
         if cropped.size == 0:
             return {"structured_data": {"error": "Leere Bounding Box"}, "yolo_result": yolo_result}
 
-        preprocessed = _process_cv2_picture(cropped)
-    
-    # Zeichne die erkannte YOLO-Bounding Box auf das Bild
-    visualize_yolo_box(best_image, x1,x2,y1,y2, out_dir, best_conf, target_class, product_id)
     cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
-    cv2.imwrite(str(out_dir / f"{product_id}_crop_processed.jpg"), preprocessed)
+
+        # preprocessed = _process_cv2_picture(cropped)
+
+    # cv2.imwrite(str(out_dir / f"{product_id}_crop_processed.jpg"), preprocessed)
+    # preprocessed = cropped
     
     # 3. OCR ausführen und Ergebnis speichern
 
     with timer(times, "ocr"):
         config = f'--oem {oem} --psm {psm}'
-        ocr_raw_string = pytesseract.image_to_string(preprocessed, lang='deu', config=config)
-        ocr_data = pytesseract.image_to_data(preprocessed, lang='deu', config=config, output_type=Output.DICT)
+        ocr_raw_string = pytesseract.image_to_string(cropped, lang='deu', config=config)
+        ocr_data = pytesseract.image_to_data(cropped, lang='deu', config=config, output_type=Output.DICT)
 
     ocr_visualize_path = out_dir / f"{product_id}_ocr_visualized.jpg"
-    _visualize_ocr_boxes(preprocessed, ocr_data, ocr_visualize_path)
+    _visualize_ocr_boxes(cropped, ocr_data, ocr_visualize_path)
 
     # 4. Klassenspezifisches Post-Processing
     structured_data = {}
