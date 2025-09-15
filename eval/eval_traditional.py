@@ -126,6 +126,7 @@ def run_traditional(cfg: dict):
             "ocr_text": ocr_string,
             "ocr_raw": ocr_raw,
             "yolo_confidence": yolo_res["confidence"] if yolo_res else None,
+            "pred_bbox": pred_bbox,
             "iou": iou,
             "time_trad_s": end_to_end_time_trad,
             "cpu_trad_s": cpu_trad_time,
