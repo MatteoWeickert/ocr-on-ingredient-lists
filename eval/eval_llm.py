@@ -78,7 +78,7 @@ def run_llm(cfg: dict):
         cpu_start_llm = process.cpu_times()
         time_start_llm = time.perf_counter()
 
-        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, model, paths, target_id, new_out_dir, product_id, class_filter)
+        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, model, paths, target_id, new_out_dir, product_id)
 
         time_end_llm = time.perf_counter()
         cpu_end_llm = process.cpu_times()
@@ -90,7 +90,8 @@ def run_llm(cfg: dict):
         if llm_res_data.get("text") is not None:
             llm_res = llm_res_data.get("text", "")
         llm_times = llm_res_data.get("times", {})
-        time_preproc_llm = llm_times.get("preprocessing", None)
+        time_yolo_api_connection = llm_times.get("yolo-and-api-connection", None)
+        encoding_prompt_creation = llm_times.get("image-encoding-prompt-creation", None)
         time_api_llm = llm_times.get("api_roundtrip", None)
         time_postproc_llm = llm_times.get("postprocessing", None)
         if class_filter == "nutrition":
@@ -131,7 +132,8 @@ def run_llm(cfg: dict):
             "time_llm_s": end_to_end_time_llm,
             "cpu_llm_s": cpu_llm_time,
             "mem_llm_peak": mem_peak,
-            "time_preproc_llm_s": time_preproc_llm,
+            "time_yolo_api_connection": time_yolo_api_connection,
+            "time_encoding_prompt_creation": encoding_prompt_creation,
             "time_api_llm_s": time_api_llm,
             "time_postproc_llm_s": time_postproc_llm,
             "wer_llm": wer(gt_text, llm_string),
