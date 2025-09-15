@@ -200,6 +200,7 @@ def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class
     cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
     cv2.imwrite(str(out_dir / f"{product_id}_crop_processed.jpg"), preprocessed)
     
+    
     # 3. OCR ausführen und Ergebnis speichern
 
     with timer(times, "ocr"):
