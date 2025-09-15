@@ -5,7 +5,7 @@ from eval_helpers import _validate_config
 import os, json
 
 if __name__ == "__main__":
-    cfg_path = os.environ.get("EVAL_CONFIG", os.path.join(os.path.dirname(__file__), "config.json"))
+    cfg_path = os.environ.get("EVAL_CONFIG", os.path.join(os.path.dirname(__file__), "config_local.json"))
     with open(cfg_path, "r", encoding="utf-8") as f:
         cfg = json.load(f)
     _validate_config(cfg)

@@ -59,6 +59,8 @@ def run_llm(cfg: dict):
         gt_bbox = []
         gt_object = {}
         llm_string = ""
+        structure_score_llm = {}
+        grits_metrics = {}
 
         if gt_item:
             gt_object = gt_item.get("text", {})
@@ -75,7 +77,7 @@ def run_llm(cfg: dict):
         cpu_start_llm = process.cpu_times()
         time_start_llm = time.perf_counter()
 
-        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline([str(p) for p in paths], class_filter))
+        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, [str(p) for p in paths], class_filter)
 
         time_end_llm = time.perf_counter()
         cpu_end_llm = process.cpu_times()
@@ -83,13 +85,13 @@ def run_llm(cfg: dict):
         # Metriken sammeln
         end_to_end_time_llm = time_end_llm - time_start_llm
         cpu_llm_time = (cpu_end_llm.user - cpu_start_llm.user) + (cpu_end_llm.system - cpu_start_llm.system) # tatsächliche CPU-Zeit
-        
-        if llm_res_data["text"]:
-            llm_res = llm_res_data["text"]
+
+        if llm_res_data.get("text") is not None:
+            llm_res = llm_res_data.get("text", "")
         llm_times = llm_res_data.get("times", {})
-        time_preproc_llm = llm_times.get("preprocessing", 0.0)
-        time_api_llm = llm_times.get("api_roundtrip", 0.0)
-        time_postproc_llm = llm_times.get("postprocessing", 0.0)
+        time_preproc_llm = llm_times.get("preprocessing", None)
+        time_api_llm = llm_times.get("api_roundtrip", None)
+        time_postproc_llm = llm_times.get("postprocessing", None)
         if class_filter == "nutrition":
             llm_res_compact = compact_json_str(llm_res)
             print("LLM-Antwort (kompakt):", llm_res_compact)
@@ -97,7 +99,7 @@ def run_llm(cfg: dict):
             llm_string = transform_dict_to_string(llm_res_compact, class_filter)
             try:
                 if isinstance(json.loads(llm_res_compact), dict):
-                    metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, llm_res if isinstance(llm_res, dict) else {}, class_filter, method = "llm")
+                    metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, llm_res_compact if isinstance(llm_res_compact, dict) else {}, class_filter, method = "llm")
                     structure_score_llm = evaluate_nutrition_table_structure(gt_object, json.loads(llm_res_compact), "llm")
                     grits_metrics = calculate_grits_metric(gt_object, json.loads(llm_res_compact))
                     if end_to_end_time_llm and grits_metrics and metrics_llm and mem_peak:
@@ -110,7 +112,7 @@ def run_llm(cfg: dict):
                 composite_score = None
         else:
             llm_string = llm_res or ""
-            metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, llm_res if isinstance(llm_res, dict) else {}, class_filter, method = "llm")
+            metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, llm_res_data.get("text", {}), class_filter, method = "llm")
             if end_to_end_time_llm and metrics_llm and mem_peak:
                 composite_score = calculate_composite_indicator_ingredients(end_to_end_time_llm, mem_peak, wer(gt_text, llm_string), cer(gt_text, llm_string), metrics_llm.get("f1_overall_ocr"), llm_res_data.get("cost_usd", 0.0))
 

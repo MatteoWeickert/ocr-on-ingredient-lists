@@ -89,10 +89,10 @@ def run_traditional(cfg: dict):
         if trad_result.get("yolo_result"):
             yolo_res = trad_result.get("yolo_result")
         trad_times = trad_result.get("times", {})
-        time_yolo = trad_times.get("yolo_total", 0.0)
-        time_ocr = trad_times.get("ocr", 0.0)
-        time_postproc = trad_times.get("postprocessing", 0.0)
-        time_preproc = trad_times.get("crop_preprocess", 0.0)
+        time_yolo = trad_times.get("yolo_total", None)
+        time_ocr = trad_times.get("ocr", None)
+        time_postproc = trad_times.get("postprocessing", None)
+        time_preproc = trad_times.get("crop_preprocess", None)
         print(f"Zeit (Traditionell): {end_to_end_time_trad:.2f}s")
         
         # --- Metriken berechnen ---
