@@ -1,5 +1,6 @@
 # llm_pipeline.py
 
+import json
 import os
 import base64
 from io import BytesIO
@@ -29,7 +30,7 @@ MODEL_PRICING = {
 # HAUPTFUNKTION
 # ==============================================================================
 
-def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_dir: Path, product_id: str) -> str:
+def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_dir: Path, product_id: str, class_filter: str) -> str:
     """
     Öffentliche Hauptfunktion, die die LLM-Pipeline für eine Gruppe von Bildern ausführt.
     Diese Funktion wird vom Evaluationsskript aufgerufen.
@@ -42,17 +43,7 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
         Ein Dictionary mit dem extrahierten Text, Token-Verbrauch und geschätzten Kosten.
     """
 
-    className_to_id = {"ingredients": 0, "nutrition": 1}
-    id_to_className = {v: k for k, v in className_to_id.items()}
-    
-    target_class = id_to_className.get(target_id)
-
-    if not target_class:
-        raise ValueError(f"Ungültige Target-ID: {target_id}")
-
-    images = [cv2.imread(str(path)) for path in image_paths]
-
-    with timer(times, "yolo-and-api-connection"):
+    with timer(times, "preprocessing"):
         # 1. API-Key laden
         _load_llm_api_key()
         try:
@@ -60,44 +51,26 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
         except Exception as e:
             print(f"Fehler bei der Initialisierung des OpenAI-Clients: {e}")
             return {"text": "API_CLIENT_INIT_ERROR", "total_tokens": 0, "cost_usd": 0.0}
-        
-        results = model(images)
 
-        best_box, best_conf, best_image_path = None, -1, None
-        for img_path, result in zip(image_paths, results):
-            for box in result.boxes:
-                if int(box.cls[0]) == target_id and float(box.conf[0]) > best_conf:
-                    best_conf = float(box.conf[0])
-                    best_box = box
-                    best_image_path = img_path
-        
-        if best_box is None:
-            return {"structured_data": {}, "yolo_result": None}
-        
-        yolo_result = {"box": best_box.xyxy[0].tolist(), "confidence": best_conf}
-        
-        best_image = cv2.imread(str(best_image_path))
-        x1, y1, x2, y2 = map(int, yolo_result["box"])
-        cropped = best_image[y1:y2, x1:x2]
-
-        if cropped.size == 0:
-            return {"structured_data": {"error": "Leere Bounding Box"}, "yolo_result": yolo_result}
-
-    cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
-
-    with timer(times, "image-encoding-prompt-creation"):
         encoded_images = []
-        try:      
-            # Bild für die API enkodieren
-            encoded_images.append(_encode_image(cropped))
-        except Exception as e:
-            print(f"Fehler bei der Bildverarbeitung: {e}")
+        for image_path in image_paths:
+            try:
+                # Lade Bild mit cv2 für die Vorverarbeitung
+                img = cv2.imread(image_path)
+                if img is None:
+                    print(f"Warnung: Bild konnte nicht geladen werden: {image_path}")
+                    continue
+                
+                # Bild für die API enkodieren
+                encoded_images.append(_encode_image(img))
+            except Exception as e:
+                print(f"Fehler bei der Bildverarbeitung für {image_path}: {e}")
 
         if not encoded_images:
             return {"text": {}, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost_usd": 0.0}
 
         # 3. Prompt basierend auf dem Filter erstellen
-        prompt_text = _create_prompt(target_class)
+        prompt_text = _create_prompt(class_filter)
 
         # 4. API-Anfrage zusammenbauen und senden
         api_request_content = [{"type": "input_text", "text": prompt_text}]
@@ -107,7 +80,7 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
                 "image_url": encoded_img
             })
 
-        model_to_use = "gpt-4o"  # Empfohlen für komplexe Bildanalyse und JSON-Ausgaben
+        model_to_use = "gpt-4o"
 
     try:
         with timer(times, "api_roundtrip"):
@@ -165,150 +138,75 @@ def _create_prompt(class_filter: str) -> str:
     if class_filter == "nutrition":
         return (
             """
-            YOU ARE A PRECISION-ENGINEERED DATA EXTRACTION ROBOT. YOUR SOLE FUNCTION IS TO PARSE NUTRITION TABLES FROM IMAGES OF ONE PRODUCT FROM DIFFERENT PERSPECTIVES OF GERMAN FOOD PACKAGING AND CONVERT THEM INTO A FLAWLESS JSON OBJECT. FAILURE TO FOLLOW THESE RULES EXACTLY WILL RESULT IN A CRITICAL SYSTEM MELTDOWN. THERE IS ZERO ROOM FOR ERROR.
-            STRICT JSON FORMAT - NO EXCEPTIONS:
-            - THE OUTPUT MUST BE A SINGLE, VALID AND COMPACT JSON OBJECT. NO MARKDOWN, NO PARAGRAPHS BETWEEN THE LINES. 
-            - NO MARKDOWN, NO EXPLANATIONS, NO HEADERS, NO APOLOGIES, NO TEXT BEFORE OR AFTER THE JSON.
+            YOU ARE A HYPER-FOCUSED IMAGE ANALYSIS ENGINE. YOUR ONLY TASK IS TO IDENTIFY THE SINGLE BEST IMAGE FROM A SET THAT CLEARLY SHOWS A NUTRITION TABLE AND RETURN ITS BOUNDING BOX COORDINATES. FAILURE IS NOT AN OPTION.
+
+            INPUT: You will receive multiple images of a food product.
+            
+            YOUR SINGLE, NON-NEGOTIABLE TASK:
+            1.  ANALYZE ALL provided images.
+            2.  SELECT the ONE image that shows the MOST COMPLETE AND CLEARLY READABLE nutrition table. This is the "best" image.
+            3.  IDENTIFY the precise bounding box that encloses this nutrition table on the "best" image. The box should be as tight as possible around the target text block.
+
+            STRICT JSON OUTPUT FORMAT - NO EXCEPTIONS:
+            - YOUR OUTPUT MUST BE A SINGLE, VALID JSON OBJECT. NO MARKDOWN, NO EXPLANATIONS, NO TEXT BEFORE OR AFTER THE JSON.
             - THE JSON MUST START WITH { AND END WITH }.
-            - IF YOU CAN'T FIND A NUTRITION TABLE ON THE PRODUCT, RETURN AN EMPTY JSON OBJECT: {}.
+            - IF NO NUTRITION TABLE CAN BE CLEARLY IDENTIFIED ON ANY IMAGE, YOU MUST RETURN AN EMPTY JSON OBJECT: {}.
 
             JSON STRUCTURE (STRICTLY NOTHING ELSE):
             {
-            "title": "string | '' ",
-            "columns": ["string" | '' ],
-            "rows": [
-                {
-                "label": "string",
-                "values": ["string"]
-                }
-            ],
-            "footnote": "string | '' "
+              "box": {
+                "x1": integer,
+                "y1": integer,
+                "x2": integer,
+                "y2": integer
+              }
             }
+            
+            COORDINATE SYSTEM RULES:
+            - The origin (0,0) is the TOP-LEFT corner of the image.
+            - "x1" and "y1" are the coordinates of the TOP-LEFT corner of the bounding box.
+            - "x2" and "y2" are the coordinates of the BOTTOM-RIGHT corner of the bounding box.
+            - All coordinates must be integer pixel values.
 
-            NON-NEGOTIABLE PARSING RULES:
-            1.  **EXTRACT EXACTLY AS WRITTEN. NO MODERNIZATION. NO INTERPRETATION.** 
-            2.  **STRUCTURE MAPPING:**
-                - **"title":** The main heading of the table (e.g., "Nährwertinformationen", "Nährwerte", "Durchschnittliche Nährwerte"). Everything that comes before the column headers and is clearly part of the table MUST be in title. If the label column has a header, it MUST be included in the title. If no title exists, this field MUST be "".
-                - **"columns":** The column headers of the table: The column headers array ALWAYS start with with an empty string ("") for the label column, followed by the actual headers (e.g., ["", "je 100g", "pro Portion 30g"]). If no headers exist, this field MUST be [""]. The items in columns MUST only contain quantities, numbers and prepositions like "je", "pro", "pro", "per". For example: "pro 100ml", "per 100g", "pro Portion". Any other text that is not quantity related MUST be included in the title.
-                - **"rows":** An array of objects, where each object represents a row in the table.
-                    - **"label":** The nutrient name (e.g., "Energie", "Fett", "davon gesättigte Fettsäuren"). This matches the first column of the table ("").
-                    - **"values":** An array of strings containing the corresponding values for that row, in the same order as the "columns" starting from the second column. If a value is missing for a column, it MUST be represented as an empty string ("").
-                    - The number of items in "values" + 1 (for the label) MUST EXACTLY MATCH the number of items in "columns". It always has to be the exact number. So the label column must always be represented as ("") in the "columns" key.
-                - **"footnote":** Any text below the main table, often marked with an asterisk (e.g., "*Referenzmenge für einen durchschnittlichen Erwachsenen..."). If no footnote exists, this field MUST be "".
-            3.  **VALUE NORMALIZATION:**
-                - Decimal commas (`,`) MUST be converted to decimal points (`.`).
-                - All text must be written in lowercase.
-                - Values and units MUST be combined into a single string with no space and ONLY in this sequence: <VALUE> <UNIT>, not <UNIT> <VALUE> (if so, keep space) (e.g., "1,5 g" -> "1.5g", "557 kcal 938 kj -> "557kcal 938kj"). Normal text must be separated with space.
-                - Slashes (/), dashes, brackets, quotation marks, colons and multiple spaces MUST be REMOVED.
-                - Points that are not decimal separators MUST be REMOVED. 
-            4.  **IMPERFECT DATA:**
-                - **IF A WORD OR NUMBER IS CUT-OFF OR NOT READABLE AT ALL IT DOES NOT EXIST. OMIT IT.**
-                - **IF A ROW OR COLUMN IS INCOMPLETE, EXTRACT ONLY THE READABLE PARTS. DO NOT GUESS MISSING VALUES.** If this results in a row having fewer values than columns, represent the missing values as empty strings `""`.
-            5.  **ONLY TRANSCRIBE TEXT FROM THE NUTRITION TABLE ITSELF. ALL OTHER TEXT FROM THE PACKAGING MUST BE OBLITERATED.**
-
-            STRICTLY ENFORCED EXAMPLE OUTPUT:
-            {
-            "title": "nährwertangaben",
-            "columns": [
-                "",
-                "je 100g",
-                "pro portion 30g"
-            ],
-            "rows": [
-                {
-                "label": "brennwert",
-                "values": [
-                    "2253kj 540kcal",
-                    "676kj 162kcal"
-                ]
-                },
-                {
-                "label": "fett",
-                "values": [
-                    "31.5g",
-                    "9.5g"
-                ]
-                },
-                {
-                "label": "davon gesättigte fettsäuren",
-                "values": [
-                    "18.5g",
-                    "5.6g"
-                ]
-                },
-                {
-                "label": "kohlenhydrate",
-                "values": [
-                    "56g",
-                    "17g"
-                ]
-                },
-                {
-                "label": "davon zucker",
-                "values": [
-                    "55g",
-                    "16.5g"
-                ]
-                },
-                {
-                "label": "eiweiß",
-                "values": [
-                    "6.5g",
-                    "2g"
-                ]
-                },
-                {
-                "label": "salz",
-                "values": [
-                    "0.25g",
-                    "0.08g"
-                ]
-                }
-            ],
-            "footnote": "*rm = referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
-            }
-
-            FINAL COMMANDS - FAILURE IS CATASTROPHIC:
-            -   **PRODUCE ONLY THE PERFECTLY FORMATTED JSON OBJECT.**
-            -   **ANY TEXT OUTSIDE THE JSON STRUCTURE IS A VIOLATION.**
-            -   **THE LABEL COLUMN IS ALSO A COLUMN. THE LENGTH OF THE ARRAY 'COLUMNS' MUST BE EQUAL TO THE NUMBER OF VALUES for each label + 1 (as the label column is included).**
-            -   **IF YOU CAN'T FIND A NUTRITION TABLE ON THE PRODUCT, RETURN AN EMPTY JSON OBJECT: `{}`.**
-            -   **ZERO DEVIATION. ZERO EXCUSES.**
+            FINAL COMMAND: ANALYZE, SELECT, LOCATE, AND RESPOND WITH THE JSON. ZERO DEVIATION.
             """
         )
     elif class_filter == "ingredients":
         return (
             """
-            YOU ARE A METICULOUS FOOD DATA ANALYST. YOUR TASK IS TO EXTRACT AND TRANSCRIBE THE INGREDIENT LIST FROM MULTIPLE IMAGES WITH DIFFERENT PERSPECTIVES FROM ONE PRODUCT OF GERMAN FOOD PACKAGING. FAILURE TO FOLLOW THESE RULES EXACTLY WILL COMPROMISE THE ENTIRE DATA INTEGRITY. THERE IS ZERO ROOM FOR ERROR.
-            STRICT OUTPUT FORMAT - NO EXCEPTIONS:
-            - THE OUTPUT MUST BE A SINGLE, CONTINUOUS STRING.
-            - DO NOT USE JSON. DO NOT USE MARKDOWN. DO NOT ADD ANY EXPLANATIONS, PREFACES, OR SUMMARIES.
-            - THE OUTPUT MUST BE PURE, UNFORMATTED TEXT.
-            - IF YOU CAN'T FIND A INGREDIENT LIST, RETURN AN EMPTY STRING.
-            NON-NEGOTIABLE TRANSCRIPTION RULES:
-            1.  IDENTIFY THE START: The ingredient list begins with the word "Zutaten" or a clear synonym. ALL text before this marker MUST BE IGNORED AND OBLITERATED. If no such marker exists, start with the first logical ingredient.
-            2.  IDENTIFY THE END: The list ends precisely where the ingredients and mandatory related declarations (e.g., allergen warnings like "Kann Spuren von...", quantitative declarations like "100g des Produkts werden aus...") conclude. All the text until these ingredient list-related information must be obtained. Information such as best-before dates, manufacturer addresses, or storage instructions ARE NOT PART OF THE INGREDIENT LIST AND MUST BE ERASED FROM EXISTENCE.
-            3.  TEXT NORMALIZATION - STRICTLY ENFORCED:
-                - ALL TEXT MUST BE CONVERTED TO LOWERCASE.
-                - ALL SEMICOLONS (;), COLONS (:) AND SLASHES (/) MUST BE REMOVED. COMMAS AS DECIMAL SEPARATORS MUST BE REPLACED WITH PERIODS. ALL OTHER COMMAS MUST BE REMOVED.
-                - PERIODS (.) ARE ONLY PERMITTED BETWEEN DIGITS for decimal numbers (e.g. "0.5"). All other periods must be eliminated.
-                - ALL TYPES OF BRACKETS [ { ( ) } ] MUST BE CONVERTED TO STANDARD PARENTHESES ( ).
-                - SUPERSCRIPT CHARACTERS (e.g., ¹, ²) MUST BE PRESERVED EXACTLY AS SEEN.
-            4.  HYPHENATION - CRITICAL LOGIC:
-                - SYLLABLE BREAKS: If a word is split with a hyphen at the end of a line for syllabification, the hyphen MUST be removed and the word parts joined.
-                - COMPOUND WORDS: If a hyphen is part of a compound word (e.g., "Mango-Maracuja-Püree"), it IS PART OF THE WORD and MUST BE RETAINED.
-            5.  SPACING - ZERO TOLERANCE:
-                - There must be NO space between a number and its following unit (e.g., "5%", "10g"). "5 %" is an error. "5%" is correct.
-                - Multiple spaces must be collapsed into a single space.
-            STRICTLY ENFORCED EXAMPLE OUTPUT:
-            zutaten weizenmehl zucker pflanzliche fette (palm kokos) kakaobutter kakaomasse magermilchpulver 5% glukosesirup süßmolkenpulver (aus milch) butterreinfett erdbeeren 0.5% himbeeren emulgator (sojalecithine) backtriebmittel (natriumcarbonate) salz säuerungsmittel (citronensäure) aroma kann spuren von nüssen enthalten¹
-            FINAL COMMANDS - FAILURE IS NOT AN OPTION:
-            -   PRODUCE ONLY THE FINAL STRING.
-            -   NO PREFACES, NO APOLOGIES, NO EXPLANATIONS.
-            -   ANY DEVIATION FROM THESE RULES CONSTITUTES A TOTAL MISSION FAILURE.
+            YOU ARE A HYPER-FOCUSED IMAGE ANALYSIS ENGINE. YOUR ONLY TASK IS TO IDENTIFY THE SINGLE BEST IMAGE FROM A SET THAT CLEARLY SHOWS A INGREDIENT LIST AND RETURN ITS BOUNDING BOX COORDINATES. FAILURE IS NOT AN OPTION.
+
+            INPUT: You will receive multiple images of a food product.
+            
+            YOUR SINGLE, NON-NEGOTIABLE TASK:
+            1.  ANALYZE ALL provided images.
+            2.  SELECT the ONE image that shows the MOST COMPLETE AND CLEARLY READABLE ingredient list. This is the "best" image.
+            3.  IDENTIFY the precise bounding box that encloses this ingredient list on the "best" image. The box should be as tight as possible around the target text block.
+
+            STRICT JSON OUTPUT FORMAT - NO EXCEPTIONS:
+            - YOUR OUTPUT MUST BE A SINGLE, VALID JSON OBJECT. NO MARKDOWN, NO EXPLANATIONS, NO TEXT BEFORE OR AFTER THE JSON.
+            - THE JSON MUST START WITH { AND END WITH }.
+            - IF NO INGREDIENT LIST CAN BE CLEARLY IDENTIFIED ON ANY IMAGE, YOU MUST RETURN AN EMPTY JSON OBJECT: {}.
+
+            JSON STRUCTURE (STRICTLY NOTHING ELSE):
+            {
+              "box": {
+                "x1": integer,
+                "y1": integer,
+                "x2": integer,
+                "y2": integer
+              }
+            }
+            
+            COORDINATE SYSTEM RULES:
+            - The origin (0,0) is the TOP-LEFT corner of the image.
+            - "x1" and "y1" are the coordinates of the TOP-LEFT corner of the bounding box.
+            - "x2" and "y2" are the coordinates of the BOTTOM-RIGHT corner of the bounding box.
+            - All coordinates must be integer pixel values.
+
+            FINAL COMMAND: ANALYZE, SELECT, LOCATE, AND RESPOND WITH THE JSON. ZERO DEVIATION.
             """
         )
-        return f"Extrahiere alle Informationen bezüglich '{class_filter}' von den Bildern und gib sie als JSON-Objekt zurück."
 
 def _calculate_llm_cost(model: str, prompt_tokens: int, completion_tokens: int) -> float:
     """Berechnet die Kosten für einen API-Aufruf basierend auf vordefinierten Preisen."""

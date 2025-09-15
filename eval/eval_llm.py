@@ -11,8 +11,7 @@ import os
 
 from eval_helpers import (
     load_ground_truth, load_images, group_images_by_product, compact_json_str,
-    transform_dict_to_string, evaluate_nutrition_table_structure,
-    calculate_word_level_metrics, calculate_grits_metric, measure_ram_peak, calculate_composite_indicator_nutrition, calculate_composite_indicator_ingredients
+    transform_dict_to_string, measure_ram_peak, calculate_iou
 )
 from llm_pipeline import run_llm_pipeline
 
@@ -78,7 +77,7 @@ def run_llm(cfg: dict):
         cpu_start_llm = process.cpu_times()
         time_start_llm = time.perf_counter()
 
-        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, model, paths, target_id, new_out_dir, product_id)
+        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, model, paths, target_id, new_out_dir, product_id, class_filter)
 
         time_end_llm = time.perf_counter()
         cpu_end_llm = process.cpu_times()
@@ -94,29 +93,13 @@ def run_llm(cfg: dict):
         encoding_prompt_creation = llm_times.get("image-encoding-prompt-creation", None)
         time_api_llm = llm_times.get("api_roundtrip", None)
         time_postproc_llm = llm_times.get("postprocessing", None)
-        if class_filter == "nutrition":
-            llm_res_compact = compact_json_str(llm_res)
-            print("LLM-Antwort (kompakt):", llm_res_compact)
-            print(f"Typ von llm_res_compact: {type(llm_res_compact)}")
-            llm_string = transform_dict_to_string(llm_res_compact, class_filter)
-            try:
-                if isinstance(json.loads(llm_res_compact), dict):
-                    metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, json.loads(llm_res_compact), class_filter, method = "llm")
-                    structure_score_llm = evaluate_nutrition_table_structure(gt_object, json.loads(llm_res_compact), "llm")
-                    grits_metrics = calculate_grits_metric(gt_object, json.loads(llm_res_compact))
-                    if end_to_end_time_llm and grits_metrics and metrics_llm and mem_peak:
-                        composite_score = calculate_composite_indicator_nutrition(end_to_end_time_llm, mem_peak, grits_metrics.get("overall_table_score"), llm_res_data.get("cost_usd", 0.0))
-            except json.JSONDecodeError as e:
-                print(f"Fehler beim Parsen der LLM-Antwort: {e}")
-                metrics_llm = {}
-                structure_score_llm = {}
-                grits_metrics = {}
-                composite_score = None
-        else:
-            llm_string = llm_res or ""
-            metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, llm_res_data.get("text", {}), class_filter, method = "llm")
-            if end_to_end_time_llm and metrics_llm and mem_peak:
-                composite_score = calculate_composite_indicator_ingredients(end_to_end_time_llm, mem_peak, wer(gt_text, llm_string), cer(gt_text, llm_string), metrics_llm.get("f1_overall_ocr"), llm_res_data.get("cost_usd", 0.0))
+
+        llm_res_compact = compact_json_str(llm_res)
+        bbox_coordinates = json.loads(llm_res_compact).get("box", {})
+        x1, y1, x2, y2 = (bbox_coordinates.get("x1"), bbox_coordinates.get("y1"), bbox_coordinates.get("x2"), bbox_coordinates.get("y2")) if bbox_coordinates else (None, None, None, None)
+        bbox_array = [x1, y1, x2, y2] 
+
+        iou = calculate_iou(gt_bbox, bbox_array)
 
         print(f"Zeit (LLM): {end_to_end_time_llm:.2f}s")
 

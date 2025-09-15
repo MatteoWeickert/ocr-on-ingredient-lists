@@ -96,7 +96,7 @@ def run_traditional(cfg: dict):
         print(f"Zeit (Traditionell): {end_to_end_time_trad:.2f}s")
         
         # --- Metriken berechnen ---
-        pred_bbox = yolo_res["box"] if yolo_res else []
+        pred_bbox = yolo_res.get("box") if yolo_res else []
         iou = calculate_iou(gt_bbox, pred_bbox)
 
         trad_result_compact = ""
