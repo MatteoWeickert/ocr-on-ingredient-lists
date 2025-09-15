@@ -91,7 +91,8 @@ def run_llm(cfg: dict, temperature: float, llm_model: str):
         if llm_res_data.get("text") is not None:
             llm_res = llm_res_data.get("text", "")
         llm_times = llm_res_data.get("times", {})
-        time_preproc_llm = llm_times.get("preprocessing", None)
+        time_yolo_api_connection = llm_times.get("yolo-and-api-connection", None)
+        encoding_prompt_creation = llm_times.get("image-encoding-prompt-creation", None)
         time_api_llm = llm_times.get("api_roundtrip", None)
         time_postproc_llm = llm_times.get("postprocessing", None)
         if class_filter == "nutrition":
@@ -132,7 +133,8 @@ def run_llm(cfg: dict, temperature: float, llm_model: str):
             "time_llm_s": end_to_end_time_llm,
             "cpu_llm_s": cpu_llm_time,
             "mem_llm_peak": mem_peak,
-            "time_preproc_llm_s": time_preproc_llm,
+            "time_yolo_api_connection": time_yolo_api_connection,
+            "time_encoding_prompt_creation": encoding_prompt_creation,
             "time_api_llm_s": time_api_llm,
             "time_postproc_llm_s": time_postproc_llm,
             "wer_llm": wer(gt_text, llm_string),

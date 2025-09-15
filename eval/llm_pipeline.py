@@ -46,7 +46,7 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
 
     images = [cv2.imread(str(path)) for path in image_paths]
 
-    with timer(times, "preprocessing"):
+    with timer(times, "yolo-and-api-connection"):
         # 1. API-Key laden
         _load_llm_api_key()
         try:
@@ -68,30 +68,30 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
         if best_box is None:
             return {"structured_data": {}, "yolo_result": None}
         
-    yolo_result = {"box": best_box.xyxy[0].tolist(), "confidence": best_conf}
-    if cropped.size == 0:
-        return {"structured_data": {"error": "Leere Bounding Box"}, "yolo_result": yolo_result}
-    
+        yolo_result = {"box": best_box.xyxy[0].tolist(), "confidence": best_conf}
+        
+        best_image = cv2.imread(str(best_image_path))
+        x1, y1, x2, y2 = map(int, yolo_result["box"])
+        cropped = best_image[y1:y2, x1:x2]
+
+        if cropped.size == 0:
+            return {"structured_data": {"error": "Leere Bounding Box"}, "yolo_result": yolo_result}
+
     cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
-    
-    best_image = cv2.imread(str(best_image_path))
-    x1, y1, x2, y2 = map(int, yolo_result["box"])
-    cropped = best_image[y1:y2, x1:x2]
 
+    with timer(times, "image-encoding-prompt-creation"):
+        encoded_images = []
+        try:      
+            # Bild für die API enkodieren
+            encoded_images.append(_encode_image(cropped))
+        except Exception as e:
+            print(f"Fehler bei der Bildverarbeitung: {e}")
 
-    encoded_images = []
-    try:      
-        # Bild für die API enkodieren
-        encoded_images.append(_encode_image(cropped))
-    except Exception as e:
-        print(f"Fehler bei der Bildverarbeitung: {e}")
+        if not encoded_images:
+            return {"text": {}, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost_usd": 0.0}
 
-    if not encoded_images:
-        return {"text": {}, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost_usd": 0.0}
-
-
-    # 3. Prompt basierend auf dem Filter erstellen
-    prompt_text = _create_prompt(target_class)
+        # 3. Prompt basierend auf dem Filter erstellen
+        prompt_text = _create_prompt(target_class)
 
     # 4. API-Anfrage zusammenbauen und senden
     api_request_content = [{"type": "input_text", "text": prompt_text}]
