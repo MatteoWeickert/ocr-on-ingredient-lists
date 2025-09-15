@@ -1,0 +1,7416 @@
+[
+  {
+    "produktnr": "2024-5702291",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g",
+        "ø portion 200g",
+        "%ri"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "850kj 201kcal",
+            "1700kj 403kcal",
+            "20%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "3.5g",
+            "7.0g",
+            "10%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "1.0g",
+            "2.0g",
+            "10%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "33.1g",
+            "66.2g",
+            "25%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "2.3g",
+            "4.6g",
+            "5%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "8.1g",
+            "16.2g",
+            "32%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.92g",
+            "1.84g",
+            "31%"
+          ]
+        }
+      ],
+      "footnote": "ri reference intake referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 900.0,
+        "left": 273.0,
+        "height": 284.0,
+        "width": 596.0
+      },
+      {
+        "top": 903.0,
+        "left": 76.0,
+        "height": 378.0,
+        "width": 758.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702295",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g*"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1189kj 287kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "24.6g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "17.9g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.2g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.2g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "16.2g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.00g"
+          ]
+        }
+      ],
+      "footnote": "*bezogen auf das abgetropfte produkt"
+    },
+    "bbox": [
+      {
+        "top": 973.0,
+        "left": 477.0,
+        "height": 513.0,
+        "width": 644.0
+      },
+      {
+        "top": 634.0,
+        "left": 113.0,
+        "height": 663.0,
+        "width": 836.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702311",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100ml"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "211kj 50kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "2.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.3g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "6.3g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "4.3g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "1.5g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.14g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 709.0,
+        "left": 551.0,
+        "height": 368.0,
+        "width": 283.0
+      },
+      {
+        "top": 182.0,
+        "left": 598.0,
+        "height": 471.0,
+        "width": 372.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702327",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie kj kcal",
+          "values": [
+            "921 220"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "11.7g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "5.9g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "23.6g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "23.6g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.8g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.23g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 726.0,
+        "left": 1165.0,
+        "height": 493.0,
+        "width": 414.0
+      },
+      {
+        "top": 742.0,
+        "left": 796.0,
+        "height": 496.0,
+        "width": 510.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702332",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g",
+        "1 portion 400g**",
+        "% 400g*"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "498kj 118kcal",
+            "1992kj 472kcal",
+            "24%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "1.3g",
+            "5.2g",
+            "7%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.2g",
+            "0.8g",
+            "4%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "20g",
+            "80g",
+            "31%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "6.9g",
+            "28g",
+            "31%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "1.4g",
+            "5.6g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "6.0g",
+            "24g",
+            "48%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.74g",
+            "3.0g",
+            "49%"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 419.0,
+        "left": 1583.0,
+        "height": 441.0,
+        "width": 657.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702334",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g",
+        "1 mettende 75g**",
+        "% 75g*"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1436kj 347kcal",
+            "1077kj 260kcal",
+            "13% 13%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "30g",
+            "23g",
+            "33%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "13g",
+            "9.8g",
+            "49%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g",
+            "0.8g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g",
+            "0.8g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "18g",
+            "14g",
+            "28%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.8g",
+            "2.1g",
+            "35%"
+          ]
+        }
+      ],
+      "footnote": "*referenzmenge für einen durchschnittlichen erwachsenen 8.400kj 2.000kcal **1 portion 1 mettende 75g die packung enthält 4 portionen"
+    },
+    "bbox": [
+      {
+        "top": 1107.0,
+        "left": 828.0,
+        "height": 571.0,
+        "width": 515.0
+      },
+      {
+        "top": 915.0,
+        "left": 745.0,
+        "height": 792.0,
+        "width": 737.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702337",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "pro 100ml"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1676kj 405kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "37g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "2.8g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "17g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "13g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "1.1g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.5g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 662.0,
+        "left": 242.0,
+        "height": 356.0,
+        "width": 328.0
+      },
+      {
+        "top": 397.0,
+        "left": 38.0,
+        "height": 345.0,
+        "width": 304.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702342",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100ml"
+      ],
+      "rows": [
+        {
+          "label": "brennwert kj kcal",
+          "values": [
+            "2843 691"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "75.1g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "5.8g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "2.4g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "2.2g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "1.1g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.85g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 546.0,
+        "left": 216.0,
+        "height": 257.0,
+        "width": 363.0
+      },
+      {
+        "top": 195.0,
+        "left": 87.0,
+        "height": 255.0,
+        "width": 361.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702426",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1640kj 395kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "31g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "19g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "29g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.50g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 748.0,
+        "left": 424.0,
+        "height": 397.0,
+        "width": 328.0
+      },
+      {
+        "top": 364.0,
+        "left": 84.0,
+        "height": 491.0,
+        "width": 405.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702430",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1662kj 397kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "18.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "9.8g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "52.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "33.0g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "3.6g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.3g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.35g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 583.0,
+        "left": 1568.0,
+        "height": 310.0,
+        "width": 224.0
+      },
+      {
+        "top": 106.0,
+        "left": 1764.0,
+        "height": 575.0,
+        "width": 448.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702453",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "pro portion 12g",
+        "%rm** pro portion 12g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert kj kcal",
+          "values": [
+            "1622 385",
+            "195 46",
+            "2%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "10.3g",
+            "1.2g",
+            "2%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "6.3g",
+            "0.8g",
+            "4%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "66.0g",
+            "7.9g",
+            "3%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "37.2g",
+            "4.5g",
+            "5%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.6g",
+            "0.7g",
+            "1%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.30g",
+            "0.04g",
+            "<1%"
+          ]
+        }
+      ],
+      "footnote": "referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal lebkuchenherzen 300g 25 portionen à 12g"
+    },
+    "bbox": [
+      {
+        "top": 1429.0,
+        "left": 141.0,
+        "height": 416.0,
+        "width": 536.0
+      },
+      {
+        "top": 1042.0,
+        "left": 84.0,
+        "height": 557.0,
+        "width": 830.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702463",
+    "text": {
+      "title": "nährwertangabe",
+      "columns": [
+          "",
+          "per 100g"
+      ],
+      "rows": [
+          {
+              "label": "energie",
+              "values": [
+                  "1.137kJ",
+                  "275kcal"
+              ]
+          },
+          {
+              "label": "fett",
+              "values": [
+                  "25.0g"
+              ]
+          },
+          {
+              "label": "davon gesättigte fettsäuren",
+              "values": [
+                  "10.0g"
+              ]
+          },
+          {
+              "label": "kohlenhydrate",
+              "values": [
+                  "0.5g"
+              ]
+          },
+          {
+              "label": "davon zucker",
+              "values": [
+                  "0.5g"
+              ]
+          },
+          {
+              "label": "eiweiß",
+              "values": [
+                  "12.0g"
+              ]
+          },
+          {
+              "label": "salz",
+              "values": [
+                  "2.70g"
+              ]
+          }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1184.0,
+        "left": 753.0,
+        "height": 301.0,
+        "width": 433.0
+      },
+      {
+        "top": 945.0,
+        "left": 65.0,
+        "height": 346.0,
+        "width": 470.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702466",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "889kj 213kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "10.6g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "1.3g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "17.1g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "8.8g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.32g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 665.0,
+        "left": 1152.0,
+        "height": 434.0,
+        "width": 380.0
+      },
+      {
+        "top": 228.0,
+        "left": 963.0,
+        "height": 543.0,
+        "width": 462.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702472",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "2295kj 548kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "59g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "4.9g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "6.1g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "6.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.30g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1371.0,
+        "left": 620.0,
+        "height": 508.0,
+        "width": 621.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702473",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "973kj 233kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "15g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "9.1g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "18g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.8g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "6.6g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.3g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1040.0,
+        "left": 639.0,
+        "height": 356.0,
+        "width": 504.0
+      },
+      {
+        "top": 1035.0,
+        "left": 75.0,
+        "height": 483.0,
+        "width": 713.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702480",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "450kj 107kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "2.5g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.9g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "20g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.3g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 576.0,
+        "left": 987.0,
+        "height": 387.0,
+        "width": 306.0
+      },
+      {
+        "top": 292.0,
+        "left": 638.0,
+        "height": 481.0,
+        "width": 372.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702487",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g",
+        "1 portion 300g**",
+        "% 300g*"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "461kj 111kcal",
+            "1383kj 333kcal",
+            "17%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "7.7g",
+            "23g",
+            "33%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "2.7g",
+            "8.1g",
+            "41%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "4.2g",
+            "13g",
+            "5%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.5g",
+            "1.5g",
+            "2%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.6g",
+            "17g",
+            "34%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.3g",
+            "3.9g",
+            "65%"
+          ]
+        }
+      ],
+      "footnote": "*referenzmenge für einen durchschnittlichen erwachsenen 8.400kj 2.000kcal **1 portion 300g königsberger kjopse die packung enthält 3 portionen"
+    },
+    "bbox": [
+      {
+        "top": 1405.0,
+        "left": 2873.0,
+        "height": 911.0,
+        "width": 1340.0
+      },
+      {
+        "top": 806.0,
+        "left": 2031.0,
+        "height": 856.0,
+        "width": 1343.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702489",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1064kj 253kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.2g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "48g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "44g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "18g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.03g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1261.0,
+        "left": 967.0,
+        "height": 926.0,
+        "width": 681.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702496",
+    "text": {
+      "title": "durchschnittliche nährwerte abgetropft",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "487kj 115kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.7g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.2g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "<1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "27g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.37g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 811.0,
+        "left": 845.0,
+        "height": 414.0,
+        "width": 494.0
+      },
+      {
+        "top": 184.0,
+        "left": 551.0,
+        "height": 410.0,
+        "width": 483.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702507",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "498kj 116kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "3.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "1.5g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "22.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.00g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 939.0,
+        "left": 420.0,
+        "height": 299.0,
+        "width": 440.0
+      },
+      {
+        "top": 905.0,
+        "left": 131.0,
+        "height": 640.0,
+        "width": 907.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702508",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+          "",
+          "pro 100g",
+          "%-rm** pro 100g",
+          "pro portion 30g*",
+          "%-rm** pro portion 30g*"
+      ],
+      "rows": [
+          {
+              "label": "energie",
+              "values": [
+                  "1668kJ 404kcal",
+                  "20%",
+                  "500kJ 121kcal",
+                  "6%"
+              ]
+          },
+          {
+              "label": "fett",
+              "values": [
+                  "38.0g",
+                  "54%",
+                  "11.4g",
+                  "16%"
+              ]
+          },
+          {
+              "label": "davon gesättigte fettsäuren",
+              "values": [
+                  "26.8g",
+                  "134%",
+                  "8.0g",
+                  "40%"
+              ]
+          },
+          {
+              "label": "kohlenhydrate",
+              "values": [
+                  "0.1g",
+                  "<1%",
+                  "<1g",
+                  "<1%"
+              ]
+          },
+          {
+              "label": "davon zucker",
+              "values": [
+                  "0.1g",
+                  "<1%",
+                  "<1g",
+                  "<1%"
+              ]
+          },
+          {
+              "label": "eiweiß",
+              "values": [
+                  "14.9g",
+                  "30%",
+                  "4.5g",
+                  "9%"
+              ]
+          },
+          {
+              "label": "salz",
+              "values": [
+                  "1.65g",
+                  "28%",
+                  "0.50g",
+                  "8%"
+              ]
+          }
+      ],
+      "footnote": "* portion 30g Packung enthält 6.7 Portionen ** rm referenzmenge für einen durchschnittlichen erwachsenen 8400kJ 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 142.0,
+        "left": 1013.0,
+        "height": 609.0,
+        "width": 1259.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702515",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm* pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "512kj 121kcal",
+            "6%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.5g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.3g",
+            "2%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0g",
+            "0%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0g",
+            "0%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "29.0g",
+            "58%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.8g",
+            "63%"
+          ]
+        }
+      ],
+      "footnote": "*referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 537.0,
+        "left": 379.0,
+        "height": 500.0,
+        "width": 482.0
+      },
+      {
+        "top": 342.0,
+        "left": 46.0,
+        "height": 666.0,
+        "width": 731.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702519",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1130kj 269kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "2g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "<1g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "55g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "49g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "1.4g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "<0.01g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1026.0,
+        "left": 195.0,
+        "height": 265.0,
+        "width": 369.0
+      },
+      {
+        "top": 680.0,
+        "left": 73.0,
+        "height": 352.0,
+        "width": 477.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702531",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1123kj 270kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "20.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "8.4g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "22.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.70g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 968.0,
+        "left": 386.0,
+        "height": 310.0,
+        "width": 460.0
+      },
+      {
+        "top": 851.0,
+        "left": 73.0,
+        "height": 453.0,
+        "width": 671.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702532",
+    "text": {
+      "title": "nährwertdeklaration",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1887kj 450kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "19.5g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "9.4g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "60.3g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "50.1g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "3.1g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "6.8g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.34g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1615.0,
+        "left": 87.0,
+        "height": 368.0,
+        "width": 440.0
+      },
+      {
+        "top": 773.0,
+        "left": 61.0,
+        "height": 523.0,
+        "width": 576.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702537",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm* pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert kj kcal",
+          "values": [
+            "1423 343",
+            "17%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "27.3g",
+            "39%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "18.9g",
+            "95%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.7g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0g",
+            "0%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "22.6g",
+            "45%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.9g",
+            "32%"
+          ]
+        }
+      ],
+      "footnote": "*referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 1472.0,
+        "left": 1458.0,
+        "height": 462.0,
+        "width": 612.0
+      },
+      {
+        "top": 318.0,
+        "left": 1663.0,
+        "height": 604.0,
+        "width": 782.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702542",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm** pro 100g",
+        "pro portion 30g*",
+        "%rm** pro portion 30g*"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1668kj 404kcal",
+            "20%",
+            "500kj 121kcal",
+            "6%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "38.0g",
+            "54%",
+            "11.4g",
+            "16%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "26.8g",
+            "134%",
+            "8.0g",
+            "40%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.1g",
+            "<1%",
+            "<0.1g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.1g",
+            "<1%",
+            "<0.1g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "14.9g",
+            "30%",
+            "4.5g",
+            "9%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.65g",
+            "28%",
+            "0.50g",
+            "8%"
+          ]
+        }
+      ],
+      "footnote": "* portion 30g packung enthält 6.7 portionen ** rm referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 185.0,
+        "left": 1012.0,
+        "height": 528.0,
+        "width": 1138.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702543",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm** pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "513kj 121kcal",
+            "6%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.5g",
+            "1%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.3g",
+            "2%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "<0.1g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "<0.1g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "29.0g",
+            "58%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.40g",
+            "57%"
+          ]
+        }
+      ],
+      "footnote": "** rm referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 455.0,
+        "left": 1160.0,
+        "height": 533.0,
+        "width": 662.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702546",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm* pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "512kj 121kcal",
+            "6%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.5g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.3g",
+            "2%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0g",
+            "0%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0g",
+            "0%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "29.0g",
+            "58%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.8g",
+            "63%"
+          ]
+        }
+      ],
+      "footnote": "*referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 475.0,
+        "left": 328.0,
+        "height": 491.0,
+        "width": 476.0
+      },
+      {
+        "top": 246.0,
+        "left": 38.0,
+        "height": 441.0,
+        "width": 500.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702547",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1143kj 276kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "23.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "16.1g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.7g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.7g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "16.5g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.2g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1318.0,
+        "left": 507.0,
+        "height": 322.0,
+        "width": 611.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702549",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100ml"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "916kj 222kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "22.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "20.9g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "3.4g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.6g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "1.9g"
+          ]
+        },
+        {
+          "label": "salz*",
+          "values": [
+            "0.02g"
+          ]
+        }
+      ],
+      "footnote": "* der salzgehalt ist ausschließlich auf die anwesenheit natürlich vorkommenden natriums zurückzuführen"
+    },
+    "bbox": [
+      {
+        "top": 692.0,
+        "left": 153.0,
+        "height": 460.0,
+        "width": 324.0
+      },
+      {
+        "top": 52.0,
+        "left": 10.0,
+        "height": 320.0,
+        "width": 385.0
+      },
+      {
+        "top": 707.0,
+        "left": 434.0,
+        "height": 415.0,
+        "width": 388.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702551",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm* pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1662kj 397kcal",
+            "20%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "18.0g",
+            "26%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "9.8g",
+            "49%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "52.0g",
+            "20%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "33.0g",
+            "37%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "3.6g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.3g",
+            "11%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.35g",
+            "6%"
+          ]
+        }
+      ],
+      "footnote": "* referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 670.0,
+        "left": 1457.0,
+        "height": 332.0,
+        "width": 454.0
+      },
+      {
+        "top": 159.0,
+        "left": 366.0,
+        "height": 399.0,
+        "width": 657.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702557",
+    "text": {
+      "title": "enthalten durchschnittlich",
+      "columns": [
+        "",
+        "100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1269kj 306kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "23.5g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "10.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "22.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "4.0g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 2002.0,
+        "left": 1834.0,
+        "height": 503.0,
+        "width": 539.0
+      },
+      {
+        "top": 997.0,
+        "left": 651.0,
+        "height": 495.0,
+        "width": 532.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702560",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm** pro 100g",
+        "pro portion*",
+        "%rm** pro portion*"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1662kj 397kcal",
+            "20%",
+            "831kj 198kcal",
+            "10%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "18g",
+            "26%",
+            "9.0g",
+            "13%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "9.8g",
+            "49%",
+            "4.9g",
+            "25%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "52g",
+            "20%",
+            "26g",
+            "10%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "33g",
+            "37%",
+            "17g",
+            "18%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "3.6g",
+            "",
+            "1.8g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.3g",
+            "11%",
+            "2.7g",
+            "5%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.35g",
+            "6%",
+            "0.18g",
+            "3%"
+          ]
+        }
+      ],
+      "footnote": "* portion 1 stück ~50g packung enthält 15 portionen ** rm referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 699.0,
+        "left": 1030.0,
+        "height": 361.0,
+        "width": 727.0
+      },
+      {
+        "top": 160.0,
+        "left": 1010.0,
+        "height": 417.0,
+        "width": 876.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702563",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1143kj 276kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "23.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "17.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.7g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.7g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "16.5g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.30g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 723.0,
+        "left": 1240.0,
+        "height": 455.0,
+        "width": 414.0
+      },
+      {
+        "top": 436.0,
+        "left": 610.0,
+        "height": 575.0,
+        "width": 501.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702565",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1667kj 402kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "32g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "14g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "2.9g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "27g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.8g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 963.0,
+        "left": 1147.0,
+        "height": 679.0,
+        "width": 502.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702567",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100ml"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "284kj 68kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "3.9g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "2.6g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "4.8g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "4.8g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "3.4g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.13g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 564.0,
+        "left": 99.0,
+        "height": 519.0,
+        "width": 407.0
+      },
+      {
+        "top": 1572.0,
+        "left": 241.0,
+        "height": 457.0,
+        "width": 293.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702568",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1191kj 287kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "24.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "16.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.2g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.2g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "17.2g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.40g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 882.0,
+        "left": 560.0,
+        "height": 385.0,
+        "width": 455.0
+      },
+      {
+        "top": 371.0,
+        "left": 144.0,
+        "height": 566.0,
+        "width": 640.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702575",
+    "text": {
+      "title": "enthalten durchschnittlich",
+      "columns": [
+        "",
+        "100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1089kj 263kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "23.6g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "10.1g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.8g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "11.7g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.00g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1427.0,
+        "left": 3091.0,
+        "height": 560.0,
+        "width": 567.0
+      },
+      {
+        "top": 494.0,
+        "left": 1461.0,
+        "height": 539.0,
+        "width": 575.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702579",
+    "text": {
+      "title": "durchschnittliche nährwerte für unzubereitetes produkt",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "468kj",
+            "111kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "3.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "1.4g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "21.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.15g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 785.0,
+        "left": 1375.0,
+        "height": 394.0,
+        "width": 639.0
+      },
+      {
+        "top": 273.0,
+        "left": 85.0,
+        "height": 364.0,
+        "width": 635.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702580",
+    "text": {
+      "title": "durchschnittliche nährwerte abgetropft",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm* pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "341kj 81kcal",
+            "4%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "1.8g",
+            "3%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.4g",
+            "2%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "12.0g",
+            "5%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "7.0g",
+            "8%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "3.1g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "2.7g",
+            "5%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.30g",
+            "5%"
+          ]
+        }
+      ],
+      "footnote": "*referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 416.0,
+        "left": 329.0,
+        "height": 673.0,
+        "width": 746.0
+      },
+      {
+        "top": 506.0,
+        "left": 279.0,
+        "height": 681.0,
+        "width": 791.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702599",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1769kj 429kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "42.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "17.6g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "0.3g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "12.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.00g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 822.0,
+        "left": 683.0,
+        "height": 367.0,
+        "width": 432.0
+      },
+      {
+        "top": 670.0,
+        "left": 462.0,
+        "height": 444.0,
+        "width": 532.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702602",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1885kj 455kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "39.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "16.8g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "25.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "4.50g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1287.0,
+        "left": 143.0,
+        "height": 610.0,
+        "width": 428.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702603",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1615kj 390kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "33g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "14g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "22g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "4.0g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1841.0,
+        "left": 80.0,
+        "height": 614.0,
+        "width": 515.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702604",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g",
+        "1 stück 12.5g**",
+        "% 12.5g*"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1776kj 425kcal",
+            "222kj 53kcal",
+            "3%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "22.5g",
+            "2.8g",
+            "4%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "5.6g",
+            "0.7g",
+            "4%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "44.6g",
+            "5.6g",
+            "2%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "26.9g",
+            "3.4g",
+            "4%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "7.5g",
+            "0.9g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "8.4g",
+            "1.1g",
+            "2%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.83g",
+            "0.10g",
+            "2%"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 947.0,
+        "left": 1489.0,
+        "height": 365.0,
+        "width": 546.0
+      },
+      {
+        "top": 130.0,
+        "left": 1259.0,
+        "height": 371.0,
+        "width": 501.0
+      },
+      {
+        "top": 38.0,
+        "left": 980.0,
+        "height": 547.0,
+        "width": 773.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702607",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g",
+        "ø portion 80g",
+        "%ri"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1583kj 375kcal",
+            "1267kj 301kcal",
+            "15%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "9.1g",
+            "7.3g",
+            "10%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "2.8g",
+            "2.2g",
+            "11%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "66.5g",
+            "53.2g",
+            "20%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "36.8g",
+            "29.4g",
+            "33%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "6.1g",
+            "4.9g",
+            "10%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.67g",
+            "0.54g",
+            "9%"
+          ]
+        }
+      ],
+      "footnote": "ri reference intake referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 1858.0,
+        "left": 1077.0,
+        "height": 698.0,
+        "width": 1266.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702608",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1533kj 370kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "32.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "14.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "19.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.2g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 2210.0,
+        "left": 883.0,
+        "height": 587.0,
+        "width": 644.0
+      },
+      {
+        "top": 1252.0,
+        "left": 695.0,
+        "height": 625.0,
+        "width": 611.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702609",
+    "text": {
+      "title": "enthalten im durchschnitt",
+      "columns": [
+        "",
+        "100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1170kj 280kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "22.3g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "5.8g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.6g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.6g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "18.7g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.1g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1033.0,
+        "left": 1210.0,
+        "height": 565.0,
+        "width": 422.0
+      },
+      {
+        "top": 1007.0,
+        "left": 584.0,
+        "height": 596.0,
+        "width": 451.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702611",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1753kj 419kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "21.3g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "5.9g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "46.9g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "21.6g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "2.4g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "8.7g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.40g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1697.0,
+        "left": 2758.0,
+        "height": 636.0,
+        "width": 702.0
+      },
+      {
+        "top": 194.0,
+        "left": 1769.0,
+        "height": 650.0,
+        "width": 660.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702616",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1836kj 445kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "45g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "6.2g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "4.3g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "3.7g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.1g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.80g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1527.0,
+        "left": 380.0,
+        "height": 415.0,
+        "width": 505.0
+      },
+      {
+        "top": 1531.0,
+        "left": 99.0,
+        "height": 600.0,
+        "width": 762.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702617",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "578kj 138kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "7.4g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.6g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "17g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "15g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "0.8g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.70g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1448.0,
+        "left": 388.0,
+        "height": 339.0,
+        "width": 853.0
+      },
+      {
+        "top": 744.0,
+        "left": 60.0,
+        "height": 395.0,
+        "width": 978.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702625",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "pro portion*"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1186kj 285kcal",
+            "223kj 54kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "21g",
+            "3.9g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "18g",
+            "3.4g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "24g",
+            "4.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0g",
+            "0g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "<0.5g",
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "0g",
+            "0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.6g",
+            "0.30g"
+          ]
+        }
+      ],
+      "footnote": "* portion 1 scheibe 18.8g packung enthält 8 portionen"
+    },
+    "bbox": [
+      {
+        "top": 1177.0,
+        "left": 614.0,
+        "height": 897.0,
+        "width": 777.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702626",
+    "text": {
+      "title": "nährwertangabe",
+      "columns": [
+        "",
+        "per 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1467kj",
+            "354kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "30.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "10.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "20.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.50g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 635.0,
+        "left": 2754.0,
+        "height": 638.0,
+        "width": 681.0
+      },
+      {
+        "top": 294.0,
+        "left": 1206.0,
+        "height": 630.0,
+        "width": 678.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702627",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "743kj 177kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "7.5g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "2.6g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.4g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.3g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "26g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.4g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 906.0,
+        "left": 467.0,
+        "height": 211.0,
+        "width": 687.0
+      },
+      {
+        "top": 693.0,
+        "left": 86.0,
+        "height": 438.0,
+        "width": 735.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702632",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1019kj 247kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "23.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "15.8g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "3.2g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "3.2g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "6.5g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.90g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 409.0,
+        "left": 1263.0,
+        "height": 568.0,
+        "width": 466.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702657",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g",
+        "1 2 dose 400g**",
+        "% 400g*"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "358kj 86kcal",
+            "1433kj 343kcal",
+            "17%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "4.1g",
+            "16.4g",
+            "23%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "1.5g",
+            "6.0g",
+            "30%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "7.6g",
+            "30.4g",
+            "12%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "2.0g",
+            "8.0g",
+            "9%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "1.6g",
+            "6.4g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "3.8g",
+            "15.2g",
+            "30%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.18g",
+            "4.72g",
+            "79%"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1045.0,
+        "left": 1244.0,
+        "height": 567.0,
+        "width": 672.0
+      },
+      {
+        "top": 1060.0,
+        "left": 796.0,
+        "height": 580.0,
+        "width": 730.0
+      },
+      {
+        "top": 535.0,
+        "left": 43.0,
+        "height": 572.0,
+        "width": 752.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702667",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "2015kj 481kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "22g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "13g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "65g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "29g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.7g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.32g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 231.0,
+        "left": 99.0,
+        "height": 368.0,
+        "width": 602.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702754",
+    "text": {
+      "title": "",
+      "columns": [
+        ""
+      ],
+      "rows": [
+        {
+          "label": "",
+          "values": [
+            "nährwerte pro 100 gramm energie 186kj 44kcal fett 0.1g davon gesättigte fettsäuren 0.0g kohlenhydrate 9.5g davon zucker 9.4g ballaststoffe 1.0g eiweiß 0.6g salz 0.02g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 713.0,
+        "left": 891.0,
+        "height": 188.0,
+        "width": 1005.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702809",
+    "text": {
+      "title": "durchschnittliche nährwerte nutrition information",
+      "columns": [
+        "",
+        "je per 100g",
+        "1 2 scheibe 1 2 slice 50g**",
+        "% 50g*"
+      ],
+      "rows": [
+        {
+          "label": "brennwert energy",
+          "values": [
+            "1716kj 410kj",
+            "858kj 205kcal",
+            "10% 10%"
+          ]
+        },
+        {
+          "label": "fett fat",
+          "values": [
+            "19.6g",
+            "9.8g",
+            "14%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren of which saturates",
+          "values": [
+            "11.6g",
+            "5.8g",
+            "29%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate carbohydrate",
+          "values": [
+            "50.1g",
+            "25.1g",
+            "10%"
+          ]
+        },
+        {
+          "label": "davon zucker of which sugars",
+          "values": [
+            "30.4g",
+            "15.2g",
+            "17%"
+          ]
+        },
+        {
+          "label": "ballaststoffe fibre",
+          "values": [
+            "4.0g",
+            "2.0g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "6.3g",
+            "3.2g",
+            "6%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.34g",
+            "0.17g",
+            "3%"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1398.0,
+        "left": 331.0,
+        "height": 660.0,
+        "width": 792.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702811",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm** pro 100g",
+        "pro portion *",
+        "%rm** pro portion*"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1667kj 398kcal",
+            "20%",
+            "834kj 199kcal",
+            "10%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "17g",
+            "24%",
+            "8.5g",
+            "12%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "7.5g",
+            "38%",
+            "3.8g",
+            "19%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "55g",
+            "21%",
+            "28g",
+            "11%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "29g",
+            "32%",
+            "15g",
+            "16%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "3.5g",
+            "",
+            "1.8g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.0g",
+            "10%",
+            "2.5g",
+            "5%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.35g",
+            "6%",
+            "0.18g",
+            "3%"
+          ]
+        }
+      ],
+      "footnote": "* 1 portion 1 stück ~50g packung enthält 20 portionen ** rm referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 1624.0,
+        "left": 1481.0,
+        "height": 474.0,
+        "width": 992.0
+      },
+      {
+        "top": 218.0,
+        "left": 50.0,
+        "height": 482.0,
+        "width": 985.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702820",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g",
+        "ø portion 50g",
+        "%ri"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1618kj 386kcal",
+            "812kj 194kcal",
+            "10%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "17.3g",
+            "8.7g",
+            "12%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "9.2g",
+            "4.6g",
+            "23%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "50.4g",
+            "25.2g",
+            "10%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "30.1g",
+            "15.1g",
+            "17%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "3.5g",
+            "1.8g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.5g",
+            "2.8g",
+            "6%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.21g",
+            "0.11g",
+            "2%"
+          ]
+        }
+      ],
+      "footnote": "ri reference intake referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 319.0,
+        "left": 1037.0,
+        "height": 513.0,
+        "width": 972.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702829",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1175kj 283kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "22.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "8.7g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "7.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "14.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.7g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 636.0,
+        "left": 227.0,
+        "height": 254.0,
+        "width": 568.0
+      },
+      {
+        "top": 410.0,
+        "left": 40.0,
+        "height": 301.0,
+        "width": 667.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702830",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "434kj 103kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "2.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.9g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "20.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.70g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 579.0,
+        "left": 1182.0,
+        "height": 427.0,
+        "width": 347.0
+      },
+      {
+        "top": 157.0,
+        "left": 782.0,
+        "height": 492.0,
+        "width": 399.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702832",
+    "text": {
+      "title": "nährwertinformation",
+      "columns": [
+        "",
+        "pro 100g",
+        "1 portion 33g",
+        "rm* pro portion"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "464kj 110kcal",
+            "152kj 36kcal",
+            "2%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "3.0g",
+            "1.0g",
+            "1%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "1.0g",
+            "0.3g",
+            "2%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.5g",
+            "0.2g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.5g",
+            "0.2g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "20g",
+            "6.6g",
+            "13%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.70g",
+            "0.6g",
+            "9%"
+          ]
+        }
+      ],
+      "footnote": "*rm referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 1001.0,
+        "left": 682.0,
+        "height": 266.0,
+        "width": 808.0
+      },
+      {
+        "top": 501.0,
+        "left": 106.0,
+        "height": 347.0,
+        "width": 1040.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702834",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm* pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "498kj 119kcal",
+            "6%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "7.4g",
+            "11%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "5.1g",
+            "26%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "10.4g",
+            "4%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "7.9g",
+            "9%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "1.7g",
+            "3%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.4g",
+            "23%"
+          ]
+        }
+      ],
+      "footnote": "*referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 163.0,
+        "left": 107.0,
+        "height": 302.0,
+        "width": 397.0
+      },
+      {
+        "top": 98.0,
+        "left": 41.0,
+        "height": 279.0,
+        "width": 395.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702836",
+    "text": {
+      "title": "durchschnittliche nährwerte abgetropft",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "521kj 127kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "13.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "3.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "0.9g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.2g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 711.0,
+        "left": 364.0,
+        "height": 261.0,
+        "width": 258.0
+      },
+      {
+        "top": 166.0,
+        "left": 50.0,
+        "height": 260.0,
+        "width": 262.0
+      },
+      {
+        "top": 696.0,
+        "left": 168.0,
+        "height": 269.0,
+        "width": 219.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702840",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "499kj 118kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "2.00g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.80g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.00g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.60g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "24.00g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "4.00g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 685.0,
+        "left": 1103.0,
+        "height": 245.0,
+        "width": 715.0
+      },
+      {
+        "top": 396.0,
+        "left": 15.0,
+        "height": 545.0,
+        "width": 1479.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702859",
+    "text": {
+      "title": "naehrwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1544kj 372kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "30g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "21g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.1g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.1g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "23g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.8g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1604.0,
+        "left": 919.0,
+        "height": 772.0,
+        "width": 1435.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702860",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "2249kj 537kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "33g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "11g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "48g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "22g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "12g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.45g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1217.0,
+        "left": 2460.0,
+        "height": 453.0,
+        "width": 398.0
+      },
+      {
+        "top": 536.0,
+        "left": 866.0,
+        "height": 464.0,
+        "width": 402.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702881",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g",
+        "ø portion 30g",
+        "%ri"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1046kj 250kcal",
+            "314kj 75kcal",
+            "4%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0g",
+            "0g",
+            "0%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0g",
+            "0g",
+            "0%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "60g",
+            "18g",
+            "6%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "27.5g",
+            "8.2g",
+            "16%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "7.5g",
+            "2.2g",
+            "8%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "2.5g",
+            "0.7g",
+            "1%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.08g",
+            "0g",
+            "0%"
+          ]
+        }
+      ],
+      "footnote": "ri reference intake referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 1071.0,
+        "left": 1563.0,
+        "height": 806.0,
+        "width": 1068.0
+      },
+      {
+        "top": 320.0,
+        "left": 57.0,
+        "height": 785.0,
+        "width": 1046.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702892",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g",
+        "1 mettende 75g**",
+        "% 75g*"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1436kj 347kcal",
+            "1077kj 260kcal",
+            "13% 13%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "30g",
+            "23g",
+            "33%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "13g",
+            "9.8g",
+            "49%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g",
+            "0.8g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g",
+            "0.8g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "18g",
+            "14g",
+            "28%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.8g",
+            "2.1g",
+            "35%"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1097.0,
+        "left": 652.0,
+        "height": 616.0,
+        "width": 589.0
+      },
+      {
+        "top": 1015.0,
+        "left": 734.0,
+        "height": 814.0,
+        "width": 778.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702895",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1201kj 290kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "25g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "18g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "16g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.0g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 577.0,
+        "left": 543.0,
+        "height": 419.0,
+        "width": 300.0
+      },
+      {
+        "top": 254.0,
+        "left": 113.0,
+        "height": 485.0,
+        "width": 352.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702896",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1640kj 395kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "31g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "19g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "29g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.50g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 846.0,
+        "left": 319.0,
+        "height": 372.0,
+        "width": 331.0
+      },
+      {
+        "top": 345.0,
+        "left": 61.0,
+        "height": 502.0,
+        "width": 426.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702897",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "433kj 102kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "2.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.8g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "21g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.13g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 665.0,
+        "left": 1228.0,
+        "height": 356.0,
+        "width": 283.0
+      },
+      {
+        "top": 51.0,
+        "left": 917.0,
+        "height": 491.0,
+        "width": 412.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702898",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm* pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1662kj 397kcal",
+            "20%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "18.0g",
+            "26%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "9.8g",
+            "49%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "52.0g",
+            "20%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "33.0g",
+            "37%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "3.6g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "5.3g",
+            "11%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.35g",
+            "6%"
+          ]
+        }
+      ],
+      "footnote": "* referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 744.0,
+        "left": 442.0,
+        "height": 369.0,
+        "width": 522.0
+      },
+      {
+        "top": 202.0,
+        "left": 50.0,
+        "height": 603.0,
+        "width": 843.0
+      },
+      {
+        "top": 20.0,
+        "left": 1673.0,
+        "height": 638.0,
+        "width": 760.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702903",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1620kj 391kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "33.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "14.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "22.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "3.8g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 971.0,
+        "left": 209.0,
+        "height": 267.0,
+        "width": 245.0
+      },
+      {
+        "top": 385.0,
+        "left": 69.0,
+        "height": 356.0,
+        "width": 340.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702904",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "970kj 234kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "20.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "6.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "13.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.00g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 958.0,
+        "left": 378.0,
+        "height": 325.0,
+        "width": 528.0
+      },
+      {
+        "top": 83.0,
+        "left": 64.0,
+        "height": 424.0,
+        "width": 713.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702906",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1175kj 284kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "26.6g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "2.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "8.3g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "5.6g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "1.8g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.63g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 977.0,
+        "left": 866.0,
+        "height": 436.0,
+        "width": 346.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702910",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm* pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "1322kj 312kcal",
+            "16%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.6g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.2g",
+            "1%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "68.0g",
+            "26%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "67.1g",
+            "75%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "5.2g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "2.5g",
+            "5%"
+          ]
+        },
+        {
+          "label": "salz**",
+          "values": [
+            "0.02g",
+            "<1%"
+          ]
+        }
+      ],
+      "footnote": "* referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal ** der salzgehalt ist ausschließlich auf die anwesenheit natürlich vorkommenden natriums zurückzuführen"
+    },
+    "bbox": [
+      {
+        "top": 405.0,
+        "left": 1061.0,
+        "height": 405.0,
+        "width": 570.0
+      },
+      {
+        "top": 195.0,
+        "left": 123.0,
+        "height": 621.0,
+        "width": 888.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702918",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g",
+        "ø portion 50g",
+        "%ri"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1648kj 394kcal",
+            "825kj 197kcal",
+            "10%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "18.8g",
+            "9.4g",
+            "13%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "7.5g",
+            "3.8g",
+            "19%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "48.4g",
+            "24.2g",
+            "9%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "29.9g",
+            "15.0g",
+            "17%"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "3.5g",
+            "1.8g",
+            ""
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "6.0g",
+            "3.0g",
+            "6%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.23g",
+            "0.12g",
+            "2%"
+          ]
+        }
+      ],
+      "footnote": "ri reference intake referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 148.0,
+        "left": 1610.0,
+        "height": 287.0,
+        "width": 445.0
+      },
+      {
+        "top": 210.0,
+        "left": 1358.0,
+        "height": 556.0,
+        "width": 861.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702921",
+    "text": {
+      "title": "durchschnittliche nährwerte valeurs nutritionnelles moyennes je pour",
+      "columns": [
+        "",
+        "100g"
+      ],
+      "rows": [
+        {
+          "label": "energie énergie",
+          "values": [
+            "1033kj 245kcal"
+          ]
+        },
+        {
+          "label": "fett matieres grasses",
+          "values": [
+            "0.4g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren dont acides gras saturés",
+          "values": [
+            "0.2g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate glucides",
+          "values": [
+            "58.0g"
+          ]
+        },
+        {
+          "label": "davon zucker dont sucres",
+          "values": [
+            "35.9g"
+          ]
+        },
+        {
+          "label": "ballaststoffe fibres alimentaires",
+          "values": [
+            "7.7g"
+          ]
+        },
+        {
+          "label": "eiweiß protéines",
+          "values": [
+            "2.6g"
+          ]
+        },
+        {
+          "label": "salz sel",
+          "values": [
+            "0.03g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 192.0,
+        "left": 1325.0,
+        "height": 527.0,
+        "width": 530.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702929",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "431kj 102kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "2.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.8g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "20g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.6g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 439.0,
+        "left": 596.0,
+        "height": 418.0,
+        "width": 312.0
+      },
+      {
+        "top": 39.0,
+        "left": 100.0,
+        "height": 403.0,
+        "width": 300.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702953",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "460kj 109kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "3.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0.4g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "19.8g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.70g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 907.0,
+        "left": 1033.0,
+        "height": 384.0,
+        "width": 399.0
+      },
+      {
+        "top": 491.0,
+        "left": 529.0,
+        "height": 467.0,
+        "width": 526.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702954",
+    "text": {
+      "title": "durchschnittliche nährwerte výživové údaje",
+      "columns": [
+        "",
+        "pro 100g na 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert energetická hodnota",
+          "values": [
+            "464kj 110kcal"
+          ]
+        },
+        {
+          "label": "fett tuky",
+          "values": [
+            "3.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren z toho nasycené mastné kyseliny",
+          "values": [
+            "1.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate sacharidy",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "davon zucker z toho cukry",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß bílkoviny",
+          "values": [
+            "20g"
+          ]
+        },
+        {
+          "label": "salz sůl",
+          "values": [
+            "1.7g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 492.0,
+        "left": 1194.0,
+        "height": 429.0,
+        "width": 432.0
+      },
+      {
+        "top": 55.0,
+        "left": 643.0,
+        "height": 495.0,
+        "width": 536.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702957",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie in kj",
+          "values": [
+            "1095"
+          ]
+        },
+        {
+          "label": "energie in kcal",
+          "values": [
+            "263"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "18.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "8.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "10.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "8.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "15.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.5g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 167.0,
+        "left": 1695.0,
+        "height": 205.0,
+        "width": 366.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702962",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "100g",
+        "1 portion 40g**",
+        "% 40g*"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "656kj 157kcal",
+            "262kj 63kcal",
+            "3% 3%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "9.0g",
+            "3.6g",
+            "5%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "3.6g",
+            "1.4g",
+            "7%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "1.0g",
+            "0.4g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "1.0g",
+            "0.4g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "18.0g",
+            "7.2g",
+            "14%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.50g",
+            "1.00g",
+            "17%"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 3055.0,
+        "left": 132.0,
+        "height": 601.0,
+        "width": 1062.0
+      },
+      {
+        "top": 496.0,
+        "left": 72.0,
+        "height": 589.0,
+        "width": 1057.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800305",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "211kj 50kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.2g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "12.2g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "12.1g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "0.7g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.0g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1323.0,
+        "left": 1129.0,
+        "height": 581.0,
+        "width": 456.0
+      },
+      {
+        "top": 1310.0,
+        "left": 612.0,
+        "height": 595.0,
+        "width": 617.0
+      },
+      {
+        "top": 1246.0,
+        "left": 322.0,
+        "height": 607.0,
+        "width": 386.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800416",
+    "text": {
+      "title": "durchschnittliche nährwerte abgetropftes produkt",
+      "columns": [
+        "",
+        "pro 100g",
+        "%rm* pro 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert kj kcal",
+          "values": [
+            "106 25",
+            "1%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.3g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.1g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "4.1g",
+            "2%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "3.2g",
+            "4%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "0.6g",
+            "1%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.55g",
+            "9%"
+          ]
+        }
+      ],
+      "footnote": "* referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 612.0,
+        "left": 752.0,
+        "height": 795.0,
+        "width": 593.0
+      },
+      {
+        "top": 605.0,
+        "left": 438.0,
+        "height": 715.0,
+        "width": 479.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800435",
+    "text": {
+      "title": "nährwertangabe",
+      "columns": [
+        "",
+        "je 100ml"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "143kj 34kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "<0.1g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "7.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "7.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "<0.01g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1551.0,
+        "left": 312.0,
+        "height": 215.0,
+        "width": 251.0
+      },
+      {
+        "top": 915.0,
+        "left": 149.0,
+        "height": 326.0,
+        "width": 403.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800445",
+    "text": {
+      "title": "",
+      "columns": [
+        "",
+        "ø 100g**"
+      ],
+      "rows": [
+        {
+          "label": "brennwert energy",
+          "values": [
+            "272kj 64kcal"
+          ]
+        },
+        {
+          "label": "fett fat",
+          "values": [
+            "0.1g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren of which saturates",
+          "values": [
+            "<0.1g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate carbohydrate",
+          "values": [
+            "14g"
+          ]
+        },
+        {
+          "label": "davon zucker of which sugars",
+          "values": [
+            "12g"
+          ]
+        },
+        {
+          "label": "ballaststoffe fibre",
+          "values": [
+            "1.3g"
+          ]
+        },
+        {
+          "label": "eiweiß protein",
+          "values": [
+            "0.7g"
+          ]
+        },
+        {
+          "label": "salz salt",
+          "values": [
+            "0.01g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1072.0,
+        "left": 603.0,
+        "height": 510.0,
+        "width": 672.0
+      },
+      {
+        "top": 55.0,
+        "left": 20.0,
+        "height": 515.0,
+        "width": 644.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800462",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g",
+        "%ri"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "92kj 22kcal",
+            "1%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "<0.5g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "<0.1g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "2.5g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "2.5g",
+            "3%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "1.5g",
+            "3%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.08g",
+            "1%"
+          ]
+        }
+      ],
+      "footnote": "ri reference intake referenzmenge für einen durchschnittlichen erwachsenen 8400kj 2000kcal"
+    },
+    "bbox": [
+      {
+        "top": 237.0,
+        "left": 440.0,
+        "height": 343.0,
+        "width": 547.0
+      },
+      {
+        "top": 69.0,
+        "left": 113.0,
+        "height": 415.0,
+        "width": 759.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800463",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "505kj 120kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "4.0g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "2.0g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "21.0g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.19g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1581.0,
+        "left": 586.0,
+        "height": 239.0,
+        "width": 270.0
+      },
+      {
+        "top": 1219.0,
+        "left": 643.0,
+        "height": 374.0,
+        "width": 417.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800469",
+    "text": {
+      "title": "durchschnittliche nährwerte abgetropft",
+      "columns": [
+        "",
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "503kj 119kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "1.6g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.6g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "26g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "1.00g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 725.0,
+        "left": 1199.0,
+        "height": 608.0,
+        "width": 455.0
+      },
+      {
+        "top": 740.0,
+        "left": 578.0,
+        "height": 606.0,
+        "width": 492.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800473",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100g",
+        "2 scheiben ≈ 36g **",
+        "% ≈ 36g *"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "299kj 71kcal",
+            "108kj 26kcal",
+            "1% 1%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "1.0g",
+            "<0.5g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "<0.1g",
+            "<0.1g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "6.0g",
+            "2.2g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "6.0g",
+            "2.2g",
+            "2%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "8.0g",
+            "2.9g",
+            "6%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "2.0g",
+            "0.72g",
+            "12%"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 602.0,
+        "left": 788.0,
+        "height": 444.0,
+        "width": 497.0
+      },
+      {
+        "top": 149.0,
+        "left": 529.0,
+        "height": 436.0,
+        "width": 479.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800478",
+    "text": {
+      "title": "nährwerte",
+      "columns": [
+        "",
+        "ø 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "1273kj 301kcal"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.4g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0.1g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "67.0g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "63.0g"
+          ]
+        },
+        {
+          "label": "ballaststoffe",
+          "values": [
+            "8.0g"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "2.5g"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0.01g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1163.0,
+        "left": 270.0,
+        "height": 438.0,
+        "width": 510.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800489",
+    "text": {
+      "title": "durchschnittliche nährwerte valeurs nutritionnelles moyennes average nutritional values",
+      "columns": [
+        "",
+        "pro 100g pour 100g per 100g"
+      ],
+      "rows": [
+        {
+          "label": "brennwert énergie energy",
+          "values": [
+            "1.169kj 276kcal"
+          ]
+        },
+        {
+          "label": "fett matières grasses fat",
+          "values": [
+            "0.5g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren dont acides gras saturés of which saturates",
+          "values": [
+            "<0.1g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate glucides carbohydrate",
+          "values": [
+            "55g"
+          ]
+        },
+        {
+          "label": "davon zucker dont sucres of which sugars",
+          "values": [
+            "49g"
+          ]
+        },
+        {
+          "label": "eiweiß protéines protein",
+          "values": [
+            "4.8g"
+          ]
+        },
+        {
+          "label": "salz sel salt",
+          "values": [
+            "0.03g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1161.0,
+        "left": 1007.0,
+        "height": 440.0,
+        "width": 766.0
+      },
+      {
+        "top": 868.0,
+        "left": 56.0,
+        "height": 534.0,
+        "width": 896.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800495",
+    "text": {
+      "title": "durchschnittliche nährwerte valeurs nutritionnelles moyennes gemiddelde voedingswaarden",
+      "columns": [
+        "",
+        "je 100g pour 100g per 100g"
+      ],
+      "rows": [
+        {
+          "label": "energie énergie energie",
+          "values": [
+            "606kj 145kcal"
+          ]
+        },
+        {
+          "label": "fett matières grasses vetten",
+          "values": [
+            "7g"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren dont acides gras saturés waarvan verzadigde vetzuren",
+          "values": [
+            "2g"
+          ]
+        },
+        {
+          "label": "kohlenhydrate glucides koolhydraten",
+          "values": [
+            "2g"
+          ]
+        },
+        {
+          "label": "davon zucker dont sucres waarvan suikers",
+          "values": [
+            "<0.5g"
+          ]
+        },
+        {
+          "label": "eiweiß protéines eiwitten",
+          "values": [
+            "20g"
+          ]
+        },
+        {
+          "label": "salz sel zout",
+          "values": [
+            "0.10g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 2187.0,
+        "left": 783.0,
+        "height": 394.0,
+        "width": 1440.0
+      },
+      {
+        "top": 1967.0,
+        "left": 489.0,
+        "height": 392.0,
+        "width": 1367.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800962",
+    "text": {
+      "title": "nährwerteskennzeichnung",
+      "columns": [
+        "je 100g"
+      ],
+      "rows": [
+        {
+          "label": "",
+          "values": [
+            "brennwert 151kcal 631kj"
+          ]
+        },
+        {
+          "label": "",
+          "values": [
+            "fett 2.1g"
+          ]
+        },
+        {
+          "label": "",
+          "values": [
+            "davon gesättigte fettsäuren 0.5g"
+          ]
+        },
+        {
+          "label": "",
+          "values": [
+            "kohlenhydrate 23g"
+          ]
+        },
+        {
+          "label": "",
+          "values": [
+            "davon zucker 11g"
+          ]
+        },
+        {
+          "label": "",
+          "values": [
+            "eiweiß 7.3g"
+          ]
+        },
+        {
+          "label": "",
+          "values": [
+            "salz 0.15g"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 1075.0,
+        "left": 137.0,
+        "height": 812.0,
+        "width": 605.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5801200",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100ml",
+        "1 glas 250ml**",
+        "% 250ml*"
+      ],
+      "rows": [
+        {
+          "label": "brennwert",
+          "values": [
+            "213kj 50kcal",
+            "533kj 125kcal",
+            "6% 6%"
+          ]
+        },
+        {
+          "label": "fett",
+          "values": [
+            "0.1g",
+            "0.3g",
+            "<1%"
+          ]
+        },
+        {
+          "label": "davon gesättigte fettsäuren",
+          "values": [
+            "0g",
+            "0g",
+            "0%"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "11.9g",
+            "29.8g",
+            "11%"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "11.5g",
+            "28.8g",
+            "32%"
+          ]
+        },
+        {
+          "label": "eiweiß",
+          "values": [
+            "0.2g",
+            "0.5g",
+            "1%"
+          ]
+        },
+        {
+          "label": "salz",
+          "values": [
+            "0g",
+            "0g",
+            "0%"
+          ]
+        }
+      ],
+      "footnote": ""
+    },
+    "bbox": [
+      {
+        "top": 862.0,
+        "left": 1313.0,
+        "height": 351.0,
+        "width": 389.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-6801327",
+    "text": {
+      "title": "durchschnittliche nährwerte",
+      "columns": [
+        "",
+        "je 100ml"
+      ],
+      "rows": [
+        {
+          "label": "energie",
+          "values": [
+            "419kj 100kcal"
+          ]
+        },
+        {
+          "label": "kohlenhydrate",
+          "values": [
+            "7.8g"
+          ]
+        },
+        {
+          "label": "davon zucker",
+          "values": [
+            "7.8g"
+          ]
+        }
+      ],
+      "footnote": "enthält geringfügige mengen an fett gesättigten fettsäuren eiweiß und salz"
+    },
+    "bbox": [
+      {
+        "top": 1881.0,
+        "left": 538.0,
+        "height": 159.0,
+        "width": 237.0
+      },
+      {
+        "top": 1882.0,
+        "left": 367.0,
+        "height": 162.0,
+        "width": 279.0
+      },
+      {
+        "top": 592.0,
+        "left": 83.0,
+        "height": 232.0,
+        "width": 405.0
+      }
+    ]
+  }
+]

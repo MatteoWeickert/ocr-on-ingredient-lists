@@ -1,0 +1,1900 @@
+[
+  {
+    "produktnr": "2024-5701435",
+    "text": {
+      "ingredients_text": "zutaten 88% naturjoghurt mild mit 4% fett im milchanteil 12% mangozubereitung (50% mangopüree (aus konzentrat) saccharose stabilisator stärke (wachsmais physikalisch modifiziert) karottensaftkonzentrat säureregulator zitronensaftkonzentrat natürliche aromen)"
+    },
+    "bbox": [
+      {
+        "top": 996.0,
+        "left": 1459.0,
+        "height": 727.0,
+        "width": 573.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5701468",
+    "text": {
+      "ingredients_text": "zutaten schweineleber 40% schweinefleisch 38% schweinespeck frische zwiebeln trinkwasser nitritpökelsalz (speisesalz konservierungsstoff natriumnitrit) gewürze dextrose kräuter"
+    },
+    "bbox": [
+      {
+        "top": 1083.0,
+        "left": 575.0,
+        "height": 128.0,
+        "width": 793.0
+      },
+      {
+        "top": 565.0,
+        "left": 77.0,
+        "height": 165.0,
+        "width": 1017.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702515",
+    "text": {
+      "ingredients_text": "zutaten sauermilchquark speisesalz säureregulator calciumcarbonat natriumhydrogencarbonat milcheiweiß reifungskulturen kümmel"
+    },
+    "bbox": [
+      {
+        "top": 393.0,
+        "left": 404.0,
+        "height": 144.0,
+        "width": 438.0
+      },
+      {
+        "top": 105.0,
+        "left": 61.0,
+        "height": 238.0,
+        "width": 707.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702516",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch (44%) schweineleber (29%) speck speisesalz traubenzucker glukosesirup calciumcarbonat gewürze gewürzextrakte vitamine (vitamin e niacin calcium-d-pantothenat vitamin b6 thiamin folsäure biotin) emulgator citronensäureester von mono- und diglyceriden von speisefettsäuren antioxidationsmittel natriumascorbat konservierungsstoff natriumnitrit kaliumiodat wursthülle nicht essbar kann spuren von milcheiweiß enthalten"
+    },
+    "bbox": [
+      {
+        "top": 413.0,
+        "left": 468.0,
+        "height": 256.0,
+        "width": 661.0
+      },
+      {
+        "top": 171.0,
+        "left": 105.0,
+        "height": 381.0,
+        "width": 963.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702518",
+    "text": {
+      "ingredients_text": "zutaten weizenmehl glukose-fruktose-sirup farinzucker krümelkandiszucker gewürze zimt backtriebmittel natriumcarbonate ammoniumcarbonate kartoffelstärke apfelextrakt kann schalenfrüchte erdnüsse ei milch lupine sesam und soja enthalten"
+    },
+    "bbox": [
+      {
+        "top": 1083.0,
+        "left": 182.0,
+        "height": 246.0,
+        "width": 618.0
+      },
+      {
+        "top": 171.0,
+        "left": 41.0,
+        "height": 368.0,
+        "width": 896.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702519",
+    "text": {
+      "ingredients_text": "zutaten getrocknete apfelringe konservierungsstoff (schwefeldioxid) hinweise für allergiker kann spuren enthalten von gluten ei erdnüssen soja milch sesam und schalenfrüchten"
+    },
+    "bbox": [
+      {
+        "top": 837.0,
+        "left": 176.0,
+        "height": 82.0,
+        "width": 336.0
+      },
+      {
+        "top": 421.0,
+        "left": 50.0,
+        "height": 97.0,
+        "width": 465.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702531",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch* jodiertes speisesalz (speisesalz kaliumjodat) dextrose gewürze gewürzextrakte antioxidationsmittel (natriumascorbat ascorbinsäure) konservierungsstoff natriumnitrit reifekulturen rauch 100g salami sind hergestellt aus 122g schweinefleisch *qs-ware kann spuren von haselnüssen mandeln walnüssen milch und senf enthalten"
+    },
+    "bbox": [
+      {
+        "top": 722.0,
+        "left": 390.0,
+        "height": 200.0,
+        "width": 870.0
+      },
+      {
+        "top": 489.0,
+        "left": 64.0,
+        "height": 298.0,
+        "width": 1270.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702532",
+    "text": {
+      "ingredients_text": "zutaten zucker weizenmehl glukose-fruktose-sirup kakaomasse kakaobutter honig mandeln vollmilchpulver haselnüsse farinzucker apfelmark invertzuckersirup pistazien aprikosenkerne krümelkandiszucker orangenschalen zitronenschalen süßmolkenpulver gewürze zimt backtriebmittel natriumcarbonate kaliumcarbonate ammoniumcarbonate butterreinfett walnüsse magermilchpulver emulgator lecithine (enthält soja) kartoffelstärke fruktose feuchthaltemittel sorbit glycerin invertase aprikosenpüree feigenpaste flüssiges vollei weizenstärke weizengrieß milchzucker karamellzuckersirup milcheiweiß dextrose salz flüssiges hühnereieiweiß säuerungsmittel citronensäure natriumcitrate äpfelsäure apfelextrakt natürliches vanillearoma natürliches apfelaroma natürliches orangen-aroma natürliches aroma glukosesirup sonnenblumenöl verdickungsmittel gummi arabicum erbsenprotein reismehl geliermittel pektine agar-agar säureregulator kaliumcitrate kann andere schalenfrüchte erdnüsse lupine und sesam enthalten"
+    },
+    "bbox": [
+      {
+        "top": 1099.0,
+        "left": 83.0,
+        "height": 373.0,
+        "width": 929.0
+      },
+      {
+        "top": 103.0,
+        "left": 45.0,
+        "height": 478.0,
+        "width": 1310.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702537",
+    "text": {
+      "ingredients_text": "zutaten gouda (milch speisesalz säuerungskulturen labaustauschstoff) stärke"
+    },
+    "bbox": [
+      {
+        "top": 1342.0,
+        "left": 1460.0,
+        "height": 125.0,
+        "width": 584.0
+      },
+      {
+        "top": 159.0,
+        "left": 1665.0,
+        "height": 150.0,
+        "width": 771.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702542",
+    "text": {
+      "ingredients_text": "zutaten käsereimilch rahm speisesalz milchsäurekulturen (enthält milch) mikrobielles lab blauschimmelkultur reifekultur"
+    },
+    "bbox": [
+      {
+        "top": 256.0,
+        "left": 188.0,
+        "height": 140.0,
+        "width": 723.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702543",
+    "text": {
+      "ingredients_text": "zutaten sauermilchquark speisesalz milcheiweiß säureregulator (calciumcarbonat natriumhydrogencarbonat) kümmel reifungskulturen"
+    },
+    "bbox": [
+      {
+        "top": 512.0,
+        "left": 130.0,
+        "height": 158.0,
+        "width": 880.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702546",
+    "text": {
+      "ingredients_text": "zutaten sauermilchquark speisesalz säureregulator calciumcarbonat natriumhydrogencarbonat milcheiweiß reifungskulturen kümmel"
+    },
+    "bbox": [
+      {
+        "top": 328.0,
+        "left": 334.0,
+        "height": 148.0,
+        "width": 452.0
+      },
+      {
+        "top": 86.0,
+        "left": 34.0,
+        "height": 157.0,
+        "width": 505.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702547",
+    "text": {
+      "ingredients_text": "zutaten pasteurisierte schafmilch pasteurisierte ziegenmilch meersalz kulturen mikrobielles lab"
+    },
+    "bbox": [
+      {
+        "top": 919.0,
+        "left": 517.0,
+        "height": 191.0,
+        "width": 467.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702549",
+    "text": {
+      "ingredients_text": "zutaten 86% kokosnussfleisch¹ wasser ¹aus kontrolliert ökologischer landwirtschaft"
+    },
+    "bbox": [
+      {
+        "top": 262.0,
+        "left": 146.0,
+        "height": 52.0,
+        "width": 343.0
+      },
+      {
+        "top": 271.0,
+        "left": 437.0,
+        "height": 36.0,
+        "width": 395.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702551",
+    "text": {
+      "ingredients_text": "zutaten 29% rosinen weizenmehl 11% butter 5.1% mandeln wasser 4% butterreinfett dekorpuder (dextrose weizenstärke palmfett ganz gehärtet) 3.5% marzipan (zucker mandeln) zucker glukose-fruktose-sirup orangeat (orangenschalen glukose-fruktose-sirup zucker säuerungsmittel citronensäure) hefe zitronat (zitronenschalen glukose-fruktose-sirup zucker säuerungsmittel citronensäure) feuchthaltemittel sorbit haselnüsse weizenstärke emulgator mono- und diglyceride von speisefettsäuren natriumstearoyl-2-lactylat natürliches aroma speisesalz das produkt kann spuren von hühnerei und anderen schalenfrüchten enthalten"
+    },
+    "bbox": [
+      {
+        "top": 766.0,
+        "left": 493.0,
+        "height": 341.0,
+        "width": 481.0
+      },
+      {
+        "top": 31.0,
+        "left": 1685.0,
+        "height": 448.0,
+        "width": 616.0
+      },
+      {
+        "top": 153.0,
+        "left": 363.0,
+        "height": 473.0,
+        "width": 676.0
+      },
+      {
+        "top": 668.0,
+        "left": 1465.0,
+        "height": 387.0,
+        "width": 457.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702557",
+    "text": {
+      "ingredients_text": "zutaten hirschfleisch schweinefleisch schweinespeck jodiertes speisesalz (speisesalz kaliumiodat) traubenzucker gewürze gewürzextrakte antioxidationsmittel natriumascorbat konservierungsstoff natriumnitrit reifekulturen buchenholzrauch 100g salami hergestellt aus 54g hirschfleisch 53g schweinefleisch und 19g schweinespeck"
+    },
+    "bbox": [
+      {
+        "top": 1664.0,
+        "left": 1273.0,
+        "height": 338.0,
+        "width": 1107.0
+      },
+      {
+        "top": 651.0,
+        "left": 92.0,
+        "height": 334.0,
+        "width": 1065.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702560",
+    "text": {
+      "ingredients_text": "zutaten rosinen weizenmehl butter 11% mandel-haselnuss-mischung 6% (mandeln 5.1%¹ haselnüsse) wasser zucker glukose-fruktose-sirup butterreinfett 4%² dextrose hefe orangenschalen mandeln 0.9% feuchthaltemittel (sorbit) zitronenschalen weizenstärke emulgatoren (mono- und diglyceride von speisefettsäuren natriumstearoyl-2-lactylat) natürliches aroma speisesalz palmfett ganz gehärtet ¹bezogen auf das endprodukt ²entspricht 4.8% butter kann spuren von weiteren schalenfrüchten und ei enthalten"
+    },
+    "bbox": [
+      {
+        "top": 727.0,
+        "left": 271.0,
+        "height": 263.0,
+        "width": 741.0
+      },
+      {
+        "top": 194.0,
+        "left": 101.0,
+        "height": 258.0,
+        "width": 885.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702563",
+    "text": {
+      "ingredients_text": "zutaten schafmilch* ziegenmilch* speisesalz mikrobielles lab säuerungskulturen *aus kontrolliert biologischer landwirtschaft"
+    },
+    "bbox": [
+      {
+        "top": 620.0,
+        "left": 773.0,
+        "height": 91.0,
+        "width": 883.0
+      },
+      {
+        "top": 319.0,
+        "left": 36.0,
+        "height": 105.0,
+        "width": 1074.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702565",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch hirschfleisch speisesalz gewürze gewürzextrakte dextrose antioxidationsmittel (natriumascorbat ascorbinsäure) konservierungsstoff (natriumnitrit kaliumnitrat) reifekulturen"
+    },
+    "bbox": [
+      {
+        "top": 1033.0,
+        "left": 574.0,
+        "height": 401.0,
+        "width": 563.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702568",
+    "text": {
+      "ingredients_text": "zutaten pasteurisierte schafsmilch¹ pasteurisierte ziegenmilch¹ mikrobielles lab käsereikulturen speisesalz ¹aus kontrolliert ökologischer landwirtschaft die verwendete milch für bio feta g u besteht laut gesetz aus mindestens 70% schafsmilch und maximal 30% ziegenmilch"
+    },
+    "bbox": [
+      {
+        "top": 699.0,
+        "left": 509.0,
+        "height": 103.0,
+        "width": 872.0
+      },
+      {
+        "top": 102.0,
+        "left": 68.0,
+        "height": 135.0,
+        "width": 1267.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702575",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch 78% trinkwasser speck jodiertes nitritpökelsalz (speisesalz konservierungsstoff natriumnitrit kaliumjodat) dextrose gewürze (enthält senf sellerie) stabilisatoren natriumcitrate diphosphate geschmacksverstärker mononatriumglutamat glukosesirup antioxidationsmittel ascorbinsäure natriumascorbat gewürzextrakte hefeextrakt aroma säureregulatoren natriumacetate kaliumlactat karamellzuckersirup kann spuren von milch und ei enthalten"
+    },
+    "bbox": [
+      {
+        "top": 1341.0,
+        "left": 1717.0,
+        "height": 426.0,
+        "width": 1347.0
+      },
+      {
+        "top": 392.0,
+        "left": 94.0,
+        "height": 417.0,
+        "width": 1315.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702579",
+    "text": {
+      "ingredients_text": "zutaten 100% schweinefleisch"
+    },
+    "bbox": [
+      {
+        "top": 651.0,
+        "left": 1407.0,
+        "height": 140.0,
+        "width": 388.0
+      },
+      {
+        "top": 155.0,
+        "left": 77.0,
+        "height": 111.0,
+        "width": 390.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702580",
+    "text": {
+      "ingredients_text": "zutaten gemüsemais wasser speisesalz"
+    },
+    "bbox": [
+      {
+        "top": 352.0,
+        "left": 328.0,
+        "height": 77.0,
+        "width": 572.0
+      },
+      {
+        "top": 431.0,
+        "left": 267.0,
+        "height": 71.0,
+        "width": 575.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702588",
+    "text": {
+      "ingredients_text": "zutaten vegane wurst typ lyoner auf sojabasis 40% (trinkwasser sojaeiweiß rapsöl citrusfaser speisesalz modifizierte stärke aroma zucker verdickungsmittel carrageen xanthan konjak gewürze rettichkonzentrat antioxidationsmittel ascorbinsäure gewürzextrakte festigungsmittel kaliumchlorid dextrose flohsamenschalen stärke) rapsöl gurken 16% trinkwasser zucker branntweinessig speisesalz stärke senfsaaten modifizierte stärke gewürze verdickungsmittel guarkernmehl xanthan säureregulator natriumacetate"
+    },
+    "bbox": [
+      {
+        "top": 418.0,
+        "left": 534.0,
+        "height": 518.0,
+        "width": 852.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702599",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch* speck* jodiertes speisesalz (speisesalz kaliumiodat) dextrose gewürze antioxidationsmittel ascorbinsäure konservierungsstoff natriumnitrit reifungskulturen buchenholzrauch *qs-ware dieses produkt ist laktosefrei und von natur aus glutenfrei"
+    },
+    "bbox": [
+      {
+        "top": 335.0,
+        "left": 437.0,
+        "height": 285.0,
+        "width": 669.0
+      },
+      {
+        "top": 172.0,
+        "left": 156.0,
+        "height": 259.0,
+        "width": 834.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702602",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch¹ jodiertes speisesalz (speisesalz kaliumjodat) gewürze (pfeffer knoblauch muskat macis chili) gewürzextrakte (chili pfeffer muskat macis) dextrose antioxidationsmittel natriumascorbat extrakt aus rosmarin konservierungsstoff natriumnitrit reifekulturen edelschimmelkulturen wursthülle nicht zum verzehr geeignet ¹qs-ware 100g salami werden aus 155g schweinefleisch hergestellt kann spuren von milch senf sellerie und nüssen enthalten"
+    },
+    "bbox": [
+      {
+        "top": 415.0,
+        "left": 153.0,
+        "height": 519.0,
+        "width": 494.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702603",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch¹ jodiertes salz (speisesalz kaliumjodat) gewürze (pfeffer kardamom muskat koriander knoblauch) glukosesirup dextrose antioxidationsmittel natriumascorbat konservierungsstoffe natriumnitrit kaliumsorbat fermentkulturen ¹qs-ware wursthülle nicht zum verzehr geeignet weiß pigmentiert oberbfläche behandelt mit konservierungsstoff kaliumsorbat kann spuren von senf sellerie und milch enthalten"
+    },
+    "bbox": [
+      {
+        "top": 337.0,
+        "left": 169.0,
+        "height": 295.0,
+        "width": 635.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702604",
+    "text": {
+      "ingredients_text": "zutaten ölsamen (mandeln haselnüsse walnüsse) zucker kandierte orangenschalen (orangenschalen glukose-fruktose-sirup zucker säuerungsmittel citronensäure) kakaomasse weizenmehl feuchthaltemittel glycerin sorbit glukosefruktose-sirup backoblaten (weizenmehl kartoffelstärke) kandierte zitronenschalen (zitronenschalen glukose-fruktose-sirup zucker säuerungsmittel citronensäure) feigenpaste flüssiges hühnereieiweiß¹ kakaobutter vollei¹ weizengrieß glukosesirup aprikosenpüree butterreinfett gewürze zimt honig backtriebmittel natriumcarbonate invertzuckersirup traubenzucker salz erbsenprotein emulgator lecithine natürliches aroma geliermittel pektine säuerungsmittel citronensäure säureregulator kaliumcitrate reismehl vollmilchpulver ¹aus bodenhaltung kann spuren von anderen schalenfrüchten erdnüssen lupinen sesam und soja enthalten"
+    },
+    "bbox": [
+      {
+        "top": 911.0,
+        "left": 836.0,
+        "height": 390.0,
+        "width": 641.0
+      },
+      {
+        "top": 172.0,
+        "left": 657.0,
+        "height": 328.0,
+        "width": 590.0
+      },
+      {
+        "top": 87.0,
+        "left": 52.0,
+        "height": 515.0,
+        "width": 921.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702608",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch* speck* nitritpökelsalz (speisesalz konservierungsstoff natriumnitrit) gewürze dextrose zucker gewürzextrakte stabilisator natriumcitrate antioxidationsmittel natriumascorbat ascorbinsäure buchenholzrauch *qs-ware dieses produkt ist laktosefrei und von natur aus glutenfrei"
+    },
+    "bbox": [
+      {
+        "top": 1540.0,
+        "left": 409.0,
+        "height": 430.0,
+        "width": 1153.0
+      },
+      {
+        "top": 630.0,
+        "left": 233.0,
+        "height": 376.0,
+        "width": 1138.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702609",
+    "text": {
+      "ingredients_text": "zutaten 43% schweinefleisch schwarten speck 7% schweineblut nitritpökelsalz (speisesalz konservierungsstoff natriumnitrit) gewürze schweineleber"
+    },
+    "bbox": [
+      {
+        "top": 1117.0,
+        "left": 774.0,
+        "height": 458.0,
+        "width": 425.0
+      },
+      {
+        "top": 1092.0,
+        "left": 330.0,
+        "height": 447.0,
+        "width": 259.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702611",
+    "text": {
+      "ingredients_text": "zutaten weizenmehl zucker marzipan (zucker mandeln wasser) vollei* 7% haselnusskerne gemahlen palmfett rapsöl wasser hefe glukose-fruktose-sirup emulgatoren mono- und diglyceride von speisefettsäuren** natriumstearoyl-2-lactylat modifizierte stärke weizeneiweiß säureregulator natriumacetate süßmolkenpulver magermilchpulver speisesalz dextrose verdickungsmittel xanthan natriumalginat natürliches aroma säuerungsmittel citronensäure backtriebmittel diphosphate natriumcarbonate stabilisatoren natriumphosphate calciumsulfat färbendes kurkuma *von eiern aus bodenhaltung **auf pflanzlicher basis kann spuren von erdnüssen soja und anderen schalenfrüchten enthalten"
+    },
+    "bbox": [
+      {
+        "top": 1680.0,
+        "left": 1187.0,
+        "height": 561.0,
+        "width": 1498.0
+      },
+      {
+        "top": 194.0,
+        "left": 187.0,
+        "height": 555.0,
+        "width": 1488.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702616",
+    "text": {
+      "ingredients_text": "zutaten marinierte lyoner 46% ((schweinefleisch wasser nitritpökelsalz (speisesalz konservierungsstoff natriumnitrit) dextrose maltodextrin gewürze stabilisator diphosphate emulgator mono- und diglyceride von speisefettsäuren antioxidationsmittel ascorbinsäure natriumascorbat würze gewürzextrakte) zucker kräuteressig (branntweinessig würze natürliches aroma) branntweinessig speisesalz) mayonnaise 40% (rapsöl eigelb zucker branntweinessig senf (wasser senfsaat branntweinessig speisesalz zucker gewürze) speisesalz) gewürzgurken 11% (gurken branntweinessig speisesalz zucker) zucker speisesalz kräuteressig (branntweinessig würze natürliches aroma) pfeffer knoblauch zitronensaftkonzentrat"
+    },
+    "bbox": [
+      {
+        "top": 690.0,
+        "left": 376.0,
+        "height": 802.0,
+        "width": 825.0
+      },
+      {
+        "top": 239.0,
+        "left": 118.0,
+        "height": 1200.0,
+        "width": 1230.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702617",
+    "text": {
+      "ingredients_text": "zutaten weißkohl 70% zucker rapsöl branntweinessig paprika 4% zwiebeln 4% speisesalz pfeffer antioxidationsmittel ascorbinsäure"
+    },
+    "bbox": [
+      {
+        "top": 878.0,
+        "left": 410.0,
+        "height": 190.0,
+        "width": 750.0
+      },
+      {
+        "top": 63.0,
+        "left": 61.0,
+        "height": 226.0,
+        "width": 861.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702625",
+    "text": {
+      "ingredients_text": "zutaten wasser kokosnussöl 21% modifizierte stärke (kartoffel tapioka) meersalz olivenextrakt natürliches aroma farbstoff (carotin)"
+    },
+    "bbox": [
+      {
+        "top": 971.0,
+        "left": 586.0,
+        "height": 141.0,
+        "width": 1836.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702626",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch speck jodiertes speisesalz (speisesalz kaliumjodat) gewürze würze gewürzextrakte dextrose zucker antioxidationsmittel (ascorbinsäure natriumascorbat) säuerungsmittel (citronensäure) konservierungsstoff (natriumnitrit) reifekulturen schafsaitling buchenholzrauch 100g pfefferbeißer werden aus 128g fleisch hergestellt enthält spuren von senf und sellerie"
+    },
+    "bbox": [
+      {
+        "top": 601.0,
+        "left": 1667.0,
+        "height": 556.0,
+        "width": 1073.0
+      },
+      {
+        "top": 255.0,
+        "left": 106.0,
+        "height": 533.0,
+        "width": 1068.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702627",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch speisesalz gewürze gewürzextrakte antioxidationsmittel ascorbinsäure konservierungsstoff natriumnitrit erlenholzrauch buchenholzrauch wursthülle nicht essbar das produkt kann spuren von soja gluten milch schalenfrüchten sellerie und senf enthalten"
+    },
+    "bbox": [
+      {
+        "top": 1125.0,
+        "left": 477.0,
+        "height": 416.0,
+        "width": 685.0
+      },
+      {
+        "top": 486.0,
+        "left": 85.0,
+        "height": 226.0,
+        "width": 780.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702631",
+    "text": {
+      "ingredients_text": "zutaten wild-preiselbeeren 40% zucker wasser geliermittel (pektine)"
+    },
+    "bbox": [
+      {
+        "top": 1058.0,
+        "left": 1179.0,
+        "height": 80.0,
+        "width": 210.0
+      },
+      {
+        "top": 1070.0,
+        "left": 725.0,
+        "height": 91.0,
+        "width": 629.0
+      },
+      {
+        "top": 1061.0,
+        "left": 323.0,
+        "height": 110.0,
+        "width": 627.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702632",
+    "text": {
+      "ingredients_text": "zutaten frischkäse wasser speisesalz zwiebeln schnittlauch petersilie spinat dill verdickungsmittel guarkernmehl gewürze dieses produkt ist glutenfrei"
+    },
+    "bbox": [
+      {
+        "top": 345.0,
+        "left": 571.0,
+        "height": 198.0,
+        "width": 638.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702633",
+    "text": {
+      "ingredients_text": "zutaten entrahmte milch wasser 7% heidelbeeren modifizierte stärke zitronensaftkonzentrat verdickungsmittel pektine xanthan färbendes karottenkonzentrat säureregulatoren calciumcitrate citronensäure starterkulturen (enthält milch) mikrobielles lab natürliches aroma (enthält milch) süßungsmittel aspartam acesulfam k kann spuren von gluten enthalten enthält eine phenylalaninquelle"
+    },
+    "bbox": [
+      {
+        "top": 745.0,
+        "left": 478.0,
+        "height": 192.0,
+        "width": 567.0
+      },
+      {
+        "top": 732.0,
+        "left": 325.0,
+        "height": 187.0,
+        "width": 643.0
+      },
+      {
+        "top": 101.0,
+        "left": 24.0,
+        "height": 221.0,
+        "width": 643.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702636",
+    "text": {
+      "ingredients_text": "zutaten weizenmehl zucker 20% butterreinfett volleipulver* speisesalz backtriebmittel diphosphate natriumcarbonate farbstoff carotin *von eiern aus bodenhaltung kann spuren von schalenfrüchten erdnüssen lupinen sesam und soja enthalten"
+    },
+    "bbox": [
+      {
+        "top": 137.0,
+        "left": 52.0,
+        "height": 297.0,
+        "width": 580.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702656",
+    "text": {
+      "ingredients_text": "zutaten 66% schweinefleisch¹ wasser speisegelatine (schwein) jodiertes nitritpökelsalz (speisesalz kaliumjodat konservierungsstoff natriumnitrit) dextrose gewürze (enthält sellerie) stabilisatoren (diphosphate triphosphate natriumcitrate) antioxidationsmittel natriumascorbat säuerungsmittel essigsäure gewürzextrakte kräuter kann spuren von senf weizen (gluten) milch und soja enthalten ¹qs-ware"
+    },
+    "bbox": [
+      {
+        "top": 647.0,
+        "left": 553.0,
+        "height": 425.0,
+        "width": 783.0
+      },
+      {
+        "top": 186.0,
+        "left": 43.0,
+        "height": 440.0,
+        "width": 813.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702657",
+    "text": {
+      "ingredients_text": "zutaten 30% kartoffeln (enthält sulfit) wasser 17.5%¹ gebratene frikadellen (schweinefleisch z t fein zerkleinert ei paniermehl (weizenmehl wasser salz hefe) zwiebeln salz gewürze (enthält senf) dextrose glukosesirup zucker) 12% pariser karotten silberzwiebeln tomatenmark modifizierte stärke salz zucker aromen weizenmehl gewürze rapsöl verdickungsmittel guarkernmehl gewürzsalz (salz gewürze dextrose) karamellzuckersirup ¹gewichtsverlust durch erhitzen das produkt kann spuren von milch und sellerie enthalten!"
+    },
+    "bbox": [
+      {
+        "top": 708.0,
+        "left": 1234.0,
+        "height": 270.0,
+        "width": 751.0
+      },
+      {
+        "top": 712.0,
+        "left": 790.0,
+        "height": 280.0,
+        "width": 932.0
+      },
+      {
+        "top": 184.0,
+        "left": 24.0,
+        "height": 280.0,
+        "width": 947.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702667",
+    "text": {
+      "ingredients_text": "zutaten weizenmehl zucker butter (21%) vollmilch spekulatiusgewürz (natürlicher aromastoff stärke aus weizen) jodiertes speisesalz (speisesalz kaliumiodat) in unserem handwerksbetrieb können wir das vorhandensein von allergenen spuren lt lmiv nicht ausschließen"
+    },
+    "bbox": [
+      {
+        "top": 334.0,
+        "left": 769.0,
+        "height": 128.0,
+        "width": 803.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702671",
+    "text": {
+      "ingredients_text": "zutaten 95% jungbullenfleisch (z t fein zerkleinert) weizenbrot (weizenmehl wasser hefe salz) trinkwasser speisesalz e262 e331gewürze gewürzextrakte"
+    },
+    "bbox": [
+      {
+        "top": 464.0,
+        "left": 889.0,
+        "height": 157.0,
+        "width": 466.0
+      },
+      {
+        "top": 273.0,
+        "left": 60.0,
+        "height": 204.0,
+        "width": 760.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702724",
+    "text": {
+      "ingredients_text": "zutaten weizenmehl 26% rosinen palmfett zucker dextrose glukose-fruktose-sirup rapsöl orangenschalen zitronenschalen feuchthaltemittel sorbit weizenstärke hefe emulgatoren mono- und diglyceride von speisefettsäuren natriumstearoyl-2-lactylat natürliches aroma salz ganz gehärtetes palmfett produkt kann spuren von schalenfrüchten ei und milchprodukten enthalten"
+    },
+    "bbox": [
+      {
+        "top": 712.0,
+        "left": 465.0,
+        "height": 406.0,
+        "width": 1609.0
+      },
+      {
+        "top": 216.0,
+        "left": 34.0,
+        "height": 418.0,
+        "width": 1602.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702754",
+    "text": {
+      "ingredients_text": "zutaten ananas cantaloup-melone honigmelone wassermelone traube blau"
+    },
+    "bbox": [
+      {
+        "top": 551.0,
+        "left": 897.0,
+        "height": 140.0,
+        "width": 866.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702809",
+    "text": {
+      "ingredients_text": "zutaten weizenmehl sultaninen butterschmalz zucker butter vollmilch mandeln cedernfruchtschalen dekorpuder (traubenzucker weizenstärke palmfett) rum hefe orangenschalen glukosefruktose-sirup bittere mandeln salz zitronenschalen glukosesirup natürliches zitronenaroma mit anderen natürlichen aromen natürliches orangenaroma säuerungsmittel citronensäure gewürze kann enthalten andere glutenhaltige getreide ei soja andere schalenfrüchte senf sesam"
+    },
+    "bbox": [
+      {
+        "top": 204.0,
+        "left": 315.0,
+        "height": 508.0,
+        "width": 926.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702811",
+    "text": {
+      "ingredients_text": "zutaten weizenmehl rosinen zucker palmfett wasser mandeln glukose-fruktose-sirup dextrose rapsöl orangenschalen feuchthaltemittel (sorbit) zitronenschalen haselnüsse weizenstärke hefe emulgatoren (mono- und diglyceride von speisefettsäuren natriumstearoyl-2-lactylat) speisesalz natürliches aroma palmfett ganz gehärtet kann spuren von weiteren schalenfrüchten ei milchprodukten enthalten"
+    },
+    "bbox": [
+      {
+        "top": 1682.0,
+        "left": 2533.0,
+        "height": 282.0,
+        "width": 1092.0
+      },
+      {
+        "top": 275.0,
+        "left": 1096.0,
+        "height": 280.0,
+        "width": 1097.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702812",
+    "text": {
+      "ingredients_text": "zutaten rosinen weizenmehl butter 11% mandel-haselnuss-mischung 6% (mandeln 5.1%¹ haselnüsse) wasser zucker glukose-fruktose-sirup butterreinfett 4%² dextrose hefe orangenschalen mandeln 0.9% feuchthaltemittel (sorbit) zitronenschalen weizenstärke emulgatoren (mono- und diglyceride von speisefettsäuren natriumstearoyl-2-lactylat) natürliches aroma speisesalz palmfett ganz gehärtet ¹bezogen auf das endprodukt ²entspricht 4.8% butter kann spuren von weiteren schalenfrüchten und ei enthalten"
+    },
+    "bbox": [
+      {
+        "top": 1368.0,
+        "left": 435.0,
+        "height": 443.0,
+        "width": 1312.0
+      },
+      {
+        "top": 133.0,
+        "left": 74.0,
+        "height": 445.0,
+        "width": 1304.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702820",
+    "text": {
+      "ingredients_text": "zutaten 30% rosinen weizenmehl 12% butter 6% mandel-haselnuss-mischung (5.1% mandeln 0.9% haselnüsse) kandierte fruchtschalen (orangenschalen zitronenschalen) glukose-fruktose-sirup zucker säuerungsmittel citronensäure) glukose-fruktose-sirup wasser 3.5% marzipan (glukose-fruktose-sirup zucker 0.9% mandeln wasser) emulgatoren mono- und diglyceride von speisefettsäuren* natriumstearoyl-2-lactylat dextrose feuchthaltemittel glycerin 1% butterreinfett hefe zucker weizenstärke reismehl weizeneiweiß speisesalz natürliches aroma palmfett *auf pflanzlicher basis kann spuren von eiern erdnüssen und anderen schalenfrüchten enthalten"
+    },
+    "bbox": [
+      {
+        "top": 295.0,
+        "left": 2548.0,
+        "height": 366.0,
+        "width": 1335.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702829",
+    "text": {
+      "ingredients_text": "zutaten 80% schweinefleisch* (zum teil fein zerkleinert) zwiebeln paniermehl (weizenmehl speisesalz hefe) wasser speisesalz kartoffelstärke dextrose säureregulator kaliumacetate kaliumlactat gewürze senf (wasser senfsaat branntweinessig speisesalz zucker gewürze gewürzextrakte) rapsöl hühnervollei** petersilie *qs-ware **aus eiern aus bodenhaltung"
+    },
+    "bbox": [
+      {
+        "top": 415.0,
+        "left": 231.0,
+        "height": 213.0,
+        "width": 676.0
+      },
+      {
+        "top": 122.0,
+        "left": 41.0,
+        "height": 286.0,
+        "width": 821.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702830",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch¹ jodiertes speisesalz (speisesalz kaliumjodat) kochsalzersatz kaliumchlorid glukosesirup stabilisator triphosphate säureregulatoren natriumlactat natriumacetate antioxidationsmittel natriumascorbat gewürzextrakte (zwiebellauchpfefferknoblauchextrakt) konservierungsstoff natriumnitrit kann spuren von senf und sellerie enthalten ¹qs-ware"
+    },
+    "bbox": [
+      {
+        "top": 587.0,
+        "left": 570.0,
+        "height": 270.0,
+        "width": 407.0
+      },
+      {
+        "top": 163.0,
+        "left": 63.0,
+        "height": 313.0,
+        "width": 468.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702831",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch¹ (86%) speck¹ trinkwasser jodiertes speisesalz (speisesalz kaliumjodat) gewürze (pfeffer weiß kardamom muskatnuss koriander paprika karotte zwiebel liebstöckel pastinake bockshornkleesamen lauch piment knoblauch) stabilisator diphosphate antioxidationsmittel ascorbinsäure konservierungsstoff natriumnitrit buchenholzrauch kann spuren von senf sellerie und pistazien enthalten wursthülle nicht zum verzehr geeignet ¹qs-ware"
+    },
+    "bbox": [
+      {
+        "top": 1268.0,
+        "left": 665.0,
+        "height": 158.0,
+        "width": 505.0
+      },
+      {
+        "top": 857.0,
+        "left": 16.0,
+        "height": 204.0,
+        "width": 647.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702832",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch jodiertes speisesalz (speisesalz kaliumjodat) dextrose festigungsmittel kaliumchlorid stabilisator diphosphate antioxidationsmittel natriumascorbat gewürze konservierungsstoff natriumnitrit"
+    },
+    "bbox": [
+      {
+        "top": 839.0,
+        "left": 681.0,
+        "height": 112.0,
+        "width": 785.0
+      },
+      {
+        "top": 299.0,
+        "left": 116.0,
+        "height": 129.0,
+        "width": 998.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702834",
+    "text": {
+      "ingredients_text": "zutaten 50% tomatenmark einfach konzentriert¹ 24% sahne¹ wasser zucker¹ stärke¹ meersalz zwiebeln¹ gewürze¹ zitronensaftkonzentrat¹ kräuter¹ verdickungsmittel xanthan sonnenblumenöl¹ ¹aus kontrolliert ökologischer landwirtschaft"
+    },
+    "bbox": [
+      {
+        "top": 119.0,
+        "left": 116.0,
+        "height": 47.0,
+        "width": 1013.0
+      },
+      {
+        "top": 45.0,
+        "left": 53.0,
+        "height": 45.0,
+        "width": 991.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702836",
+    "text": {
+      "ingredients_text": "zutaten 48% grüne oliven entsteint wasser 11% paprikapaste (paprika verdickungsmittel natriumalginat guarkernmehl festigungsmittel calciumchlorid) speisesalz säureregulator milchsäure antioxidationsmittel ascorbinsäure"
+    },
+    "bbox": [
+      {
+        "top": 567.0,
+        "left": 344.0,
+        "height": 137.0,
+        "width": 281.0
+      },
+      {
+        "top": 24.0,
+        "left": 43.0,
+        "height": 140.0,
+        "width": 277.0
+      },
+      {
+        "top": 550.0,
+        "left": 154.0,
+        "height": 141.0,
+        "width": 230.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702840",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch jodiertes nitritpökelsalz konservierungsstoff (natriumnitrit) getrockneter glukosesirup dextrose zucker antioxidationsmittel (natriumascorbat) säuerungsmittel (natriumacetat) gewürzextrakte buchenholzrauch"
+    },
+    "bbox": [
+      {
+        "top": 559.0,
+        "left": 1122.0,
+        "height": 118.0,
+        "width": 837.0
+      },
+      {
+        "top": 104.0,
+        "left": 33.0,
+        "height": 292.0,
+        "width": 1812.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702858",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch 72% paniermehl (weizenmehl salz hefe) trinkwasser zwiebeln hühnereiweiss speisesalz würze gewürze rapsöl kann spuren von senf soja milch und sellerie enthalten"
+    },
+    "bbox": [
+      {
+        "top": 641.0,
+        "left": 1297.0,
+        "height": 336.0,
+        "width": 1003.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702859",
+    "text": {
+      "ingredients_text": "zutaten pasteurisierte kuhmilch speisesalz käsereikulturen tierisches lab farbstoff carotin konservierungsstoff natamycin (in der rinde)"
+    },
+    "bbox": [
+      {
+        "top": 787.0,
+        "left": 932.0,
+        "height": 318.0,
+        "width": 1219.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702860",
+    "text": {
+      "ingredients_text": "zutaten weizenmehl margarine (pflanzenfett und -öl (palm kokos raps) wasser salz emulgator (sonnenblumenlecithin mono- und diglyceride von speisefettsäuren) säuerungsmittel (milchsäure zitronensäure) farbstoff (beta-carotin)) 20% erdnüsse zucker glukosefruktose sirup hühnertrockeneiweiß speisesalz eier* backtriebmittel (natriumhydrogencarbonat (e500(ii)) ammoniumhydrogencarbonat (e503(ii)) stärke emulgator (sonnenblumenlecithin) zimt milch *aus freilandhaltung kann spuren von schalenfrüchten enthalten"
+    },
+    "bbox": [
+      {
+        "top": 1092.0,
+        "left": 1632.0,
+        "height": 324.0,
+        "width": 1740.0
+      },
+      {
+        "top": 410.0,
+        "left": 59.0,
+        "height": 317.0,
+        "width": 1737.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702881",
+    "text": {
+      "ingredients_text": "zutaten entsteinte soft-aprikosen getrocknet antioxidationsmittel schwefeldioxid konservierungsstoff kaliumsorbat informationen zu allergenen allergene siehe fett gedruckte zutaten hergestellt in einer anlage die auch andere schalenfrüchten erdnüsse gluten sesam und schwefeldioxid verarbeitet vor wärme schützen und trocken lagern bei dieser ware handelt es sich um ein naturprodukt trotz größter sorgfalt bei der herstellung können vereinzelt stiele und fruchtsteinreste enthalten sein"
+    },
+    "bbox": [
+      {
+        "top": 1021.0,
+        "left": 217.0,
+        "height": 481.0,
+        "width": 1321.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702892",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch¹ speck¹ jodiertes speisesalz (speisesalz kaliumjodat) senfkörner gewürze (pfeffer weiß kardamom muskatnuss ingwer zwiebel) dextrose glukosesirup antioxidationsmittel natriumascorbat zucker konservierungsstoff natriumnitrit schweinedarm reifekulturen buchenholzrauch kann spuren von sellerie enthalten ¹qs-ware"
+    },
+    "bbox": [
+      {
+        "top": 576.0,
+        "left": 648.0,
+        "height": 277.0,
+        "width": 672.0
+      },
+      {
+        "top": 326.0,
+        "left": 722.0,
+        "height": 361.0,
+        "width": 877.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702895",
+    "text": {
+      "ingredients_text": "zutaten pasteurisierte schafsmilch pasteurisierte ziegenmilch salz mikrobieller labaustauschstoff käsereikulturen (enthalten milch)"
+    },
+    "bbox": [
+      {
+        "top": 479.0,
+        "left": 552.0,
+        "height": 120.0,
+        "width": 756.0
+      },
+      {
+        "top": 146.0,
+        "left": 110.0,
+        "height": 137.0,
+        "width": 880.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702896",
+    "text": {
+      "ingredients_text": "zutaten milch speisesalz käsereikulturen (enthalten milch) tierisches lab ¹laktosegehalt <0.1g / 100g"
+    },
+    "bbox": [
+      {
+        "top": 774.0,
+        "left": 321.0,
+        "height": 66.0,
+        "width": 544.0
+      },
+      {
+        "top": 252.0,
+        "left": 53.0,
+        "height": 89.0,
+        "width": 737.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702897",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch (100%)"
+    },
+    "bbox": [
+      {
+        "top": 725.0,
+        "left": 636.0,
+        "height": 47.0,
+        "width": 264.0
+      },
+      {
+        "top": 142.0,
+        "left": 84.0,
+        "height": 60.0,
+        "width": 388.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702898",
+    "text": {
+      "ingredients_text": "zutaten 29% rosinen weizenmehl 11% butter 5.1% mandeln wasser 4% butterreinfett dekorpuder (dextrose weizenstärke palmfett ganz gehärtet) 3.5% marzipan (zucker mandeln) zucker glukose-fruktose-sirup orangeat (orangenschalen glukose-fruktose-sirup zucker säuerungsmittel citronensäure) hefe zitronat (zitronenschalen glukose-fruktose-sirup zucker säuerungsmittel citronensäure) feuchthaltemittel sorbit haselnüsse weizenstärke emulgator mono- und diglyceride von speisefettsäuren natriumstearoyl-2-lactylat natürliches aroma speisesalz das produkt kann spuren von hühnerei und anderen schalenfrüchten enthalten"
+    },
+    "bbox": [
+      {
+        "top": 632.0,
+        "left": 1461.0,
+        "height": 403.0,
+        "width": 463.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702903",
+    "text": {
+      "ingredients_text": "zutaten hirschfleisch schweinefleisch schweinespeck jodiertes speisesalz (speisesalz kaliumiodat) traubenzucker gewürze gewürzextrakte antioxidationsmittel natriumascorbat konservierungsstoff natriumnitrit reifekulturen buchenholzrauch hülle nicht zum verzehr geeignet 100g salami hergestellt aus 62g hirschfleisch 61g schweinefleisch und 12g schweinespeck"
+    },
+    "bbox": [
+      {
+        "top": 812.0,
+        "left": 223.0,
+        "height": 164.0,
+        "width": 473.0
+      },
+      {
+        "top": 175.0,
+        "left": 93.0,
+        "height": 212.0,
+        "width": 641.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702904",
+    "text": {
+      "ingredients_text": "zutaten geflügelfleisch 70% (pute huhn) trinkwasser geflügelfett mit haut (pute huhn) speisesalz dextrose gewürze gewürzextrakte säuerungsmittel citronensäure stabilisatoren natriumcitrate diphosphate antioxidationsmittel ascorbinsäure natriumascorbat konservierungsstoff natriumnitrit kann spuren von sellerie und senf enthalten"
+    },
+    "bbox": [
+      {
+        "top": 949.0,
+        "left": 921.0,
+        "height": 295.0,
+        "width": 558.0
+      },
+      {
+        "top": 71.0,
+        "left": 797.0,
+        "height": 388.0,
+        "width": 772.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702906",
+    "text": {
+      "ingredients_text": "zutaten vegane wurst nach art einer fleischwurst auf basis von rapsöl und sonnenblumenmehl 40% (wasser rapsöl 8%¹ sonnenblumenmehl 1%¹ verdickungsmittel carrageen konjak xanthan natürliches aroma speisesalz kichererbsenprotein erbsenprotein stärke gewürze modifizierte stärke säuerungsmittel citronensäure dextrose farbstoff eisenoxide und eisenhydroxide rauch maltodextrin) rapsöl gurken 15% wasser zucker zwiebeln kräuter 1.5% gewürze speisesalz senfsaat stärke modifizierte stärke branntweinessig säuerungsmittel weinsäure (l+) citronensäure dextrose verdickungsmittel guarkernmehl xanthan johannisbrotkernmehl ¹bezogen auf das gesamtprodukt"
+    },
+    "bbox": [
+      {
+        "top": 621.0,
+        "left": 446.0,
+        "height": 593.0,
+        "width": 778.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702910",
+    "text": {
+      "ingredients_text": "zutaten 99% sultaninen sonnenblumenöl das produkt kann spuren von schalenfrüchten enthalten"
+    },
+    "bbox": [
+      {
+        "top": 341.0,
+        "left": 1052.0,
+        "height": 42.0,
+        "width": 439.0
+      },
+      {
+        "top": 102.0,
+        "left": 108.0,
+        "height": 71.0,
+        "width": 700.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702917",
+    "text": {
+      "ingredients_text": "zutaten 44% tomatenmark wasser 18.5%* gegarte fleischbällchen (13.8% schweinefleisch z t fein zerkleinert zwiebeln speisesalz gewürze) 8% tomaten 5% nudeln (hartweizengrieß hühnereiweiß**) 1.2% zwiebeln zucker lauch rapsöl speisesalz modifizierte stärke verdickungsmittel guarkernmehl weizenmehl gewürze (enthält sellerie) zitronensaftkonzentrat *gewichtsverlust durch erhitzen **von eiern aus bodenhaltung kann spuren von milch und senf enthalten"
+    },
+    "bbox": [
+      {
+        "top": 1314.0,
+        "left": 580.0,
+        "height": 481.0,
+        "width": 1056.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702918",
+    "text": {
+      "ingredients_text": "zutaten 23% rosinen weizenmehl 12% edelmarzipan (4.5% mandeln zucker glukose-fruktose-sirup wasser) palmfett 5% kandierte fruchtschalen (orangenschalen zitronenschalen zucker glukose-fruktose-sirup säuerungsmittel citronensäure) glukose-fruktose-sirup wasser hefe dextrose rapsöl feuchthaltemittel glycerin magermilchpulver emulgatoren mono- und diglyceride von speisefettsäuren* natriumstearoyl-2-lactylat haselnüsse 1% mandeln zucker weizeneiweiß speisesalz natürliches aroma weizenstärke *auf pflanzlicher basis kann spuren von anderen schalenfrüchten eiern und erdnüssen enthalten"
+    },
+    "bbox": [
+      {
+        "top": 155.0,
+        "left": 924.0,
+        "height": 188.0,
+        "width": 562.0
+      },
+      {
+        "top": 221.0,
+        "left": 28.0,
+        "height": 363.0,
+        "width": 1081.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702921",
+    "text": {
+      "ingredients_text": "zutaten aprikosen getrocknet und entsteint 99% antioxidationsmittel schwefeldioxid ursprung** siehe eindruck unterseite a türkei b usbekistan trotz mehrfacher kontrollen können auch bei sorgfältiger verpackung fremdkörper (wie steinreste u ä ) nicht vollkommen vermieden werden"
+    },
+    "bbox": [
+      {
+        "top": 237.0,
+        "left": 149.0,
+        "height": 104.0,
+        "width": 572.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702929",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch salz dextrose belém-pfeffer gewürze gewürzextrakte konservierungsstoffe kaliumacetat natriumacetate und natriumnitrit stabilisator triphosphate antioxidationsmittel natriumascorbat aroma"
+    },
+    "bbox": [
+      {
+        "top": 897.0,
+        "left": 564.0,
+        "height": 132.0,
+        "width": 760.0
+      },
+      {
+        "top": 497.0,
+        "left": 78.0,
+        "height": 153.0,
+        "width": 766.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702953",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch* jodiertes speisesalz (speisesalz kaliumiodat) dextrose festigungsmittel kaliumchlorid stabilisator diphosphate antioxidationsmittel natriumascorbat gewürze konservierungsstoff natriumnitrit *qs-ware dieses produkt ist laktosefrei und von natur aus glutenfrei"
+    },
+    "bbox": [
+      {
+        "top": 552.0,
+        "left": 643.0,
+        "height": 159.0,
+        "width": 795.0
+      },
+      {
+        "top": 69.0,
+        "left": 82.0,
+        "height": 168.0,
+        "width": 963.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702954",
+    "text": {
+      "ingredients_text": "zutaten 95% schweinefleisch jodiertes speisesalz (speisesalz kaliumjodat) dextrose festigungsmittel kaliumchlorid stabilisator diphosphate antioxidationsmittel natriumascorbat gewürze konservierungsstoff natriumnitrit"
+    },
+    "bbox": [
+      {
+        "top": 535.0,
+        "left": 713.0,
+        "height": 159.0,
+        "width": 440.0
+      },
+      {
+        "top": 94.0,
+        "left": 86.0,
+        "height": 186.0,
+        "width": 546.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702957",
+    "text": {
+      "ingredients_text": "zutaten 80% schweinefleisch mit knochen flüssig gewürzt (72% schweinefleisch mit knochen* 8% flüssigwürzung (trinkwasser reisstärke rauchsalz (speisesalz rauch) maltodextrin säureregulator natriumcarbonate stabilisator diphosphate gewürzextrakte)) 20% bbq marinade** (zucker trinkwasser tomatenmark branntweinessig rapsöl speisesalz karamell gewürze modifizierte stärke rauchsalz (speisesalz rauch) verdickungsmittel xanthan) *qs-ware kann spuren von senf und sellerie enthalten"
+    },
+    "bbox": [
+      {
+        "top": 207.0,
+        "left": 1333.0,
+        "height": 195.0,
+        "width": 336.0
+      },
+      {
+        "top": 84.0,
+        "left": 10.0,
+        "height": 377.0,
+        "width": 676.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5702962",
+    "text": {
+      "ingredients_text": "zutaten schweinefleisch (93%) jodiertes speisesalz (speisesalz kaliumjodat) gewürze (zwiebel pfeffer muskat ingwer) gewürzextrakte zucker färbendes lebensmittel paprikaextrakt säuerungsmittel milchsäure verdickungsmittel guarkernmehl antioxidationsmittel ascorbinsäure natriumascorbat konservierungsstoff natriumnitrit reifekulturen kann spuren von senf und sellerie enthalten"
+    },
+    "bbox": [
+      {
+        "top": 2588.0,
+        "left": 110.0,
+        "height": 467.0,
+        "width": 852.0
+      },
+      {
+        "top": 32.0,
+        "left": 70.0,
+        "height": 455.0,
+        "width": 827.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800305",
+    "text": {
+      "ingredients_text": "zutaten ananasstücke honigcantaloupemelonenstücke trauben"
+    },
+    "bbox": [
+      {
+        "top": 784.0,
+        "left": 426.0,
+        "height": 136.0,
+        "width": 1103.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800416",
+    "text": {
+      "ingredients_text": "zutaten möhrchen wasser zucker speisesalz"
+    },
+    "bbox": [
+      {
+        "top": 467.0,
+        "left": 745.0,
+        "height": 157.0,
+        "width": 608.0
+      },
+      {
+        "top": 463.0,
+        "left": 435.0,
+        "height": 161.0,
+        "width": 492.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800435",
+    "text": {
+      "ingredients_text": "zutaten entalkoholisierter wein konzentrierter traubenmost konservierungsstoff schwefeldioxid"
+    },
+    "bbox": [
+      {
+        "top": 1425.0,
+        "left": 340.0,
+        "height": 58.0,
+        "width": 406.0
+      },
+      {
+        "top": 712.0,
+        "left": 192.0,
+        "height": 84.0,
+        "width": 639.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800445",
+    "text": {
+      "ingredients_text": "zutaten sauerkirschen* wasser rohrzucker* das produkt kann vereinzelt fruchtsteine oder teile davon enthalten *aus kontrolliert biologischem anbau"
+    },
+    "bbox": [
+      {
+        "top": 1035.0,
+        "left": 1137.0,
+        "height": 95.0,
+        "width": 498.0
+      },
+      {
+        "top": 1033.0,
+        "left": 119.0,
+        "height": 103.0,
+        "width": 386.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800462",
+    "text": {
+      "ingredients_text": "zutaten 52% endivie 30% weißkraut 10% karotte 8% radicchio"
+    },
+    "bbox": [
+      {
+        "top": 709.0,
+        "left": 379.0,
+        "height": 47.0,
+        "width": 640.0
+      },
+      {
+        "top": 739.0,
+        "left": 48.0,
+        "height": 52.0,
+        "width": 878.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800469",
+    "text": {
+      "ingredients_text": "zutaten 76% thunfisch¹ wasser salz ¹gewichtsverlust durch erhitzen möglich"
+    },
+    "bbox": [
+      {
+        "top": 761.0,
+        "left": 1216.0,
+        "height": 80.0,
+        "width": 419.0
+      },
+      {
+        "top": 772.0,
+        "left": 596.0,
+        "height": 77.0,
+        "width": 467.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800473",
+    "text": {
+      "ingredients_text": "zutaten gemüse in veränderlichen gewichtsanteilen (73%) (gurken blumenkohl paprikastreifen brokkoli maiskölbchen karotten) trinkwasser branntweinessig speisegelatine (rind) zucker jodiertes speisesalz (speisesalz kaliumjodat) gewürzextrakt (koriander) kann spuren von senf und sellerie enthalten"
+    },
+    "bbox": [
+      {
+        "top": 613.0,
+        "left": 300.0,
+        "height": 261.0,
+        "width": 447.0
+      },
+      {
+        "top": 161.0,
+        "left": 40.0,
+        "height": 273.0,
+        "width": 442.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800488",
+    "text": {
+      "ingredients_text": "zutaten tomatensaft aus tomatensaftkonzentrat* (62.5%) karottensaft* (25.5%) rote-bete-saft* milchsauer vergoren (4%) selleriesaft* (3%) sauerkrautsaft* (3%) meersalz (0.58%) zitronensaft aus zitronensaftkonzentrat* lauchsaft* kressesaft* petersillensaft* *aus kontrolliert biologischer landwirtschaft"
+    },
+    "bbox": [
+      {
+        "top": 511.0,
+        "left": 121.0,
+        "height": 160.0,
+        "width": 600.0
+      },
+      {
+        "top": 668.0,
+        "left": 72.0,
+        "height": 175.0,
+        "width": 804.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800489",
+    "text": {
+      "ingredients_text": "zutaten aprikosen antioxidationsmittel schwefeldioxid"
+    },
+    "bbox": [
+      {
+        "top": 542.0,
+        "left": 990.0,
+        "height": 61.0,
+        "width": 649.0
+      },
+      {
+        "top": 137.0,
+        "left": 55.0,
+        "height": 89.0,
+        "width": 759.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800495",
+    "text": {
+      "ingredients_text": "zutaten regenbogenforellen (fisch)"
+    },
+    "bbox": [
+      {
+        "top": 1689.0,
+        "left": 781.0,
+        "height": 62.0,
+        "width": 540.0
+      },
+      {
+        "top": 1467.0,
+        "left": 491.0,
+        "height": 69.0,
+        "width": 475.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800504",
+    "text": {
+      "ingredients_text": "zutaten weißkohl (51%) gesalzene champignons (16%) eingelegte gurken (gurken wasser salz dill meerettich knoblauch) rapsöl zwiebeln tomatenmark zucker salz säureregulator citronensäure gewürze"
+    },
+    "bbox": [
+      {
+        "top": 963.0,
+        "left": 711.0,
+        "height": 285.0,
+        "width": 837.0
+      },
+      {
+        "top": 973.0,
+        "left": 236.0,
+        "height": 271.0,
+        "width": 690.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800680",
+    "text": {
+      "ingredients_text": "zutaten zucchini paprika essig zwiebeln zucker salz selleriesalz senfkörner kurkuma"
+    },
+    "bbox": [
+      {
+        "top": 907.0,
+        "left": 599.0,
+        "height": 342.0,
+        "width": 1348.0
+      },
+      {
+        "top": 885.0,
+        "left": 400.0,
+        "height": 366.0,
+        "width": 880.0
+      },
+      {
+        "top": 918.0,
+        "left": 1152.0,
+        "height": 296.0,
+        "width": 934.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800958",
+    "text": {
+      "ingredients_text": "zutaten aprikosen (56.3%) glucose (23%) zucker (20%) olivenöl (0.5%) antioxidationsmittel e220 (0.2%)"
+    },
+    "bbox": [
+      {
+        "top": 647.0,
+        "left": 158.0,
+        "height": 82.0,
+        "width": 478.0
+      },
+      {
+        "top": 23.0,
+        "left": 132.0,
+        "height": 161.0,
+        "width": 822.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5800962",
+    "text": {
+      "ingredients_text": "zutaten zucchini"
+    },
+    "bbox": [
+      {
+        "top": 422.0,
+        "left": 144.0,
+        "height": 118.0,
+        "width": 497.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5801200",
+    "text": {
+      "ingredients_text": "zutaten wasser 16% bananenmark zucker 3% sauerkirschsaft aus sauerkirschsaftkonzentrat zitronensaftkonzentrat holunderbeersaftkonzentrat natürliches aroma antioxidationsmittel ascorbinsäure"
+    },
+    "bbox": [
+      {
+        "top": 572.0,
+        "left": 1246.0,
+        "height": 89.0,
+        "width": 511.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5801532",
+    "text": {
+      "ingredients_text": "zutaten rotkohl 68% wasser zucker rapsöl wein-branntweinessig äpfel 2% zwiebeln 2% branntweinessig gewürze jodiertes speisesalz (speisesalz kaliumjodat) färbendes lebensmittel rote betesaftkonzentrat säuerungsmittel weinsäure (l+) citronensäure speisesalz dextrose"
+    },
+    "bbox": [
+      {
+        "top": 1150.0,
+        "left": 614.0,
+        "height": 229.0,
+        "width": 1164.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5801551",
+    "text": {
+      "ingredients_text": "zutaten erdbeeren"
+    },
+    "bbox": [
+      {
+        "top": 281.0,
+        "left": 122.0,
+        "height": 55.0,
+        "width": 312.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5802206",
+    "text": {
+      "ingredients_text": "zutaten apfelstücke getrocknet antioxidationsmittel schwefeldioxid hinweis vor wärme schützen und trocken lagern die füllhöhe ist technisch bedingt *enthält von natur aus zucker allergiker-hinweis in unserer produktion werden auch schalenfrüchte und erdnusskerne verarbeitet"
+    },
+    "bbox": [
+      {
+        "top": 1155.0,
+        "left": 137.0,
+        "height": 89.0,
+        "width": 411.0
+      },
+      {
+        "top": 143.0,
+        "left": 51.0,
+        "height": 102.0,
+        "width": 409.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5802345",
+    "text": {
+      "ingredients_text": "zutaten champignons wasser salz säuerungsmittel citronensäure antioxidationsmittel ascorbinsäure"
+    },
+    "bbox": [
+      {
+        "top": 1724.0,
+        "left": 582.0,
+        "height": 338.0,
+        "width": 932.0
+      },
+      {
+        "top": 1830.0,
+        "left": 61.0,
+        "height": 88.0,
+        "width": 1330.0
+      },
+      {
+        "top": 1724.0,
+        "left": 242.0,
+        "height": 78.0,
+        "width": 1056.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5802378",
+    "text": {
+      "ingredients_text": "zutaten gegrillte rote und gelbe paprika 61% sonnenblumenöl zucker weinessig salz säureregulatoren milchsäure zitronensäure"
+    },
+    "bbox": [
+      {
+        "top": 600.0,
+        "left": 468.0,
+        "height": 158.0,
+        "width": 1015.0
+      },
+      {
+        "top": 580.0,
+        "left": 209.0,
+        "height": 137.0,
+        "width": 1196.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5900127",
+    "text": {
+      "ingredients_text": "zutaten äpfel* 60% birnen* 40% *aus kontrolliert biologischem anbau"
+    },
+    "bbox": [
+      {
+        "top": 963.0,
+        "left": 417.0,
+        "height": 106.0,
+        "width": 583.0
+      },
+      {
+        "top": 138.0,
+        "left": 32.0,
+        "height": 107.0,
+        "width": 544.0
+      },
+      {
+        "top": 927.0,
+        "left": 243.0,
+        "height": 100.0,
+        "width": 328.0
+      }
+    ]
+  },
+  {
+    "produktnr": "2024-5900176",
+    "text": {
+      "ingredients_text": "zutaten paprika wasser branntweinessig zucker speisesalz"
+    },
+    "bbox": [
+      {
+        "top": 750.0,
+        "left": 638.0,
+        "height": 84.0,
+        "width": 609.0
+      },
+      {
+        "top": 753.0,
+        "left": 272.0,
+        "height": 76.0,
+        "width": 466.0
+      }
+    ]
+  }
+]

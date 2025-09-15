@@ -1,0 +1,10 @@
+{
+  "img_dir": "/scratch/tmp/mweicker/nutrition/img",
+  "gt_json": "/scratch/tmp/mweicker/nutrition/GT_Nutrition_bbox.json",
+  "model": "/scratch/tmp/mweicker/yolo_results/model_yolov8s/weights/best.pt",
+  "class_filter": "nutrition",
+  "prefered_analysis_method": "traditional",
+  "out_dir": "/scratch/tmp/mweicker/runs/nutrition_trad",
+  "traditional_script": "/scratch/tmp/mweicker/ocr-on-ingredient-lists/eval/traditional_pipeline.py",
+  "llm_script": "/scratch/tmp/mweicker/ocr-on-ingredient-lists/eval/llm_pipeline.py"
+}

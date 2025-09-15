@@ -3,8 +3,10 @@ __pycache__/
 *.pyc
 .env
 product_overview.csv
-eval/ingredients/
-eval/nutrition/
+eval/ingredients/img/
+eval/nutrition/img/
+eval/ingredients/test_img/
+eval/nutrition/test_img/
 eval/eval_outputs/*
 !eval/ingredients/img/.gitkeep
 !eval/nutrition/img/.gitkeep
