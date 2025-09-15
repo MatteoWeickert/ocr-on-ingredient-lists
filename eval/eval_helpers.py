@@ -59,6 +59,11 @@ def calculate_grits_metric(gt_json: Dict, pred_json: Dict):
     Berechnet die GRITS-Metriken (Struktur, Inhalt) zwischen Ground-Truth und Vorhersage.
     """
 
+    if not gt_json and not pred_json:
+        return {"grits_content_overall_f1": 1.0, "grits_topology_f1": 1.0, "cell_accuracy": 1.0, "overall_table_score": 1.0}
+    if not gt_json or not pred_json:
+        return {"grits_content_overall_f1": 0.0, "grits_topology_f1": 0.0, "cell_accuracy": 0.0, "overall_table_score": 0.0}
+
     gt = json_to_matrix(gt_json)
     pred = json_to_matrix(pred_json)
 
@@ -397,7 +402,7 @@ def evaluate_nutrition_table_structure(gt_table: Dict, ocr_table: Dict, method_n
             error = cer(gt_row_string, ocr_row_string)
             overall_errors.append(error)
 
-    metrics[f"avg_content_similarity_matched_rows_{method_name}"] = 1 - (np.mean(overall_errors) if overall_errors else 0.0)
+    metrics[f"avg_content_similarity_matched_rows_{method_name}"] = float(1 - (np.mean(overall_errors) if overall_errors else 1.0))
 
     return metrics
 
@@ -443,9 +448,9 @@ def calculate_word_level_metrics(gt_text: str, pred_text: str, gt_object: Dict, 
     """Berechnet Precision, Recall und F1-Score auf Wortebene für Zutatenlisten auf allen Wörtern und für Nährwerttabellen auf allen Wörtern,
     auf Elementen, auf Werten, auf (Element, Wert)-Paaren und auf (Element, Spaltenname, Wert)-Tripeln. """
 
-    if (not gt_text and not pred_text) or (not gt_object and not pred_object):
+    if (gt_text is None and pred_text is None) or (gt_object is None and pred_object is None):
         return {f"precision_overall_{method}": 1.0, f"recall_overall_{method}": 1.0, f"f1_overall_{method}": 1.0}
-    if (not gt_text or not pred_text) or (not gt_object or not pred_object):
+    if (gt_text is None or pred_text is None) or (gt_object is None or pred_object is None):
         return {f"precision_overall_{method}": 0.0, f"recall_overall_{method}": 0.0, f"f1_overall_{method}": 0.0}
     
     if class_filter == "ingredients":
@@ -509,8 +514,6 @@ def calculate_word_level_metrics(gt_text: str, pred_text: str, gt_object: Dict, 
 
 def _calculate_precision_recall_f1_set(gt: Set, pred: Set) -> Dict[str, float]:
     """Berechnet Precision, Recall und F1-Score aus True Positives, False Positives und False Negatives."""
-    print(f"DEBUG: gt set: {gt}")
-    print(f"DEBUG: pred set: {pred}")
     tp = len(gt & pred)
     fp = len(pred - gt)
     fn = len(gt - pred)
@@ -531,7 +534,6 @@ def _calculate_precision_recall_f1_multiset(gt: Counter, pred: Counter) -> Dict[
 
 def _elements_from_table(table: Dict) -> Set[str]:
     """Menge der Elemente (Zeilen-Labels)."""
-    print(f"DEBUG: table type: {type(table)}")
     rows = table.get("rows", []) if isinstance(table, dict) else []
     elements = set()
     for r in rows:

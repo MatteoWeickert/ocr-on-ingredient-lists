@@ -61,6 +61,7 @@ def run_llm(cfg: dict):
         llm_string = ""
         structure_score_llm = {}
         grits_metrics = {}
+        llm_json = {}
 
         if gt_item:
             gt_object = gt_item.get("text", {})
@@ -99,7 +100,7 @@ def run_llm(cfg: dict):
             llm_string = transform_dict_to_string(llm_res_compact, class_filter)
             try:
                 if isinstance(json.loads(llm_res_compact), dict):
-                    metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, llm_res_compact if isinstance(llm_res_compact, dict) else {}, class_filter, method = "llm")
+                    metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, json.loads(llm_res_compact), class_filter, method = "llm")
                     structure_score_llm = evaluate_nutrition_table_structure(gt_object, json.loads(llm_res_compact), "llm")
                     grits_metrics = calculate_grits_metric(gt_object, json.loads(llm_res_compact))
                     if end_to_end_time_llm and grits_metrics and metrics_llm and mem_peak:
