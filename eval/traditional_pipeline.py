@@ -1254,7 +1254,8 @@ def _process_calculated_clusters(processed_rows, distance_threshold_factor):
             all_boxes,
             min_coverage_ratio=0.1,  # Niedrigere Coverage-Anforderung
             distance_threshold=2 * distance_threshold,     # Größerer Threshold
-            min_cluster_size=1           # Kleinere Cluster erlauben
+            min_cluster_size=1,           # Kleinere Cluster erlauben
+            distance_threshold_factor=distance_threshold_factor
         )
 
     if centers is None:

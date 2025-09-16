@@ -68,10 +68,10 @@ def calculate_grits_metric(gt_json: Dict, pred_json: Dict):
     pred = json_to_matrix(pred_json)
 
     # Content Berechnungen
-    f1_con_overall, precision_con_overall, recall_con_overall, _ = safe_grits(grits_con, gt, pred)
-    f1_con_header, precision_con_header, recall_con_header, _ = safe_grits(grits_con, slice_header(gt), slice_header(pred))
-    f1_con_labels, precision_con_labels, recall_con_labels, _ = safe_grits(grits_con, slice_labels(gt), slice_labels(pred))
-    f1_con_values, precision_con_values, recall_con_values, _ = safe_grits(grits_con, slice_values(gt), slice_values(pred))
+    f1_con_overall, precision_con_overall, recall_con_overall = safe_grits(grits_con, gt, pred)[:3]
+    f1_con_header, precision_con_header, recall_con_header = safe_grits(grits_con, slice_header(gt), slice_header(pred))[:3]
+    f1_con_labels, precision_con_labels, recall_con_labels = safe_grits(grits_con, slice_labels(gt), slice_labels(pred))[:3]
+    f1_con_values, precision_con_values, recall_con_values = safe_grits(grits_con, slice_values(gt), slice_values(pred))[:3]
 
     # Topology Berechnungen
     gt_grid = compute_relative_bbox_grid(*gt.shape) # zerlege tupel in zwei argumente
