@@ -29,12 +29,8 @@ MODEL_PRICING = {
 # HAUPTFUNKTION
 # ==============================================================================
 
-<<<<<<< HEAD
 
 def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_dir: Path, product_id: str, temperature: float, llm_model: str) -> str:
-=======
-def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_dir: Path, product_id: str) -> str:
->>>>>>> f6c9969d09f303c4a127629025cfb671c08c48a8
     """
     Öffentliche Hauptfunktion, die die LLM-Pipeline für ein YOLO-Bild ausführt.
     Diese Funktion wird vom Evaluationsskript aufgerufen.
