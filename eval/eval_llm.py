@@ -77,7 +77,7 @@ def run_llm(cfg: dict):
         cpu_start_llm = process.cpu_times()
         time_start_llm = time.perf_counter()
 
-        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, model, paths, target_id, new_out_dir, product_id, class_filter)
+        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, [str(p) for p in paths], class_filter)
 
         time_end_llm = time.perf_counter()
         cpu_end_llm = process.cpu_times()
@@ -89,17 +89,21 @@ def run_llm(cfg: dict):
         if llm_res_data.get("text") is not None:
             llm_res = llm_res_data.get("text", "")
         llm_times = llm_res_data.get("times", {})
-        time_yolo_api_connection = llm_times.get("yolo-and-api-connection", None)
-        encoding_prompt_creation = llm_times.get("image-encoding-prompt-creation", None)
+        time_preprocessing = llm_times.get("preprocessing", None)
         time_api_llm = llm_times.get("api_roundtrip", None)
         time_postproc_llm = llm_times.get("postprocessing", None)
 
         llm_res_compact = compact_json_str(llm_res)
         bbox_coordinates = json.loads(llm_res_compact).get("box", {})
-        x1, y1, x2, y2 = (bbox_coordinates.get("x1"), bbox_coordinates.get("y1"), bbox_coordinates.get("x2"), bbox_coordinates.get("y2")) if bbox_coordinates else (None, None, None, None)
-        bbox_array = [x1, y1, x2, y2] 
+        if bbox_coordinates:
+            x1, y1, x2, y2 = (bbox_coordinates.get("x1"), bbox_coordinates.get("y1"), bbox_coordinates.get("x2"), bbox_coordinates.get("y2")) if bbox_coordinates else (None, None, None, None)
+            bbox_array = [x1, y1, x2, y2]
 
-        iou = calculate_iou(gt_bbox, bbox_array)
+            iou = calculate_iou(gt_bbox, bbox_array)
+
+        else:
+            bbox_array = []
+            iou = 0.0 if gt_bbox else 1.0  # Wenn keine GT und keine Vorhersage, perfekte Übereinstimmung
 
         print(f"Zeit (LLM): {end_to_end_time_llm:.2f}s")
 
@@ -109,33 +113,19 @@ def run_llm(cfg: dict):
             "product_id": product_id,
             "class_requested": class_filter,
             "gt_text": gt_text,
+            "predicted_bbox": bbox_array,
+            "iou": iou,
             
             # LLM Pipeline
-            "llm_text": llm_string,
             "time_llm_s": end_to_end_time_llm,
             "cpu_llm_s": cpu_llm_time,
             "mem_llm_peak": mem_peak,
-            "time_yolo_api_connection": time_yolo_api_connection,
-            "time_encoding_prompt_creation": encoding_prompt_creation,
+            "time_preprocessing": time_preprocessing,
             "time_api_llm_s": time_api_llm,
-            "time_postproc_llm_s": time_postproc_llm,
-            "wer_llm": wer(gt_text, llm_string),
-            "cer_llm": cer(gt_text, llm_string),
-            "composite_indicator": composite_score,
-            "llm_total_tokens": llm_res_data["total_tokens"],
-            "llm_cost_usd": llm_res_data["cost_usd"],
+            "time_postproc_llm_s": time_postproc_llm
+            #"llm_total_tokens": llm_res_data["total_tokens"],
+            #"llm_cost_usd": llm_res_data["cost_usd"],
         }
-        
-        if class_filter == "nutrition":
-            row["gt_table_json"]  = gt_object_compact
-            row["llm_table_json"] = llm_res_compact
-
-        if structure_score_llm:
-            row.update(structure_score_llm)
-        if metrics_llm:
-            row.update(metrics_llm)
-        if grits_metrics:
-            row.update(grits_metrics)
 
         results.append(row)
 
