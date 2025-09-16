@@ -93,15 +93,15 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
         # 3. Prompt basierend auf dem Filter erstellen
         prompt_text = _create_prompt(target_class)
 
-    # 4. API-Anfrage zusammenbauen und senden
-    api_request_content = [{"type": "input_text", "text": prompt_text}]
-    for encoded_img in encoded_images:
-        api_request_content.append({
-            "type": "input_image",
-            "image_url": encoded_img
-        })
+        # 4. API-Anfrage zusammenbauen und senden
+        api_request_content = [{"type": "input_text", "text": prompt_text}]
+        for encoded_img in encoded_images:
+            api_request_content.append({
+                "type": "input_image",
+                "image_url": encoded_img
+            })
 
-    model_to_use = llm_model  # Empfohlen für komplexe Bildanalyse und JSON-Ausgaben
+        model_to_use = llm_model  # Empfohlen für komplexe Bildanalyse und JSON-Ausgaben
 
     try:
         with timer(times, "api_roundtrip"):
