@@ -548,13 +548,26 @@ def _normalize_ingredients(raw_text: str) -> str:
         r'[_.;:,„“‚‘`´❝❞°><"\']': '',
         r'[([{]': "(",
         r'[}\])]': ")",
-        r'\b[qa]\b': 'g',   # Alleinstehendes q oder a → g
+        r'\b[qa]\b': 'g',   # Alleinstehendes q oder a -> g
     }
 
     for pattern, replace in sub_rules.items():
         text = re.sub(pattern, replace, text)
 
     text = re.sub(r'\s+', ' ', text).strip()
+
+    # Ziehe Zahlen und Einheiten zusammen (z.B. "100 g" -> "100g")
+    text = re.sub(
+        r'''(?ix)
+            (?<!\w)                 # kein Buchstabe/Ziffer davor
+            (<?) \s*                # optional "<"
+            (\d+(?:[.,]\d+)*) \s*   # Zahl
+            (kj|kcal|g|mg|µg|ug|ml|l|%)  # Einheit
+            (?!\w)                  # kein Buchstabe/Ziffer danach
+        ''',
+        r'\1\2\3',
+        text
+    )
 
     for regex, replacement in KEY_CORRECTIONS:
         text = regex.sub(replacement, text)  # Wende die Regex-Korrekturen an
