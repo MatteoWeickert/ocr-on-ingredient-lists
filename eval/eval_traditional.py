@@ -8,6 +8,7 @@ from ultralytics import YOLO
 from jiwer import wer, cer
 import time
 import os
+from symspellpy.symspellpy import SymSpell
 
 from eval_helpers import (
     load_ground_truth, load_images, group_images_by_product, compact_json_str,
@@ -48,8 +49,12 @@ def run_traditional(cfg: dict):
         raise ValueError(f"Klasse '{class_filter}' nicht im Modell gefunden. Verfügbare Klassen: {list(model.names.values())}")
     target_id = class_name_to_id.get(class_filter)
 
-    results = []
+    # Initialisiere SymSpell für die Rechtschreibkorrektur
+    sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
+    dictionary_path = Path(__file__).parent / "de-100k.txt"
+    sym_spell.load_dictionary(dictionary_path, term_index=0, count_index=1)
 
+    results = []
     for product_id, paths in grouped_images.items():
         print(f"\n--- Verarbeite Produkt: {product_id} ---")
 
@@ -77,7 +82,7 @@ def run_traditional(cfg: dict):
         cpu_start = process.cpu_times()
         time_start_trad = time.perf_counter()
 
-        trad_result, mem_peak = measure_ram_peak(run_traditional_pipeline, model, paths, target_id, new_out_dir, product_id)
+        trad_result, mem_peak = measure_ram_peak(run_traditional_pipeline, model, paths, target_id, new_out_dir, product_id, sym_spell)
         
         time_end_trad = time.perf_counter()
         cpu_end = process.cpu_times()
