@@ -27,7 +27,7 @@ MODEL_PRICING = {
 # HAUPTFUNKTION
 # ==============================================================================
 
-def run_llm_pipeline(image_paths: List[str], class_filter: str) -> str:
+def run_llm_pipeline(image_paths: List[str], class_filter: str, temperature: float, llm_model: str) -> str:
     """
     Öffentliche Hauptfunktion, die die LLM-Pipeline für eine Gruppe von Bildern ausführt.
     Diese Funktion wird vom Evaluationsskript aufgerufen.
@@ -76,7 +76,7 @@ def run_llm_pipeline(image_paths: List[str], class_filter: str) -> str:
                 "image_url": encoded_img
             })
 
-        model_to_use = "gpt-4o"  # Empfohlen für komplexe Bildanalyse und JSON-Ausgaben
+        model_to_use = llm_model 
 
     try:
         with timer(times, "api_roundtrip"):
@@ -88,7 +88,7 @@ def run_llm_pipeline(image_paths: List[str], class_filter: str) -> str:
                     "content": api_request_content
                     }
                 ],
-                temperature=0.2, # Kreativität des Modells niedrig, um keine unerwarteten Ergebnisse zu erzeugen
+                temperature=temperature
             )
 
         with timer(times, "postprocessing"):

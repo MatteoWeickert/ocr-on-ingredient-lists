@@ -16,7 +16,7 @@ from eval_helpers import (
 )
 from traditional_pipeline import run_traditional_pipeline
 
-def run_traditional(cfg: dict):
+def run_traditional(cfg: dict, oem: int, psm: int, distance_threshold_factor: float):
     """
     Führt die Evaluation mit der übergebenen Konfiguration aus.
     Erwartete Keys in cfg:
@@ -77,7 +77,7 @@ def run_traditional(cfg: dict):
         cpu_start = process.cpu_times()
         time_start_trad = time.perf_counter()
 
-        trad_result, mem_peak = measure_ram_peak(run_traditional_pipeline, model, paths, target_id, new_out_dir, product_id)
+        trad_result, mem_peak = measure_ram_peak(run_traditional_pipeline, model, paths, target_id, new_out_dir, product_id, oem, psm, distance_threshold_factor)
         
         time_end_trad = time.perf_counter()
         cpu_end = process.cpu_times()

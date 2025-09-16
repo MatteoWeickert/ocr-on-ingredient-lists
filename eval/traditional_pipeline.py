@@ -128,7 +128,7 @@ times = {} # Dictionary zum Speichern einzelner Zeiten von Teilprozessen
 # ÖFFENTLICHE METHODE ZUM ABRUFEN 
 # ==============================================================================
 
-def run_traditional_pipeline(model: YOLO, paths: List[Path], target_id: int, out_dir: Path, product_id: str) -> Dict[str, Any]:
+def run_traditional_pipeline(model: YOLO, paths: List[Path], target_id: int, out_dir: Path, product_id: str, oem: int, psm: int, distance_threshold_factor: float) -> Dict[str, Any]:
     """
     Öffentliche Hauptfunktion, die die traditionelle Pipeline ausführt.
     Diese Funktion wird vom Evaluationsskript aufgerufen.
@@ -142,7 +142,7 @@ def run_traditional_pipeline(model: YOLO, paths: List[Path], target_id: int, out
         raise ValueError(f"Ungültige Target-ID: {target_id}")
 
     # Die eigentliche Logik wird in einer internen Funktion ausgeführt
-    result = _execute_extraction_logic(model, paths, target_class, target_id, out_dir, product_id)
+    result = _execute_extraction_logic(model, paths, target_class, target_id, out_dir, product_id, oem, psm, distance_threshold_factor)
     
     # Ergebnis für das Evaluationsskript formatieren
     structured_data = result.get("structured_data", {})
@@ -160,7 +160,7 @@ def run_traditional_pipeline(model: YOLO, paths: List[Path], target_id: int, out
 # INTERNE KERNLOGIK (interne `main`-Methode)
 # ==============================================================================
 
-def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class: str, target_class_id: int, out_dir: Path, product_id: str) -> Dict[str, Any]:
+def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class: str, target_class_id: int, out_dir: Path, product_id: str, oem: int, psm: int, distance_threshold_factor: float) -> Dict[str, Any]:
     """
     Führt den Hauptprozess von YOLO-Detektion bis zum Post-Processing durch.
     """
@@ -203,7 +203,7 @@ def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class
     # 3. OCR ausführen und Ergebnis speichern
 
     with timer(times, "ocr"):
-        config = r'--oem 1 --psm 6'
+        config = f'--oem {oem} --psm {psm}'
         ocr_raw_string = pytesseract.image_to_string(preprocessed, lang='deu', config=config)
         ocr_data = pytesseract.image_to_data(preprocessed, lang='deu', config=config, output_type=Output.DICT)
 
@@ -220,7 +220,7 @@ def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class
 
     elif target_class == "nutrition":
         with timer(times, "postprocessing"):
-            processed_text = _process_nutrition_table(ocr_data)
+            processed_text = _process_nutrition_table(ocr_data, distance_threshold_factor)
         raw_text = _formate_raw_text(ocr_raw_string)
         structured_data = {"nutrition_table": processed_text, "raw_text": raw_text}
 
@@ -230,7 +230,7 @@ def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class
 # SPEZIFISCHE VERARBEITUNGS-PIPELINES
 # ==============================================================================
 
-def _process_nutrition_table(ocr_data: Dict) -> Dict:
+def _process_nutrition_table(ocr_data: Dict, distance_threshold_factor: float) -> Dict:
     """
     Führt die komplette Nährwerttabellen-Analyse durch, von der Box-Extraktion
     bis zur Erstellung des finalen JSON-Objekts.
@@ -420,7 +420,7 @@ def _process_nutrition_table(ocr_data: Dict) -> Dict:
         footer_rows = final_processed_rows[footer_start_index:]  # Footer-Zeilen
 
     # Ermittle die Mittelpunkte der Spalten
-    centers = _process_calculated_clusters(body_rows)
+    centers = _process_calculated_clusters(body_rows, distance_threshold_factor)
     centers = sorted(centers)
 
     if not centers:
@@ -1114,13 +1114,13 @@ def _compute_clusters_by_x(x_values):
 
     return centers
 
-def _compute_clusters_by_agglomerative_clustering(processed_rows, all_boxes, min_coverage_ratio, distance_threshold=25.0, min_cluster_size=2):
+def _compute_clusters_by_agglomerative_clustering(processed_rows, all_boxes, min_coverage_ratio, distance_threshold, min_cluster_size, distance_threshold_factor):
     """
     Spaltendetection mit Agglomerative Clustering
     """
 
     all_boxes = [box for row in processed_rows for box in row]
-    distance_threshold_eff = 1.7 * float(distance_threshold)
+    distance_threshold_eff = distance_threshold_factor * float(distance_threshold)
 
     if len(all_boxes) < 2:
         return [], distance_threshold_eff
@@ -1135,7 +1135,7 @@ def _compute_clusters_by_agglomerative_clustering(processed_rows, all_boxes, min
     # 3. Wende Agglomerative Clustering an
     clustering = AgglomerativeClustering(
         n_clusters=None,                    # Lass Algorithmus Anzahl bestimmen
-        distance_threshold= 1.7 * distance_threshold,  # Stopp-Kriterium für Clustering
+        distance_threshold= distance_threshold_eff,  # Stopp-Kriterium für Clustering
         metric='manhattan',               # Manhattan-Distanz (gut für X-Koordinaten)
         linkage='complete'                  # Complete linkage (max distance between clusters)
     )
@@ -1189,7 +1189,7 @@ def _calculate_column_coverage(center_x, processed_rows, tolerance):
     
     return rows_with_element / len(processed_rows) if processed_rows else 0
 
-def _compute_columns_agglomerative_advanced(processed_rows, all_boxes, min_row_coverage_ratio):
+def _compute_columns_agglomerative_advanced(processed_rows, all_boxes, min_row_coverage_ratio, distance_threshold_factor):
     """
     Erweiterte Version mit automatischer Parameter-Schätzung.
     """
@@ -1201,7 +1201,7 @@ def _compute_columns_agglomerative_advanced(processed_rows, all_boxes, min_row_c
         # sinnvollen Default setzen und leere Centers zurückgeben
         distance_threshold = 25.0
         print("Auto-Parameter: keine Wortbreiten; fallback distance_threshold=25.0, min_cluster_size=2")
-        return [], 1.7 * distance_threshold 
+        return [], distance_threshold_factor * distance_threshold 
     
     # Heuristik: distance_threshold = mittlere Wortbreite
     # Grund: Wörter in derselben Spalte sollten näher als eine Wortbreite sein
@@ -1218,10 +1218,11 @@ def _compute_columns_agglomerative_advanced(processed_rows, all_boxes, min_row_c
         all_boxes,
         min_row_coverage_ratio, 
         distance_threshold, 
-        min_cluster_size
+        min_cluster_size,
+        distance_threshold_factor
     )
 
-def _process_calculated_clusters(processed_rows):
+def _process_calculated_clusters(processed_rows, distance_threshold_factor):
     """
     Funktion nimmt von allen Wörtern die x-Werte, führt basierend darauf ein Clustering durch und entfernt bzw. mergt zu schwache Cluster, die am Ende die vorhandenen Spalten darstellen
     """
@@ -1242,7 +1243,7 @@ def _process_calculated_clusters(processed_rows):
     # centers = _compute_clusters_by_x(x_values)
     # centers = _compute_clusters_by_DBSCAN(processed_rows, all_boxes_with_lines)  # Alternativ: DBSCAN verwenden
     #centers = _merge_clusters_semantically(raw_centers, processed_rows)  # Semantisches Merging der Cluster
-    centers, distance_threshold = _compute_columns_agglomerative_advanced(processed_rows, all_boxes, min_row_coverage_ratio=0.2)
+    centers, distance_threshold = _compute_columns_agglomerative_advanced(processed_rows, all_boxes, min_row_coverage_ratio=0.2, distance_threshold_factor=distance_threshold_factor)
 
     if len(centers) < 2:
         print("Weniger als 2 Spalten gefunden, versuche mit niedrigeren Parametern...")
@@ -1569,7 +1570,7 @@ def _merge_davon_rows(rows_text, rows_boxes, label_cluster):
 
     # Hauptlabels – über diese darf nicht hinweg gemerged werden
     TOP_LEVEL = {
-        "energie","brennwert", "fett","kohlenhydrate","eiweiss", "eiweiß", "protein","salz", "ballaststoffe", "davon"
+        "energie","brennwert", "fett","kohlenhydrate", "eiweiss", "eiweiß", "protein","salz", "ballaststoffe", "davon"
     }
 
     output_text = []

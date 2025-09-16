@@ -16,7 +16,7 @@ from eval_helpers import (
 )
 from llm_pipeline import run_llm_pipeline
 
-def run_llm(cfg: dict):
+def run_llm(cfg: dict, temperature: float, llm_model: str):
     """
     Führt die Evaluation mit der übergebenen Konfiguration aus.
     Erwartete Keys in cfg:
@@ -78,7 +78,7 @@ def run_llm(cfg: dict):
         cpu_start_llm = process.cpu_times()
         time_start_llm = time.perf_counter()
 
-        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, [str(p) for p in paths], class_filter)
+        llm_res_data, mem_peak = measure_ram_peak(run_llm_pipeline, [str(p) for p in paths], class_filter, temperature, llm_model)
 
         time_end_llm = time.perf_counter()
         cpu_end_llm = process.cpu_times()
