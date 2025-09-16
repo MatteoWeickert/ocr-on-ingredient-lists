@@ -47,8 +47,8 @@ def run_llm_pipeline(image_paths: List[str], class_filter: str) -> Dict[str, Any
         encoded_images = []
         for i, image_path in enumerate(image_paths):
             try:
-                # Lade Bild mit cv2 für die Vorverarbeitung
-                img = cv2.imread(image_path)
+                # Lade Bild mit PIL für die Vorverarbeitung
+                img = Image.open(image_path)
                 if img is None:
                     print(f"Warnung: Bild konnte nicht geladen werden: {image_path}")
                     continue
@@ -121,13 +121,12 @@ def _load_llm_api_key():
     """Lädt den API-Key aus der .env-Datei."""
     load_dotenv()
 
-def _encode_image(img: np.ndarray) -> str:
+def _encode_image(img: Image.Image) -> str:
     """
-    Kodiert ein Bild (NumPy-Array) in einen für die API geeigneten Base64-String.
+    Kodiert ein Bild (PIL Image) in einen für die API geeigneten Base64-String.
     """
-    pil_img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
     buffered = BytesIO()
-    pil_img.save(buffered, format="PNG")
+    img.save(buffered, format="PNG")
     img_bytes = buffered.getvalue()
     base64_str = base64.b64encode(img_bytes).decode('utf-8')
     return f"data:image/png;base64,{base64_str}"
