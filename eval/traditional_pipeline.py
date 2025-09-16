@@ -629,14 +629,22 @@ def _normalize_ingredients(raw_text: str, sym_spell: SymSpell) -> str:
 
     protect_pattern = (
     r"(\([0-9]+(?:[\.,][0-9]+)?\s?(%|[gmkMG]{1,2}|ml|mg)?\)|"  # (40%), (12g)
-    r"[0-9]+(?:[\.,][0-9]+)?\s?(%|[gmkMG]{1,2}|ml|mg)?|\([A-Za-z]{1,3}\))"    # 40%, 12g
+    r"[0-9]+(?:[\.,][0-9]+)?\s?(%|[gmkMG]{1,2}|ml|mg)?|\([A-Za-z]{1,3}\))"  # 40%, 12g
     )
+
     # Teile Text in Segmente um Zahlen/Einheiten zu schützen
     segments = re.split(f'({protect_pattern})', text)
     segments = [seg for seg in segments if seg]
 
+    filtered_segments = []
+    prev = None
+    for seg in segments:
+        if seg != prev:
+            filtered_segments.append(seg)
+        prev = seg
+
     corrected_segments = []
-    for segment in segments:
+    for segment in filtered_segments:
         seg_strip = segment.strip()
         if not seg_strip:
             continue
@@ -651,15 +659,6 @@ def _normalize_ingredients(raw_text: str, sym_spell: SymSpell) -> str:
             else:
                 corrected_segments.append(seg_strip)
     final = " ".join(corrected_segments)
-    # final = ""
-    # for i, seg in enumerate(corrected_segments):
-    #     if i > 0 and not (
-    #         re.fullmatch(protect_pattern, corrected_segments[i - 1]) or
-    #         re.fullmatch(protect_pattern, seg)
-    #     ):
-    #         final += " "
-    #     final += seg
-    # Letzte Bereinigung
     final = re.sub(r"\s+", " ", final).strip()
     return final
 
