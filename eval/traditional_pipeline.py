@@ -193,12 +193,12 @@ def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class
         if cropped.size == 0:
             return {"structured_data": {"error": "Leere Bounding Box"}, "yolo_result": yolo_result}
 
-        cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
-
         preprocessed = _process_cv2_picture(cropped)
-
-    # cv2.imwrite(str(out_dir / f"{product_id}_crop_processed.jpg"), preprocessed)
-    # preprocessed = cropped
+    
+    # Zeichne die erkannte YOLO-Bounding Box auf das Bild
+    visualize_yolo_box(best_image, x1,x2,y1,y2, out_dir, best_conf, target_class, product_id)
+    cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
+    cv2.imwrite(str(out_dir / f"{product_id}_crop_processed.jpg"), preprocessed)
     
     # 3. OCR ausführen und Ergebnis speichern
 
@@ -2063,3 +2063,16 @@ def _is_energy_line(words, prev_words, ENERGY_RE):
             return True
 
     return False
+
+def visualize_yolo_box(image, x1, x2, y1, y2, out_dir, best_conf, target_class, product_id):
+    box_img = image.copy()
+    cv2.rectangle(box_img, (x1, y1), (x2, y2), (0, 0, 255), 3)
+    label = f"{best_conf:.2f} - {target_class}"
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    font_scale = 1.2
+    thickness = 3
+    text_size, _ = cv2.getTextSize(label, font, font_scale, thickness)
+    text_x = x1
+    text_y = y1 - 10 if y1 - 10 > 10 else y1 + text_size[1] + 10
+    cv2.putText(box_img, label, (text_x, text_y), font, font_scale, (0, 0, 255), thickness)
+    cv2.imwrite(str(out_dir / f"{product_id}_yolo_box.jpg"), box_img)
