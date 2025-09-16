@@ -9,13 +9,12 @@ import unicodedata
 from pathlib import Path
 from typing import List, Dict, Any
 from collections import defaultdict
-import time, math 
 from rapidfuzz import process, fuzz
 from sklearn.cluster import DBSCAN
 from sklearn.cluster import AgglomerativeClustering
 from ultralytics import YOLO
 from pytesseract import Output
-
+from symspellpy.symspellpy import SymSpell
 
 from eval_helpers import timer
 
@@ -128,7 +127,7 @@ times = {} # Dictionary zum Speichern einzelner Zeiten von Teilprozessen
 # ÖFFENTLICHE METHODE ZUM ABRUFEN 
 # ==============================================================================
 
-def run_traditional_pipeline(model: YOLO, paths: List[Path], target_id: int, out_dir: Path, product_id: str, oem: int, psm: int, distance_threshold_factor: float) -> Dict[str, Any]:
+def run_traditional_pipeline(model: YOLO, paths: List[Path], target_id: int, out_dir: Path, product_id: str, oem: int, psm: int, distance_threshold_factor: float, sym_spell: SymSpell) -> Dict[str, Any]:
     """
     Öffentliche Hauptfunktion, die die traditionelle Pipeline ausführt.
     Diese Funktion wird vom Evaluationsskript aufgerufen.
@@ -142,7 +141,7 @@ def run_traditional_pipeline(model: YOLO, paths: List[Path], target_id: int, out
         raise ValueError(f"Ungültige Target-ID: {target_id}")
 
     # Die eigentliche Logik wird in einer internen Funktion ausgeführt
-    result = _execute_extraction_logic(model, paths, target_class, target_id, out_dir, product_id, oem, psm, distance_threshold_factor)
+    result = _execute_extraction_logic(model, paths, target_class, target_id, out_dir, product_id, oem, psm, distance_threshold_factor, sym_spell)
     
     # Ergebnis für das Evaluationsskript formatieren
     structured_data = result.get("structured_data", {})
@@ -160,7 +159,7 @@ def run_traditional_pipeline(model: YOLO, paths: List[Path], target_id: int, out
 # INTERNE KERNLOGIK (interne `main`-Methode)
 # ==============================================================================
 
-def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class: str, target_class_id: int, out_dir: Path, product_id: str, oem: int, psm: int, distance_threshold_factor: float) -> Dict[str, Any]:
+def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class: str, target_class_id: int, out_dir: Path, product_id: str, oem: int, psm: int, distance_threshold_factor: float, sym_spell: SymSpell) -> Dict[str, Any]:
     """
     Führt den Hauptprozess von YOLO-Detektion bis zum Post-Processing durch.
     """
@@ -214,7 +213,7 @@ def _execute_extraction_logic(model: YOLO, image_paths: List[Path], target_class
     structured_data = {}
     if target_class == "ingredients":
         with timer(times, "postprocessing"):
-            processed_text = _normalize_ingredients(ocr_raw_string)
+            processed_text = _normalize_ingredients(ocr_raw_string, sym_spell)
         raw_text = _formate_raw_text(ocr_raw_string)
         structured_data = {"ingredients_text": processed_text, "raw_text": raw_text}
 
@@ -399,6 +398,7 @@ def _process_nutrition_table(ocr_data: Dict, distance_threshold_factor: float) -
 
         final_processed_rows.append(corrected_boxes)
 
+
     # Gib das endgültig prozessierte Ergebnis aus
     # print(f"\nErgebnis nach finalem Line - Postprocessing:")
     for i, row in enumerate(final_processed_rows, 1):
@@ -529,7 +529,7 @@ def _process_nutrition_table(ocr_data: Dict, distance_threshold_factor: float) -
 # HELFERFUNKTIONEN 
 # ==============================================================================
 
-def _normalize_ingredients(raw_text: str) -> str:
+def _normalize_ingredients(raw_text: str, sym_spell: SymSpell) -> str:
 
     text = unicodedata.normalize("NFKC", raw_text)  # Unicode Normalisierung und Kleinschreibung
     text = text.replace("\u00AD", "")
@@ -540,6 +540,18 @@ def _normalize_ingredients(raw_text: str) -> str:
     print(f"Vor Normalizing: {text}")
 
     text = _join_hyphenated_lines(text)
+
+    text = re.sub(
+        r'''(?ix)
+            (?<!\w)                 # kein Buchstabe/Ziffer davor
+            (<?) \s*                # optional "<"
+            (\d+(?:[.,]\d+)*) \s*   # Zahl
+            (kj|kcal|g|mg|µg|ug|ml|l|%)  # Einheit
+            (?!\w)                  # kein Buchstabe/Ziffer danach
+        ''',
+        r'\1\2\3',
+        text
+    )
     
     text = text.replace("\n", " ")
 
@@ -626,9 +638,44 @@ def _normalize_ingredients(raw_text: str) -> str:
             
     text = re.sub(r"\s+", ' ', text).strip().lower()
 
-    text = _add_lost_commata(text)  # Füge verlorene Kommas hinzu
+    text = _add_lost_commata(text)  # Füge verlorene Dezimaltrenner hinzu
 
-    return text
+    protect_pattern = (
+    r"(\([0-9]+(?:[\.,][0-9]+)?\s?(%|[gmkMG]{1,2}|ml|mg)?\)|"  # (40%), (12g)
+    r"[0-9]+(?:[\.,][0-9]+)?\s?(%|[gmkMG]{1,2}|ml|mg)?|\([A-Za-z]{1,3}\))"    # 40%, 12g
+    )
+    # Teile Text in Segmente um Zahlen/Einheiten zu schützen
+    segments = re.split(f'({protect_pattern})', text)
+    segments = [seg for seg in segments if seg]
+
+    corrected_segments = []
+    for segment in segments:
+        seg_strip = segment.strip()
+        if not seg_strip:
+            continue
+        # Wenn geschützt, nicht verändern
+        if re.fullmatch(protect_pattern, seg_strip):
+            corrected_segments.append(seg_strip)
+        else:
+            # Sonst Korrektur durchführen
+            suggestions = sym_spell.lookup_compound(segment, max_edit_distance=2)
+            if suggestions:
+                corrected_segments.append(suggestions[0].term)
+            else:
+                corrected_segments.append(seg_strip)
+    final = " ".join(corrected_segments)
+    # final = ""
+    # for i, seg in enumerate(corrected_segments):
+    #     if i > 0 and not (
+    #         re.fullmatch(protect_pattern, corrected_segments[i - 1]) or
+    #         re.fullmatch(protect_pattern, seg)
+    #     ):
+    #         final += " "
+    #     final += seg
+    # Letzte Bereinigung
+    final = re.sub(r"\s+", " ", final).strip()
+    return final
+
 
 def _merge_number_with_unit(filtered_words: list) -> list:
     merged_words = []
