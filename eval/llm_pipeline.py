@@ -11,6 +11,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from ultralytics import YOLO
 from pathlib import Path
+from traditional_pipeline import visualize_yolo_box
 
 from eval_helpers import timer
 
@@ -30,7 +31,7 @@ MODEL_PRICING = {
 # ==============================================================================
 
 
-def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_dir: Path, product_id: str, temperature: float, llm_model: str) -> str:
+def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_dir: Path, product_id: str, class_filter: str, temperature: float, llm_model: str) -> str:
     """
     Öffentliche Hauptfunktion, die die LLM-Pipeline für ein YOLO-Bild ausführt.
     Diese Funktion wird vom Evaluationsskript aufgerufen.
@@ -78,6 +79,7 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
             return {"structured_data": {"error": "Leere Bounding Box"}, "yolo_result": yolo_result}
 
     cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
+    visualize_yolo_box(best_image, x1,x2,y1,y2, out_dir, best_conf, target_class, product_id)
 
     with timer(times, "image-encoding-prompt-creation"):
         encoded_images = []
