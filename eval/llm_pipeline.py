@@ -67,7 +67,7 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
                     best_image_path = img_path
         
         if best_box is None:
-            return {"structured_data": {}, "yolo_result": None}
+            return {"error": "Keine gültige Bounding Box gefunden"}
         
         yolo_result = {"box": best_box.xyxy[0].tolist(), "confidence": best_conf}
         
@@ -76,7 +76,7 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
         cropped = best_image[y1:y2, x1:x2]
 
         if cropped.size == 0:
-            return {"structured_data": {"error": "Leere Bounding Box"}, "yolo_result": yolo_result}
+            return {"error": "Leere Bounding Box, kein Bild zum Verarbeiten"}
 
     cv2.imwrite(str(out_dir / f"{product_id}_cropped.jpg"), cropped)
     visualize_yolo_box(best_image, x1,x2,y1,y2, out_dir, best_conf, target_class, product_id)
@@ -90,7 +90,7 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
             print(f"Fehler bei der Bildverarbeitung: {e}")
 
         if not encoded_images:
-            return {"text": {}, "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost_usd": 0.0}
+            return {"error": "Fehler bei der Bildverarbeitung"}
 
         # 3. Prompt basierend auf dem Filter erstellen
         prompt_text = _create_prompt(target_class)
@@ -137,7 +137,7 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
     
     except Exception as e:
         print(f"Fehler bei der Anfrage an die OpenAI API: {e}")
-        return {"text": "API_ERROR", "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost_usd": 0.0, "times": times}
+        return {"error": "API_ERROR", "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost_usd": 0.0, "times": times}
 
 # ==============================================================================
 # HELFERFUNKTIONEN

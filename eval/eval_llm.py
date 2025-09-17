@@ -88,37 +88,44 @@ def run_llm(cfg: dict, temperature: float, llm_model: str):
         end_to_end_time_llm = time_end_llm - time_start_llm
         cpu_llm_time = (cpu_end_llm.user - cpu_start_llm.user) + (cpu_end_llm.system - cpu_start_llm.system) # tatsächliche CPU-Zeit
 
-        if llm_res_data.get("text") is not None:
+        if "total_tokens" in llm_res_data:
             llm_res = llm_res_data.get("text", "")
-        llm_times = llm_res_data.get("times", {})
-        time_yolo_api_connection = llm_times.get("yolo-and-api-connection", None)
-        encoding_prompt_creation = llm_times.get("image-encoding-prompt-creation", None)
-        time_api_llm = llm_times.get("api_roundtrip", None)
-        time_postproc_llm = llm_times.get("postprocessing", None)
-        if class_filter == "nutrition":
-            llm_res_compact = compact_json_str(llm_res)
-            print("LLM-Antwort (kompakt):", llm_res_compact)
-            print(f"Typ von llm_res_compact: {type(llm_res_compact)}")
-            llm_string = transform_dict_to_string(llm_res_compact, class_filter)
-            try:
-                if isinstance(json.loads(llm_res_compact), dict):
-                    metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, json.loads(llm_res_compact), class_filter, method = "llm")
-                    structure_score_llm = evaluate_nutrition_table_structure(gt_object, json.loads(llm_res_compact), "llm")
-                    grits_metrics = calculate_grits_metric(gt_object, json.loads(llm_res_compact))
-                    if end_to_end_time_llm and grits_metrics and metrics_llm and mem_peak:
-                        composite_score = calculate_composite_indicator_nutrition(end_to_end_time_llm, mem_peak, grits_metrics.get("overall_table_score"), llm_res_data.get("cost_usd", 0.0))
-            except json.JSONDecodeError as e:
-                print(f"Fehler beim Parsen der LLM-Antwort: {e}")
-                metrics_llm = {}
-                structure_score_llm = {}
-                grits_metrics = {}
-                composite_score = None
+            llm_times = llm_res_data.get("times", {})
+            time_yolo_api_connection = llm_times.get("yolo-and-api-connection", None)
+            encoding_prompt_creation = llm_times.get("image-encoding-prompt-creation", None)
+            time_api_llm = llm_times.get("api_roundtrip", None)
+            time_postproc_llm = llm_times.get("postprocessing", None)
+            if class_filter == "nutrition":
+                llm_res_compact = compact_json_str(llm_res)
+                print("LLM-Antwort (kompakt):", llm_res_compact)
+                print(f"Typ von llm_res_compact: {type(llm_res_compact)}")
+                llm_string = transform_dict_to_string(llm_res_compact, class_filter)
+                try:
+                    if isinstance(json.loads(llm_res_compact), dict):
+                        metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, json.loads(llm_res_compact), class_filter, method = "llm")
+                        structure_score_llm = evaluate_nutrition_table_structure(gt_object, json.loads(llm_res_compact), "llm")
+                        grits_metrics = calculate_grits_metric(gt_object, json.loads(llm_res_compact))
+                        if end_to_end_time_llm and grits_metrics and metrics_llm and mem_peak:
+                            composite_score = calculate_composite_indicator_nutrition(end_to_end_time_llm, mem_peak, grits_metrics.get("overall_table_score"), llm_res_data.get("cost_usd", 0.0))
+                except json.JSONDecodeError as e:
+                    print(f"Fehler beim Parsen der LLM-Antwort: {e}")
+                    metrics_llm = {}
+                    structure_score_llm = {}
+                    grits_metrics = {}
+                    composite_score = None
+            else:
+                llm_string = llm_res or ""
+                metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, llm_res_data.get("text", {}), class_filter, method = "llm")
+                if end_to_end_time_llm and metrics_llm and mem_peak:
+                    composite_score = calculate_composite_indicator_ingredients(end_to_end_time_llm, mem_peak, wer(gt_text, llm_string), cer(gt_text, llm_string), metrics_llm.get("f1_overall_ocr"), llm_res_data.get("cost_usd", 0.0))
         else:
-            llm_string = llm_res or ""
-            metrics_llm = calculate_word_level_metrics(gt_text, llm_string, gt_object, llm_res_data.get("text", {}), class_filter, method = "llm")
-            if end_to_end_time_llm and metrics_llm and mem_peak:
-                composite_score = calculate_composite_indicator_ingredients(end_to_end_time_llm, mem_peak, wer(gt_text, llm_string), cer(gt_text, llm_string), metrics_llm.get("f1_overall_ocr"), llm_res_data.get("cost_usd", 0.0))
-
+            error_reason = llm_res_data.get("error", "Unbekannter Fehler")
+            print(f"Fehler in der LLM-Pipeline für Produkt {product_id}: {error_reason}")
+            llm_string = ""
+            time_yolo_api_connection = None
+            encoding_prompt_creation = None
+            time_api_llm = None
+            time_postproc_llm = None
         print(f"Zeit (LLM): {end_to_end_time_llm:.2f}s")
 
         # --- Metriken berechnen ---
@@ -140,12 +147,12 @@ def run_llm(cfg: dict, temperature: float, llm_model: str):
             "wer_llm": wer(gt_text, llm_string),
             "cer_llm": cer(gt_text, llm_string),
             "composite_indicator": composite_score,
-            "llm_input_tokens": llm_res_data["input_tokens"],
-            "llm_cached_input_tokens": llm_res_data["cached_input"],
-            "llm_completion_tokens": llm_res_data["completion_tokens"],
-            "llm_reasoning_tokens": llm_res_data["reasoning_tokens"],
-            "llm_total_tokens": llm_res_data["total_tokens"],
-            "llm_cost_usd": llm_res_data["cost_usd"],
+            "llm_input_tokens": llm_res_data["input_tokens"] if "input_tokens" in llm_res_data else None,
+            "llm_cached_input_tokens": llm_res_data["cached_input"] if "cached_input" in llm_res_data else None,
+            "llm_completion_tokens": llm_res_data["completion_tokens"] if "completion_tokens" in llm_res_data else None,
+            "llm_reasoning_tokens": llm_res_data["reasoning_tokens"] if "reasoning_tokens" in llm_res_data else None,
+            "llm_total_tokens": llm_res_data["total_tokens"] if "total_tokens" in llm_res_data else None,
+            "llm_cost_usd": llm_res_data["cost_usd"] if "cost_usd" in llm_res_data else None,
         }
         
         if class_filter == "nutrition":
