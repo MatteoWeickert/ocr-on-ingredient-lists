@@ -137,6 +137,10 @@ def run_llm(cfg: dict, temperature: float, llm_model: str):
             "wer_llm": wer(gt_text, llm_string),
             "cer_llm": cer(gt_text, llm_string),
             "composite_indicator": composite_score,
+            "llm_input_tokens": llm_res_data["input_tokens"],
+            "llm_cached_input_tokens": llm_res_data["cached_input"],
+            "llm_completion_tokens": llm_res_data["completion_tokens"],
+            "llm_reasoning_tokens": llm_res_data["reasoning_tokens"],
             "llm_total_tokens": llm_res_data["total_tokens"],
             "llm_cost_usd": llm_res_data["cost_usd"],
         }
