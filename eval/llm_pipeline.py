@@ -30,7 +30,7 @@ MODEL_PRICING = {
 # HAUPTFUNKTION
 # ==============================================================================
 
-def run_llm_pipeline(image_paths: List[str], class_filter: str) -> Dict[str, Any]:
+def run_llm_pipeline(image_paths: List[str], class_filter: str, temperature: float, llm_model: str) -> Dict[str, Any]:
     """
     Führt die LLM-Pipeline aus, um die beste Bounding Box aus einer Bilderserie zu extrahieren.
     """
@@ -48,7 +48,7 @@ def run_llm_pipeline(image_paths: List[str], class_filter: str) -> Dict[str, Any
         for i, image_path in enumerate(image_paths):
             try:
                 # Lade Bild mit PIL für die Vorverarbeitung
-                img = Image.open(image_path)
+                img = Image.open(image_path).convert("RGB")
                 if img is None:
                     print(f"Warnung: Bild konnte nicht geladen werden: {image_path}")
                     continue
@@ -78,7 +78,7 @@ def run_llm_pipeline(image_paths: List[str], class_filter: str) -> Dict[str, Any
                 }
             })
 
-        model_to_use = "gpt-4o"
+        model_to_use = llm_model
 
     try:
         with timer(times, "api_roundtrip"):
@@ -90,7 +90,7 @@ def run_llm_pipeline(image_paths: List[str], class_filter: str) -> Dict[str, Any
                     "content": api_request_content
                     }
                 ],
-                temperature=0.2 # Kreativität des Modells niedrig, um keine unerwarteten Ergebnisse zu erzeugen
+                temperature=temperature, # Kreativität des Modells niedrig, um keine unerwarteten Ergebnisse zu erzeugen
                 # response_format={"type": "json_object"} # Reine Textantwort (kein JSON-Parsing durch die API
             )
 
@@ -141,40 +141,14 @@ def _create_prompt(class_filter: str, image_ids: List[str]) -> str:
 
         return (
         f"""
-            YOU ARE A HYPER-PRECISE IMAGE LOCALIZATION ROBOT. YOUR SOLE TASK IS TO FIND THE BOUNDING BOX OF A '{target_description}' ACROSS AN IMAGE AND RETURN ITS LOCATION.
-
-            INPUT: You will receive an image. I have assigned them the following unique identifiers: {image_id_list_str}.
-            
-            YOUR SINGLE, NON-NEGOTIABLE TASK:
-            1.  ANALYZE THE PROVIDED IMAGE.
-            2.  IDENTIFY the precise bounding box that encloses the '{target_description}' on that image.
-
-            STRICT JSON OUTPUT FORMAT - NO EXCEPTIONS:
-            - YOUR OUTPUT MUST BE A SINGLE, VALID JSON OBJECT.
-            - IF a '{target_description}' CANNOT BE CLEARLY IDENTIFIED ON ANY IMAGE, YOU MUST RETURN AN EMPTY JSON OBJECT: {{}}.
-
-            JSON STRUCTURE (STRICTLY NOTHING ELSE):
+            Extrahiere die Bounding Box der {target_description} aus dem Bild.
+            Gib die normalisierte Bounding Box im JSON-Format zurück. Die Koordinaten sollen zwischen 0 und 1 liegen (normalisierte Pixelwerte).
+            Verwende das folgende Format:
             {{
-              "box": {{
-                "x1": integer,
-                "y1": integer,
-                "x2": integer,
-                "y2": integer
-              }}
+                "box": {{"x1": 0.125, "y1": 0.155, "x2": 0.475, "y2": 0.675}}
             }}
-            
-            KEY DEFINITIONS:
-            - "box": The pixel coordinates of the bounding box on that selected image.
-            
-            COORDINATE SYSTEM RULES:
-            - The origin (0,0) is the TOP-LEFT corner of the image.
-            - "x1", "y1" are the TOP-LEFT corner of the box.
-            - "x2", "y2" are the BOTTOM-RIGHT corner of the box.
-
-            FINAL COMMAND: ANALYZE, SELECT, LOCATE, AND RESPOND WITH THE JSON. ZERO DEVIATION.
         """
         )
-    return "Unsupported class_filter"
 
 def _calculate_llm_cost(model: str, prompt_tokens: int, completion_tokens: int) -> float:
     """Berechnet die Kosten für einen API-Aufruf basierend auf vordefinierten Preisen."""
