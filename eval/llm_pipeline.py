@@ -126,8 +126,10 @@ def run_llm_pipeline(model: YOLO, image_paths: List[Path], target_id: int, out_d
 
         return {
             "text": output_text, # Der rohe JSON-String vom Modell
-            "prompt_tokens": usage.input_tokens, # Bilder werden zu Token umgewandelt und in input_tokens gezählt
+            "input_tokens": usage.input_tokens, # Bilder werden zu Token umgewandelt und in input_tokens gezählt
+            "cached_input": usage.input_tokens_details.cached_tokens,  
             "completion_tokens": usage.output_tokens,
+            "reasoning_tokens": usage.output_tokens_details.reasoning_tokens,
             "total_tokens": usage.total_tokens,
             "cost_usd": cost,
             "times": times
