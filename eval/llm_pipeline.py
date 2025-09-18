@@ -19,8 +19,9 @@ times = {} # Dict zum Speichern einiger Zwischenzeiten
 # ==============================================================================
 # Stand: August 2024 (GPT-4o)
 MODEL_PRICING = {
-    "gpt-4o": {"input": 2.50 / 1_000_000, "output": 10.00 / 1_000_000},
-    "gpt-4.1-mini": {"input": 0.40 / 1_000_000, "output": 1.60 / 1_000_000}
+    "gpt-4o": {"input": 2.50 / 1_000_000, "cached_input": 1.25 / 1_000_000, "output": 10.00 / 1_000_000},
+    "gpt-4.1-mini": {"input": 0.40 / 1_000_000, "cached_input": 0.10 / 1_000_000, "output": 1.60 / 1_000_000},
+    "gpt-4o-mini": {"input": 0.15 / 1_000_000, "cached_input": 0.075 / 1_000_000, "output": 0.60 / 1_000_000}
 }
 
 # ==============================================================================
@@ -95,7 +96,7 @@ def run_llm_pipeline(image_paths: List[str], class_filter: str, temperature: flo
             output_text = response.output_text
             print(f"LLM-Antwort erhalten: {output_text}") 
             usage = response.usage
-            cost = _calculate_llm_cost(model_to_use, usage.input_tokens, usage.output_tokens)
+            cost = _calculate_llm_cost(model_to_use, usage.input_tokens, usage.input_tokens_details.cached_tokens, usage.output_tokens)
 
         return {
             "text": output_text, # Der rohe JSON-String vom Modell
@@ -281,7 +282,7 @@ def _create_prompt(class_filter: str) -> str:
         )
         return f"Extrahiere alle Informationen bezüglich '{class_filter}' von den Bildern und gib sie als JSON-Objekt zurück."
 
-def _calculate_llm_cost(model: str, prompt_tokens: int, completion_tokens: int) -> float:
+def _calculate_llm_cost(model: str, prompt_tokens: int, cached_tokens: int, completion_tokens: int) -> float:
     """Berechnet die Kosten für einen API-Aufruf basierend auf vordefinierten Preisen."""
     pricing = MODEL_PRICING.get(model)
     if not pricing:
@@ -289,5 +290,6 @@ def _calculate_llm_cost(model: str, prompt_tokens: int, completion_tokens: int) 
         return 0.0
     
     input_cost = prompt_tokens * pricing["input"]
+    input_cached = cached_tokens * pricing["cached_input"]
     output_cost = completion_tokens * pricing["output"]
     return input_cost + output_cost
