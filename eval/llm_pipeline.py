@@ -292,4 +292,4 @@ def _calculate_llm_cost(model: str, prompt_tokens: int, cached_tokens: int, comp
     input_cost = prompt_tokens * pricing["input"]
     input_cached = cached_tokens * pricing["cached_input"]
     output_cost = completion_tokens * pricing["output"]
-    return input_cost + output_cost
+    return input_cost + output_cost + input_cached
