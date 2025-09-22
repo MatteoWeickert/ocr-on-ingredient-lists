@@ -134,20 +134,10 @@ def _encode_image(img: Image.Image) -> str:
 def _create_prompt(class_filter: str, image_ids: List[str]) -> str:
     """Erstellt den spezifischen Prompt für die API-Anfrage."""
     if class_filter in ["nutrition", "ingredients"]:
-        target_description = "Nährwerttabelle (nutrition table)" if class_filter == "nutrition" else "Zutatenliste (ingredient list)"
-        
-        # Erzeuge eine für das LLM lesbare Liste der Bild-IDs
-        image_id_list_str = ", ".join(f"{id}" for id in image_ids)
-
         return (
-        f"""
-            Extrahiere die Bounding Box der {target_description} aus dem Bild.
-            Gib die normalisierte Bounding Box im JSON-Format zurück. Die Koordinaten sollen zwischen 0 und 1 liegen (normalisierte Pixelwerte).
-            Verwende das folgende Format:
-            {{
-                "box": {{"x1": 0.125, "y1": 0.155, "x2": 0.475, "y2": 0.675}}
-            }}
-        """
+            f"Finde die Nährwerttabelle im Bild und gib mir Bounding-Boxen als "
+            f"relative Werte im Format [x_min, y_min, x_max, y_max], "
+            f"jeweils zwischen 0 und 1."
         )
 
 def _calculate_llm_cost(model: str, prompt_tokens: int, completion_tokens: int) -> float:
