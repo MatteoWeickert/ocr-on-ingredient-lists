@@ -142,7 +142,7 @@ def safe_grits(metric_fn, A: np.ndarray, B: np.ndarray) -> Tuple[float, float, f
     Führt eine GRITS-Metrikfunktion sicher aus und fängt mögliche Fehler ab.
     Gibt (F1, Precision, Recall) zurück oder (0.0, 0.0, 0.0) bei Fehlern.
     """
-    if A.size == 0 or B.size == 0:
+    if A.size == 0 and B.size == 0:
         return 1.0, 1.0, 1.0 
     if A.size == 0 or B.size == 0:
         return 0.0, 0.0, 0.0
